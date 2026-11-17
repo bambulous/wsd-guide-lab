@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="th" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WSD Guide Lab 2026 | ศูนย์กลางการอบรมมัคคุเทศก์วันดินโลก</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --soil:#4a2f22; --clay:#b4602a; --clay-soft:#f1dcc9; --leaf:#4d7a35; --leaf-soft:#dfead3;
+  --water:#2f6f8f; --water-soft:#d7e8f0; --cream:#f7f2e9; --paper:#fffdf9; --ink:#2a201a;
+  --muted:#6f6158; --line:#e4d9cc; --sun:#e0a526; --radius:14px;
+  --head:'Noto Serif Thai',serif; --body:'IBM Plex Sans Thai',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.65;font-size:16px}
+a{color:var(--water)}
+button{font-family:inherit}
+.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+/* sidebar */
+.side{background:var(--soil);color:#f3e7da;padding:22px 16px 40px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.brand{display:flex;gap:10px;align-items:center;margin:0 6px 20px}
+.brand-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(180deg,#7a4a2c 0 40%,#5b3a29 40% 70%,#3a241a 70%);position:relative;flex:none}
+.brand-mark:after{content:"";position:absolute;left:12px;top:-6px;width:16px;height:14px;border-radius:0 14px 0 14px;background:#7fae5a}
+.brand b{font-family:var(--head);font-size:17px;display:block;line-height:1.2}
+.brand small{opacity:.75;font-size:12px}
+.nav-group{margin:14px 0 4px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;padding:0 10px}
+.nav a{display:block;color:#f3e7da;text-decoration:none;padding:7px 10px;border-radius:8px;font-size:14.5px}
+.nav a:hover{background:rgba(255,255,255,.08)}
+.nav a.active{background:var(--clay);color:#fff}
+.nav a .dice{font-size:12px;opacity:.8;margin-left:4px}
+.side-note{margin:22px 10px 0;font-size:12px;opacity:.65;line-height:1.5}
+/* main */
+.main{padding:28px clamp(16px,4vw,48px) 80px;max-width:1120px;width:100%}
+.topbar{display:none}
+h1,h2,h3{font-family:var(--head);line-height:1.3;color:var(--soil)}
+h1{font-size:clamp(26px,3.4vw,36px);margin:.2em 0 .3em}
+h2{font-size:22px;margin:1.6em 0 .6em}
+h3{font-size:17.5px;margin:1.2em 0 .4em}
+.kicker{font-size:13px;letter-spacing:.06em;color:var(--clay);font-weight:600;text-transform:uppercase}
+.lead{font-size:17px;color:var(--muted);max-width:760px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--clay-soft);color:#7a3e16;margin:0 4px 4px 0}
+.tag.leaf{background:var(--leaf-soft);color:#2f5220}
+.tag.water{background:var(--water-soft);color:#1d4a60}
+table{width:100%;border-collapse:collapse;background:var(--paper);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);font-size:15px}
+th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:#efe5d8;font-weight:600;color:var(--soil)}
+tr:last-child td{border-bottom:none}
+td.time{white-space:nowrap;font-weight:600;color:var(--clay)}
+tr.brk td{background:#f3efe8;color:var(--muted);font-style:italic}
+.tile{display:block;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;transition:transform .12s,box-shadow .12s}
+.tile:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(74,47,34,.12)}
+.tile .ico{font-size:26px}
+.tile b{display:block;font-size:16px;margin:4px 0 2px;color:var(--soil)}
+.tile span{font-size:13.5px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:6px;border:none;border-radius:10px;padding:10px 18px;font-size:15px;font-weight:600;cursor:pointer;background:var(--clay);color:#fff;text-decoration:none}
+.btn:hover{filter:brightness(1.07)}
+.btn.big{font-size:18px;padding:14px 28px}
+.btn.ghost{background:transparent;color:var(--soil);border:1.5px solid var(--line)}
+.btn.leaf{background:var(--leaf)}
+.btn.water{background:var(--water)}
+.btn.sm{padding:6px 12px;font-size:13.5px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.note{background:#fff7e6;border-left:4px solid var(--sun);padding:12px 16px;border-radius:8px;font-size:15px}
+.ok{background:var(--leaf-soft);border-left:4px solid var(--leaf);padding:12px 16px;border-radius:8px;font-size:15px}
+ul.clean{padding-left:1.2em;margin:.4em 0}
+ul.clean li{margin:.2em 0}
+/* session */
+.sess-head{border-radius:var(--radius);padding:22px 24px;color:#fff;background:var(--soil)}
+.sess-head h1{color:#fff;margin:.1em 0}
+.sess-head p{margin:.2em 0;opacity:.9}
+.act{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.act:last-child{border-bottom:none}
+.act .min{font-weight:700;color:var(--clay);font-size:15px}
+.act .min small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.act h4{margin:0 0 4px;font-size:16px;color:var(--soil)}
+.act p{margin:0 0 6px;font-size:15px}
+.kind{font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.kind.in{background:var(--water-soft);color:#1d4a60}
+.kind.pr{background:var(--leaf-soft);color:#2f5220}
+/* randomiser */
+.stage{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px;min-height:240px;display:flex;flex-direction:column;justify-content:center}
+.stage.empty{align-items:center;text-align:center;color:var(--muted)}
+.stage.rolling{opacity:.55}
+.res-num{font-family:var(--head);font-size:15px;color:var(--clay)}
+.res-title{font-family:var(--head);font-size:clamp(24px,3.4vw,38px);color:var(--soil);margin:.1em 0 .3em;line-height:1.25}
+.res-body{font-size:clamp(16px,1.9vw,20px)}
+.res-body dt{font-weight:700;color:var(--soil);margin-top:8px}
+.res-body dd{margin:0 0 4px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
+.counter{font-size:13.5px;color:var(--muted)}
+label.chk{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--muted);cursor:pointer}
+.deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
+.deck .mini{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px;cursor:pointer}
+.deck .mini.used{opacity:.45}
+.deck .mini b{display:block;color:var(--soil)}
+details.more{margin-top:18px}
+details.more summary{cursor:pointer;font-weight:600;color:var(--soil)}
+.mission{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.mission .slot{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;min-height:150px}
+.mission .slot .lab{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--clay)}
+.mission .slot .val{font-family:var(--head);font-size:20px;color:var(--soil);margin:4px 0}
+.mission .slot .sub{font-size:14px;color:var(--muted)}
+textarea,input[type=number],select{font-family:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;color:var(--ink)}
+textarea{width:100%;min-height:160px}
+.names-out{font-family:var(--head);font-size:clamp(34px,6vw,64px);color:var(--soil);text-align:center;margin:.2em 0}
+.history{font-size:14px;color:var(--muted)}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:10px}
+.groups .card b{color:var(--clay)}
+/* timer */
+.timer-face{font-family:var(--head);font-size:clamp(72px,16vw,180px);text-align:center;color:var(--soil);line-height:1;margin:10px 0;font-variant-numeric:tabular-nums}
+.timer-face.warn{color:var(--clay)}
+.timer-face.done{color:#b3261e}
+.bar{height:10px;background:var(--line);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--leaf);width:100%;transition:width .25s linear}
+/* station cards */
+.st-card h3{margin-top:0}
+.st-card .zone{font-size:12.5px;color:var(--muted)}
+.st-card ul{padding-left:1.1em;margin:.3em 0;font-size:15px}
+.hook{background:var(--clay-soft);border-radius:10px;padding:8px 12px;margin:8px 0;font-size:15px}
+.qbox{background:var(--water-soft);border-radius:10px;padding:8px 12px;margin:8px 0;font-size:15px}
+.filter{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 16px}
+.filter button{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 12px;font-size:13.5px;cursor:pointer}
+.filter button.on{background:var(--soil);color:#fff;border-color:var(--soil)}
+/* rubric */
+.lvl{font-size:14px}
+.lvl td:first-child{font-weight:600;color:var(--soil);min-width:150px}
+/* projector mode */
+body.proj .side{display:none}
+body.proj .app{grid-template-columns:1fr}
+body.proj .main{max-width:none}
+body.proj .res-title{font-size:clamp(34px,5vw,60px)}
+body.proj .res-body{font-size:clamp(20px,2.6vw,30px)}
+.projbtn{position:fixed;right:16px;bottom:16px;z-index:20}
+.page{display:none}
+.page.show{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.96)}60%{transform:scale(1.02)}100%{transform:scale(1)}}
+.pop{animation:pop .3s ease}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:0;top:0;width:280px;z-index:30;transform:translateX(-100%);transition:transform .2s}
+  body.nav-open .side{transform:none;box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
+  .topbar{display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:10;background:var(--soil);color:#fff;padding:10px 14px}
+  .topbar button{background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+  .topbar b{font-family:var(--head)}
+  .main{padding-top:18px}
+  .act{grid-template-columns:1fr;gap:4px}
+}
+</style>
+
+<style>
+/* ===== Theme inspired by World Soil Day 2569 site ===== */
+:root{
+  --soil:#3e2723; --soil-900:#2b1d18; --soil-600:#6d4c41; --soil-400:#a1887f; --soil-100:#f3ece7;
+  --clay:#558b2f; --clay-soft:#f1f8e9; --leaf:#33691e; --leaf-400:#7cb342; --leaf-soft:#e6f0d9;
+  --sun:#f9a825; --cream:#f6f1ea; --paper:#ffffff; --line:#efe7e1; --muted:#6d4c41; --ink:#2b1d18;
+  --head:'Noto Sans Thai',system-ui,sans-serif; --body:'Noto Sans Thai',system-ui,sans-serif;
+  --grad:linear-gradient(90deg,#33691e,#558b2f,#7cb342,#a1887f,#6d4c41,#f9a825,#33691e);
+}
+body{background:var(--cream)}
+.main{min-width:0}.ticker .track{min-width:0}.hero{max-width:100%}
+h1,h2,h3{font-weight:800;letter-spacing:-.01em}
+.kicker{color:var(--leaf)}
+.tag{background:var(--clay-soft);color:var(--leaf)}
+.tag.sun{background:#fff3d6;color:#8a5a00}
+.btn{background:var(--clay);box-shadow:0 4px 0 #33691e;transition:transform .12s,box-shadow .12s,filter .12s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #33691e}
+.btn.ghost{box-shadow:none;background:#fff}
+.btn.water{box-shadow:0 4px 0 #1d4a60}
+.btn.leaf{background:var(--soil-600);box-shadow:0 4px 0 var(--soil)}
+.card,.tile,table,.stage,.mission .slot{border-radius:18px;border-color:var(--line);box-shadow:0 2px 10px rgba(62,39,35,.05)}
+th{background:var(--soil-100)}
+td.time{color:var(--leaf)}
+.nav a.active{background:var(--clay)}
+.act .min{color:var(--leaf)}
+.res-num,.mission .slot .lab{color:var(--leaf)}
+
+/* animated gradient strip */
+.grad-strip{height:5px;background:var(--grad);background-size:400% 100%;animation:bg-animation 14s ease infinite}
+@keyframes bg-animation{0%{background-position:left center}50%{background-position:right center}100%{background-position:left center}}
+
+/* sidebar */
+.side{background:var(--soil-900);padding-top:0}
+.side .grad-strip{margin:0 -16px 18px}
+.brand img{width:54px;height:54px;border-radius:50%;background:#fff;padding:3px;flex:none;animation:floaty 5s ease-in-out infinite}
+.brand-mark{display:none}
+.nav a:hover{color:var(--sun);background:rgba(255,255,255,.06)}
+.topbar{background:linear-gradient(90deg,#33691e,#6d4c41,#f9a825,#33691e);background-size:300% 100%;animation:bg-animation 14s ease infinite}
+.topbar img{width:34px;height:34px;border-radius:50%;background:#fff;padding:2px}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-3deg)}}
+
+/* ticker */
+.ticker{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 6px 6px 6px;overflow:hidden;margin-bottom:18px;box-shadow:0 2px 10px rgba(62,39,35,.05)}
+.ticker .pill{flex:none;background:var(--clay);color:#fff;font-weight:700;border-radius:999px;padding:5px 14px;font-size:14px;display:flex;gap:6px;align-items:center}
+.ticker .pill i{display:inline-block;animation:actRing 2.4s ease-in-out infinite;font-style:normal}
+.ticker .track{overflow:hidden;flex:1;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.ticker .move{display:inline-flex;gap:48px;white-space:nowrap;padding-left:100%;animation:ticker-move 38s linear infinite;color:var(--soil);font-weight:500}
+.ticker:hover .move{animation-play-state:paused}
+@keyframes ticker-move{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+@keyframes actRing{0%,60%,100%{transform:rotate(0)}65%{transform:rotate(16deg)}70%{transform:rotate(-14deg)}75%{transform:rotate(9deg)}80%{transform:rotate(-6deg)}}
+
+/* hero */
+.hero{position:relative;border-radius:24px;overflow:hidden;background:
+  radial-gradient(60% 70% at 0% 0%,rgba(124,179,66,.20),transparent 70%),
+  radial-gradient(50% 60% at 100% 0%,rgba(249,168,37,.18),transparent 70%),#fff;
+  border:1px solid var(--line);padding:26px 28px 0;box-shadow:0 6px 24px rgba(62,39,35,.07)}
+.hero-top{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.hero-logo{width:150px;height:150px;border-radius:50%;background:#fff;box-shadow:0 8px 24px rgba(62,39,35,.15);padding:6px;animation:floaty 6s ease-in-out infinite}
+.hero h1{margin:.15em 0 .2em;font-size:clamp(24px,3.2vw,36px)}
+.chip{display:inline-flex;gap:6px;align-items:center;background:var(--clay-soft);color:var(--leaf);font-weight:700;font-size:13px;border-radius:999px;padding:4px 12px}
+.chip .sp{display:inline-block;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.event-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin:10px 0 0;color:var(--soil-600);font-size:15px}
+.countdown{display:grid;grid-template-columns:repeat(4,minmax(64px,92px));gap:10px;margin-top:14px}
+.countdown div{background:linear-gradient(180deg,#4e342e,#2b1d18);color:#fff;border-radius:14px;text-align:center;padding:10px 4px 8px}
+.countdown b{display:block;font-size:30px;line-height:1.1;font-variant-numeric:tabular-nums}
+.countdown span{font-size:12px;opacity:.8}
+.countdown b.tick{animation:tick .4s ease}
+@keyframes tick{0%{transform:translateY(-6px);opacity:.3}100%{transform:none;opacity:1}}
+.hero-scene{display:block;width:100%;height:auto;margin-top:18px}
+@media (max-width:640px){.hero-top{grid-template-columns:1fr;text-align:center;justify-items:center}.hero-logo{width:120px;height:120px}.event-meta{justify-content:center}.countdown{justify-content:center}}
+
+/* section titles like site */
+.sec-head{display:flex;align-items:end;gap:12px;margin:34px 0 12px}
+.sec-head .eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--clay)}
+.sec-head h2{margin:0;position:relative;padding-bottom:6px}
+.sec-head h2:after{content:"";position:absolute;left:0;bottom:0;width:44px;height:4px;border-radius:4px;background:var(--grad);background-size:300% 100%;animation:bg-animation 8s ease infinite}
+
+/* tiles */
+.tile{position:relative;overflow:hidden}
+.tile .ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--clay-soft);font-size:26px;transition:transform .25s}
+.tile:hover .ico{transform:rotate(-8deg) scale(1.08)}
+.tile:after{content:"";position:absolute;inset:auto -30% -60% auto;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(124,179,66,.18),transparent 70%);transition:transform .4s}
+.tile:hover:after{transform:scale(1.5)}
+
+/* session header */
+.sess-head{position:relative;overflow:hidden;padding-bottom:58px;background-size:300% 100%!important;animation:bg-animation 16s ease infinite}
+.sess-head svg.layers{position:absolute;left:0;right:0;bottom:-2px;width:100%;height:56px}
+.sess-head .big-n{position:absolute;right:22px;top:6px;font-size:110px;font-weight:800;opacity:.12;line-height:1}
+
+/* station icons */
+.st-ico{width:46px;height:46px;flex:none}
+.st-ico.big{width:72px;height:72px}
+.st-head{display:flex;gap:12px;align-items:center}
+.st-head h3{margin:0}
+
+/* reveal on scroll */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.js .reveal.in{opacity:1;transform:none}
+
+/* random reveal */
+@keyframes flipIn{0%{transform:perspective(900px) rotateY(80deg);opacity:0}100%{transform:none;opacity:1}}
+.stage.flip{animation:flipIn .45s cubic-bezier(.2,.8,.2,1)}
+.stage.rolling{opacity:.7;filter:blur(.3px)}
+
+/* footer */
+.foot{margin-top:46px;padding:18px 0 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.foot img{width:40px;height:40px;border-radius:50%;background:#fff}
+
+/* svg scene animations */
+.sun-rays{transform-origin:690px 62px;animation:spin 30s linear infinite}
+.cloud1{animation:drift 26s ease-in-out infinite}
+.cloud2{animation:drift 34s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translateX(0)}50%{transform:translateX(40px)}}
+.drop{animation:fall 3.2s linear infinite;opacity:0}
+@keyframes fall{0%{transform:translateY(0);opacity:0}10%{opacity:.9}55%{transform:translateY(105px);opacity:.9}100%{transform:translateY(165px);opacity:0}}
+.seep{animation:seep 4.5s ease-in infinite;opacity:0}
+@keyframes seep{0%{transform:translateY(0);opacity:0}20%{opacity:.9}100%{transform:translateY(62px);opacity:0}}
+.runoff{animation:runoff 4s ease-in infinite;opacity:0}
+@keyframes runoff{0%{transform:translate(0,0);opacity:0}15%{opacity:.9}100%{transform:translate(120px,8px);opacity:0}}
+.grow{transform-box:fill-box;transform-origin:50% 100%;animation:grow 2.2s cubic-bezier(.2,.9,.3,1.2) both .3s}
+@keyframes grow{0%{transform:scale(0)}100%{transform:scale(1)}}
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 4s ease-in-out infinite 2.5s}
+@keyframes sway{0%,100%{transform:rotate(0)}50%{transform:rotate(3deg)}}
+.root{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 3s ease forwards 1s}
+.root.slow{animation-duration:5s;animation-delay:1.4s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.worm{animation:crawl 14s ease-in-out infinite}
+@keyframes crawl{0%,100%{transform:translateX(0)}50%{transform:translateX(120px)}}
+.worm path{animation:wiggle 1s ease-in-out infinite}
+@keyframes wiggle{0%,100%{d:path("M0 0 q8 -6 16 0 t16 0 t16 0")}50%{d:path("M0 0 q8 6 16 0 t16 0 t16 0")}}
+.pore{animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.8}}
+.leafy{transform-box:fill-box;transform-origin:0% 100%;animation:sway 3s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.root{stroke-dashoffset:0}.drop,.seep,.runoff{opacity:.8}}
+</style>
+</head>
+<body>
+<div class="topbar"><button id="menuBtn" aria-label="เปิดเมนู">☰</button><img src="logo.webp" alt="โลโก้วันดินโลก 2569"><b>WSD Guide Lab 2569</b></div>
+<div class="app">
+<aside class="side" id="side">
+  <div class="grad-strip"></div>
+  <div class="brand"><img src="logo.webp" alt="โลโก้วันดินโลก 2569"><div><b>WSD Guide Lab</b><small>อบรมมัคคุเทศก์ วันดินโลก 2569</small></div></div>
+  <nav class="nav" id="nav">
+    <a href="#home">หน้าหลัก</a>
+    <div class="nav-group">แผนการอบรม</div>
+    <a href="#plan">ภาพรวมและตารางเวลา</a>
+    <a href="#s1">Session 1 · Speak with Confidence</a>
+    <a href="#s2">Session 2 · Make It Interesting</a>
+    <a href="#s3">Session 3 · Ask, Engage &amp; Involve</a>
+    <a href="#s4">Session 4 · Real Guide Challenge</a>
+    <div class="nav-group">เนื้อหานิทรรศการ</div>
+    <a href="#stations">Exhibition Fact Cards</a>
+    <a href="#questions">Question Toolkit</a>
+    <div class="nav-group">เครื่องมือสุ่ม</div>
+    <a href="#situation">Situation Cards <span class="dice">🎲</span></a>
+    <a href="#audience">สุ่มกลุ่มผู้ชม <span class="dice">🎲</span></a>
+    <a href="#station-pick">สุ่มจุดนิทรรศการ <span class="dice">🎲</span></a>
+    <a href="#technical">Too Technical! <span class="dice">🎲</span></a>
+    <a href="#threeways">Say It Three Ways <span class="dice">🎲</span></a>
+    <a href="#makeover">Question Makeover <span class="dice">🎲</span></a>
+    <a href="#mission">Mission Generator <span class="dice">🎲</span></a>
+    <a href="#names">สุ่มชื่อ / แบ่งกลุ่ม <span class="dice">🎲</span></a>
+    <div class="nav-group">เครื่องมือวิทยากร</div>
+    <a href="#timer">ตัวจับเวลา</a>
+    <a href="#rubric">แบบประเมินและ Feedback</a>
+    <a href="#prep">สิ่งที่ต้องเตรียม</a>
+  </nav>
+  <p class="side-note">เว็บนี้ใช้เปิดดูอย่างเดียว ไม่มีการล็อกอิน และไม่เก็บข้อมูลใด ๆ รายชื่อที่พิมพ์ในหน้าสุ่มชื่อจะหายเมื่อปิดหรือรีเฟรชหน้า</p>
+</aside>
+
+<main class="main" id="main">
+
+<!-- HOME -->
+<section class="page" id="p-home">
+  <div class="ticker"><span class="pill"><i>📣</i> ประกาศ</span><div class="track"><div class="move">
+    <span>ธีมวันดินโลก ปี 2569 · Tackle Soil Compaction, Boost Food Production · พลิกฟื้นดินดาน เพิ่มผลผลิตอาหาร สานชีวิตยั่งยืน</span>
+    <span>🎲 ใช้เมนู "เครื่องมือสุ่ม" ระหว่างกิจกรรมได้ทันที ไม่ต้องล็อกอิน</span>
+    <span>✅ ตรวจตัวเลขกับเอกสารข้อมูลวิชาการก่อนนำชมจริงทุกครั้ง</span>
+    <span>🖥️ กด "โหมดจอใหญ่" เพื่อฉายผลสุ่มขึ้นจอโปรเจกเตอร์</span>
+  </div></div></div>
+
+  <div class="hero">
+    <div class="hero-top">
+      <img class="hero-logo" src="logo.webp" alt="โลโก้วันดินโลก 2569">
+      <div>
+        <span class="chip"><span class="sp">✳</span> World Soil Day 2569 · Guide Workshop</span>
+        <h1>เทคนิคการสื่อสารและการนำชมนิทรรศการอย่างสร้างสรรค์</h1>
+        <p class="lead" style="margin:0">From Information to Interaction: Engaging and Confident Exhibition Guides</p>
+        <div class="event-meta"><span>📅 งานวันดินโลก 5–9 ธันวาคม 2569</span><span>📍 ศูนย์ศึกษาวิธีการฟื้นฟูที่ดินเสื่อมโทรมเขาชะงุ้มฯ จ.ราชบุรี</span></div>
+        <div class="countdown" id="cd" aria-label="นับถอยหลังถึงวันงาน">
+          <div><b data-u="d">--</b><span>วัน</span></div><div><b data-u="h">--</b><span>ชั่วโมง</span></div><div><b data-u="m">--</b><span>นาที</span></div><div><b data-u="s">--</b><span>วินาที</span></div>
+        </div>
+      </div>
+    </div>
+    <svg class="hero-scene" viewBox="0 0 800 400" role="img" aria-label="ภาพตัดขวางของดิน แสดงน้ำซึมผ่านหน้าดินร่วน ชั้นดินดาน รากหญ้าแฝก และไส้เดือนดิน">
+ <defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdf7ec"/><stop offset="1" stop-color="#eef5e3"/></linearGradient>
+  <linearGradient id="top" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6d4c41"/><stop offset="1" stop-color="#5d4037"/></linearGradient>
+  <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="10" height="10" fill="#8d6e63"/><line x1="0" y1="0" x2="0" y2="10" stroke="#795548" stroke-width="4"/></pattern>
+  <linearGradient id="deep" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bcaaa4"/><stop offset="1" stop-color="#d7ccc8"/></linearGradient>
+ </defs>
+ <rect width="800" height="200" fill="url(#sky)"/>
+ <g class="sun-rays"><circle cx="690" cy="62" r="30" fill="#f9a825"/>
+  <g stroke="#f9a825" stroke-width="5" stroke-linecap="round">
+   <line x1="690" y1="14" x2="690" y2="2"/><line x1="690" y1="110" x2="690" y2="122"/><line x1="642" y1="62" x2="630" y2="62"/><line x1="738" y1="62" x2="750" y2="62"/>
+   <line x1="656" y1="28" x2="648" y2="20"/><line x1="724" y1="96" x2="732" y2="104"/><line x1="724" y1="28" x2="732" y2="20"/><line x1="656" y1="96" x2="648" y2="104"/></g></g>
+ <g class="cloud1" fill="#fff"><ellipse cx="170" cy="58" rx="56" ry="20"/><ellipse cx="200" cy="44" rx="34" ry="22"/><ellipse cx="140" cy="48" rx="26" ry="16"/></g>
+ <g class="cloud2" fill="#fff" opacity=".9"><ellipse cx="460" cy="40" rx="44" ry="15"/><ellipse cx="482" cy="30" rx="24" ry="16"/></g>
+ <g fill="#4fc3f7">
+  <path class="drop" style="animation-delay:0s" d="M150 78 q5 8 0 12 q-5 -4 0 -12z"/>
+  <path class="drop" style="animation-delay:.8s" d="M175 80 q5 8 0 12 q-5 -4 0 -12z"/>
+  <path class="drop" style="animation-delay:1.6s" d="M200 76 q5 8 0 12 q-5 -4 0 -12z"/>
+  <path class="drop" style="animation-delay:2.4s" d="M220 80 q5 8 0 12 q-5 -4 0 -12z"/>
+  <path class="drop" style="animation-delay:.4s" d="M455 58 q5 8 0 12 q-5 -4 0 -12z"/>
+  <path class="drop" style="animation-delay:1.9s" d="M480 56 q5 8 0 12 q-5 -4 0 -12z"/>
+ </g>
+ <!-- topsoil -->
+ <path d="M0 200 Q200 190 400 200 T800 198 V270 H0Z" fill="url(#top)"/>
+ <g fill="#a1887f" class="pore">
+  <circle cx="40" cy="225" r="5"/><circle cx="90" cy="248" r="4"/><circle cx="140" cy="218" r="6"/><circle cx="210" cy="252" r="5"/><circle cx="260" cy="226" r="4"/><circle cx="330" cy="244" r="6"/><circle cx="370" cy="220" r="4"/>
+ </g>
+ <g fill="#a1887f" class="pore" style="animation-delay:1.5s">
+  <circle cx="65" cy="258" r="4"/><circle cx="180" cy="236" r="4"/><circle cx="300" cy="258" r="5"/><circle cx="240" cy="210" r="3"/>
+ </g>
+ <!-- compacted side (right) darker & tight -->
+ <path d="M420 199 Q600 196 800 198 V270 H420Z" fill="#4e342e"/>
+ <g fill="#5d4037"><circle cx="470" cy="230" r="2"/><circle cx="540" cy="250" r="2"/><circle cx="610" cy="226" r="2"/><circle cx="700" cy="248" r="2"/><circle cx="760" cy="230" r="2"/></g>
+ <!-- plow pan -->
+ <rect x="0" y="270" width="800" height="42" fill="url(#hatch)"/>
+ <rect x="0" y="312" width="800" height="88" fill="url(#deep)"/>
+ <!-- infiltration on good soil -->
+ <g fill="#4fc3f7"><circle class="seep" cx="160" cy="205" r="4"/><circle class="seep" style="animation-delay:1.5s" cx="200" cy="205" r="4"/><circle class="seep" style="animation-delay:3s" cx="240" cy="205" r="4"/></g>
+ <!-- runoff on compacted soil -->
+ <g fill="#4fc3f7"><ellipse class="runoff" cx="455" cy="196" rx="7" ry="3"/><ellipse class="runoff" style="animation-delay:1.3s" cx="470" cy="196" rx="7" ry="3"/><ellipse class="runoff" style="animation-delay:2.6s" cx="490" cy="196" rx="7" ry="3"/></g>
+ <!-- vetiver clump -->
+ <g class="sway"><g stroke="#558b2f" stroke-width="4" stroke-linecap="round" fill="none">
+   <path d="M90 200 Q84 160 70 120"/><path d="M96 200 Q96 150 92 104"/><path d="M102 200 Q108 156 118 116"/><path d="M86 200 Q74 170 56 146"/><path d="M106 200 Q122 172 138 150"/></g></g>
+ <g stroke="#f3e5ab" stroke-width="2.4" fill="none" stroke-linecap="round">
+   <path class="root slow" d="M92 202 V330 Q92 360 88 388"/><path class="root slow" d="M98 202 Q100 290 104 380"/><path class="root slow" d="M86 202 Q76 280 70 360"/><path class="root slow" d="M104 202 Q118 270 124 350"/>
+   <path class="root" d="M96 240 l-14 14 M98 280 l14 12 M92 320 l-12 10"/></g>
+ <!-- sprout on good soil -->
+ <g class="grow"><path d="M300 200 V150" stroke="#33691e" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path class="leafy" d="M300 165 Q270 150 268 128 Q296 132 300 160Z" fill="#7cb342"/>
+  <path class="leafy" style="animation-delay:.7s" d="M300 152 Q330 138 336 116 Q306 118 300 148Z" fill="#558b2f"/></g>
+ <g stroke="#efebe9" stroke-width="2.2" fill="none" stroke-linecap="round">
+  <path class="root" d="M300 202 Q296 240 302 268 Q306 290 300 310"/><path class="root" d="M300 222 Q280 236 268 258"/><path class="root" d="M300 232 Q322 244 332 264"/></g>
+ <!-- stunted plant on compacted soil -->
+ <g class="grow" style="animation-delay:.8s"><path d="M640 199 V176" stroke="#827717" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M640 182 Q624 176 622 164 Q638 166 640 180Z" fill="#c0ca33"/><path d="M640 178 Q654 172 658 162 Q644 162 640 176Z" fill="#afb42b"/></g>
+ <g stroke="#efebe9" stroke-width="2" fill="none" stroke-linecap="round"><path class="root" d="M640 201 Q636 240 640 266 Q660 270 690 268"/><path class="root" d="M640 230 Q620 252 596 266"/></g>
+ <!-- earthworm -->
+ <g transform="translate(150 236)"><g class="worm"><path d="M0 0 q8 -6 16 0 t16 0 t16 0" stroke="#e57373" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="48" cy="0" r="1.6" fill="#3e2723"/></g></g>
+ <!-- labels -->
+ <g font-family="Noto Sans Thai, sans-serif" font-size="13" font-weight="700">
+  <g transform="translate(176 160)"><rect x="-6" y="-14" width="132" height="22" rx="11" fill="#fff" opacity=".92"/><text fill="#33691e">ดินร่วน น้ำซึมได้ดี</text></g>
+  <g transform="translate(520 160)"><rect x="-6" y="-14" width="152" height="22" rx="11" fill="#fff" opacity=".92"/><text fill="#6d4c41">ดินอัดแน่น น้ำไหลบ่า</text></g>
+  <g transform="translate(560 296)"><rect x="-6" y="-14" width="178" height="22" rx="11" fill="#fff" opacity=".9"/><text fill="#3e2723">ชั้นดินดาน (Plow pan)</text></g>
+  <g transform="translate(130 372)"><rect x="-6" y="-14" width="150" height="22" rx="11" fill="#fff" opacity=".9"/><text fill="#33691e">รากหญ้าแฝก ทะลุดินดาน</text></g>
+ </g>
+</svg>
+  </div>
+
+  <div class="sec-head"><div><div class="eyebrow">QUICK TOOLS</div><h2>เครื่องมือสุ่มที่ใช้บ่อย</h2></div></div>
+  <div class="grid g3">
+    <a class="tile" href="#situation"><div class="ico">🃏</div><b>Situation Cards</b><span>สุ่มสถานการณ์จำลองระหว่างนำชม</span></a>
+    <a class="tile" href="#audience"><div class="ico">👥</div><b>สุ่มกลุ่มผู้ชม</b><span>ฝึกปรับภาษาให้เข้ากับผู้ฟัง</span></a>
+    <a class="tile" href="#station-pick"><div class="ico">📍</div><b>สุ่มจุดนิทรรศการ</b><span>กำหนดโจทย์พูดจากนิทรรศการจริง</span></a>
+    <a class="tile" href="#mission"><div class="ico">🎯</div><b>Mission Generator</b><span>สุ่มจุด + ผู้ชม + สถานการณ์ ในครั้งเดียว</span></a>
+    <a class="tile" href="#names"><div class="ico">🙋</div><b>สุ่มชื่อ / แบ่งกลุ่ม</b><span>เลือกผู้พูดและจัดกลุ่มย่อย</span></a>
+    <a class="tile" href="#timer"><div class="ico">⏱️</div><b>ตัวจับเวลา</b><span>30 วิ · 60 วิ · 90 วิ · 5–7 นาที</span></a>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">LEARNING PATH</div><h2>ลำดับการเรียนรู้</h2></div></div>
+  <div class="grid g4">
+    <a class="tile" href="#s1"><span class="tag">08.30–10.20</span><b>1 · พูดให้มั่นใจ</b><span>เสียง ภาษากาย บทเปิด 60 วินาที</span></a>
+    <a class="tile" href="#s2"><span class="tag">10.30–12.30</span><b>2 · เล่าให้น่าสนใจ</b><span>Hook → Explain → Connect → Takeaway</span></a>
+    <a class="tile" href="#s3"><span class="tag">13.30–15.20</span><b>3 · ถามให้มีส่วนร่วม</b><span>คำถาม 5 แบบ กิจกรรมสั้น ผู้ชมเงียบ</span></a>
+    <a class="tile" href="#s4"><span class="tag">15.30–17.30</span><b>4 · นำชมสถานการณ์จริง</b><span>จำลองการนำชม 5–7 นาที พร้อม Feedback</span></a>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section class="page" id="p-plan">
+  <div class="kicker">แผนฉบับปรับปรุง</div>
+  <h1>ภาพรวมและตารางเวลา</h1>
+  <p class="lead">อบรม 08.30–17.30 น. รวม 8 ชั่วโมง ไม่รวมพักกลางวัน เวลากิจกรรมสุทธิ 7 ชั่วโมง 40 นาที และพักสั้น 2 ช่วง ช่วงละ 10 นาที</p>
+  <table>
+    <tr><th>เวลา</th><th>หัวข้อ</th><th>กิจกรรมหลัก</th></tr>
+    <tr><td class="time">08.30–10.20</td><td><b>Session 1: Speak with Confidence</b></td><td>Voice &amp; Body Language Lab · 60-Second Opening</td></tr>
+    <tr class="brk"><td class="time">10.20–10.30</td><td colspan="2">พักเบรก</td></tr>
+    <tr><td class="time">10.30–12.30</td><td><b>Session 2: Make Information Interesting</b></td><td>From Facts to Stories · ตัวเลขต้องถูก</td></tr>
+    <tr class="brk"><td class="time">12.30–13.30</td><td colspan="2">พักกลางวัน</td></tr>
+    <tr><td class="time">13.30–15.20</td><td><b>Session 3: Ask, Engage &amp; Involve</b></td><td>Questioning &amp; Interaction Lab</td></tr>
+    <tr class="brk"><td class="time">15.20–15.30</td><td colspan="2">พักเบรก</td></tr>
+    <tr><td class="time">15.30–17.30</td><td><b>Session 4: The Real Guide Challenge</b></td><td>Guided Tour Simulation</td></tr>
+  </table>
+
+  <h2>แนวคิดหลัก 4 ด้าน</h2>
+  <div class="grid g4">
+    <div class="card"><span class="tag">01 · Confidence</span><h3>พูดอย่างมั่นใจ</h3><p>น้ำเสียง ภาษากาย การสบตา และการจัดการความตื่นเต้น</p></div>
+    <div class="card"><span class="tag">02 · Interpretation</span><h3>เล่าให้เข้าใจและน่าสนใจ</h3><p>เปลี่ยนข้อมูลวิชาการเป็นคำอธิบาย เรื่องเล่า และตัวอย่างใกล้ตัว</p></div>
+    <div class="card"><span class="tag">03 · Interaction</span><h3>ถามเป็น ชวนคิดเป็น</h3><p>ตั้งคำถาม กระตุ้นการตอบ และสร้างการมีส่วนร่วม</p></div>
+    <div class="card"><span class="tag">04 · Facilitation</span><h3>นำชมอย่างมืออาชีพ</h3><p>บริหารกลุ่ม รับมือสถานการณ์ และสร้างประสบการณ์ที่ดี</p></div>
+  </div>
+
+  <h2>สัดส่วนกิจกรรม</h2>
+  <div class="grid g2">
+    <div class="card"><b>ฝึกปฏิบัติ 395 นาที (ประมาณ 86%)</b><div class="bar" style="margin:8px 0"><i style="width:86%"></i></div><b>บรรยายและสาธิต 65 นาที (ประมาณ 14%)</b><div class="bar" style="margin:8px 0"><i style="width:14%;background:var(--water)"></i></div><p style="font-size:14px;color:var(--muted);margin:6px 0 0">คำนวณจากเวลากิจกรรมสุทธิ 460 นาที ไม่รวมพัก</p></div>
+    <div class="card"><b>ผลลัพธ์ที่ต้องการ</b><p style="margin:.4em 0 0">ผู้เข้าอบรมทุกคนนำชมนิทรรศการจริงได้อย่างมั่นใจ ไม่ต้องท่องบทพูดทั้งหมด และปรับการสื่อสารตามผู้ชมและสถานการณ์ได้</p><p style="margin:.4em 0 0">บทนำชมพัฒนาเป็นขั้น <span class="tag leaf">30 วิ</span> → <span class="tag leaf">60 วิ</span> → <span class="tag leaf">90 วิ</span> → <span class="tag leaf">5–7 นาที</span></p></div>
+  </div>
+
+  <h2>สิ่งที่ปรับจากร่างเดิม</h2>
+  <div class="card">
+  <ul class="clean">
+    <li><b>ระบุเวลาพักในตาราง</b> ร่างเดิมระบุว่ามีพักสั้น แต่เวลากิจกรรมเต็ม 120 นาทีทุกช่วง จึงลด Session 1 และ 3 ลงช่วงละ 10 นาทีเพื่อให้มีพักจริง</li>
+    <li><b>เพิ่มการประเมินความมั่นใจก่อนอบรม</b> ร่างเดิมมีเฉพาะหลังอบรม จึงเพิ่มไว้ต้น Session 1 เพื่อใช้เปรียบเทียบตอนท้ายวัน</li>
+    <li><b>เพิ่มกิจกรรม "ตัวเลขต้องถูก"</b> ใน Session 2 เพราะเอกสารนิทรรศการมีตัวเลขสถิติจำนวนมาก มัคคุเทศก์ต้องพูดให้เข้าใจง่ายโดยไม่บิดเบือนข้อมูล</li>
+    <li><b>อ้างอิงเนื้อหาตามหัวข้อในเอกสาร</b> เช่น 2.1 และ 2.2 แทนเลขหน้า เพื่อให้ค้นได้ตรงกับเอกสารข้อมูลวิชาการ</li>
+    <li><b>ขยายการเชื่อมโยงกับนิทรรศการ</b> ให้ครอบคลุม B1–B5, Agri-Map, น้องดินดี, เวที Edutainment และนิทรรศการหน่วยงานภายนอก</li>
+    <li><b>เพิ่ม Situation Cards จาก 5 เป็น 14 ใบ</b> ครอบคลุมผู้ชมต่างชาติ เกษตรกรที่ถามปัญหาแปลงของตนเอง ข้อมูลผิด และอุปกรณ์ขัดข้อง</li>
+    <li><b>ย้ายทุกกิจกรรมที่ต้องสุ่มมาไว้บนเว็บ</b> ได้แก่ สถานการณ์ ผู้ชม จุดนิทรรศการ ข้อความวิชาการ คำถาม และรายชื่อผู้พูด</li>
+    <li><b>แบบประเมินใช้กระดาษ</b> เว็บแสดงเกณฑ์และระดับคะแนนเท่านั้น ไม่เก็บคะแนนหรือคำตอบ</li>
+  </ul>
+  </div>
+
+  <h2>การเชื่อมกิจกรรมกับนิทรรศการจริง</h2>
+  <table>
+    <tr><th>พื้นที่นิทรรศการ</th><th>โจทย์ฝึกการสื่อสาร</th><th>ใช้ใน</th></tr>
+    <tr><td><b>วันดินโลก</b> (Zone A3-1)</td><td>เปิดการนำชมอย่างน่าสนใจ และเล่าความสำคัญของวันดินโลกภายใน 1 นาที</td><td>S1</td></tr>
+    <tr><td><b>ดินดีเพื่ออนาคตที่ยั่งยืน</b> (2.1)</td><td>พูดตัวเลขสถิติให้เข้าใจง่ายและถูกต้อง</td><td>S2</td></tr>
+    <tr><td><b>LAB: วิทยาศาสตร์และข้อมูล</b> (2.2)</td><td>อธิบายศัพท์วิชาการด้วยภาษาง่าย และให้ผู้ชมคาดเดาผลการทดลองน้ำไหลบ่า</td><td>S2, S3</td></tr>
+    <tr><td><b>LIVE: สุขภาพดิน</b> (2.3)</td><td>เล่าปัญหาและแนวทางแก้ไขผ่านเรื่องราวเกษตรกรต้นแบบ</td><td>S2</td></tr>
+    <tr><td><b>Edutainment Soil Stage</b> (2.4)</td><td>ดำเนินกิจกรรมและสร้างปฏิสัมพันธ์กับผู้ชมจำนวนมาก</td><td>S3</td></tr>
+    <tr><td><b>บ้านแม่รัง</b> (3)</td><td>เล่าเรื่องเชิงประวัติศาสตร์และพระราชกรณียกิจด้วยภาษาที่เหมาะสม</td><td>S2, S4</td></tr>
+    <tr><td><b>B1 แฝกกำแพงมีชีวิต</b></td><td>ใช้คำถามให้ผู้ชมสังเกตรากหญ้าแฝกและการปลูกรูปตัววีคว่ำ</td><td>S3</td></tr>
+    <tr><td><b>B2–B4</b> ทฤษฎีใหม่ อินทรีย์ จุลินทรีย์</td><td>เชื่อมเนื้อหากับชีวิตประจำวัน เช่น ผักที่กิน ปุ๋ยหมักที่บ้าน</td><td>S2, S4</td></tr>
+    <tr><td><b>B5 แก๊งดึ๋ย ซุยดิน</b></td><td>ทำให้เนื้อหาวิทยาศาสตร์สนุกและเหมาะกับเด็ก</td><td>S2, S4</td></tr>
+  </table>
+</section>
+
+<!-- SESSIONS -->
+<section class="page" id="p-s1"></section>
+<section class="page" id="p-s2"></section>
+<section class="page" id="p-s3"></section>
+<section class="page" id="p-s4"></section>
+
+<!-- STATIONS -->
+<section class="page" id="p-stations">
+  <div class="kicker">เนื้อหานิทรรศการ</div>
+  <h1>Exhibition Fact Cards</h1>
+  <p class="lead">สรุปข้อเท็จจริงสำคัญจากเอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ วันดินโลก ปี 2569 ใช้ประกอบการฝึกพูด ตรวจตัวเลขกับเอกสารต้นฉบับก่อนใช้นำชมจริงทุกครั้ง</p>
+  <div class="filter" id="stFilter"></div>
+  <div class="grid g2" id="stGrid"></div>
+</section>
+
+<!-- QUESTIONS -->
+<section class="page" id="p-questions">
+  <div class="kicker">ใช้ใน Session 3 และ 4</div>
+  <h1>Question Toolkit</h1>
+  <p class="lead">คำถาม 5 แบบสำหรับชวนผู้ชมคิดและมีส่วนร่วม แต่ละแบบมีตัวอย่างจากนิทรรศการจริง</p>
+  <div class="grid g2" id="qGrid"></div>
+  <h2>หลักการตั้งคำถามระหว่างนำชม</h2>
+  <div class="card"><ul class="clean">
+    <li>ถามแล้ว <b>รอ 3–5 วินาที</b> ก่อนช่วยตอบ</li>
+    <li>เริ่มจากคำถามที่ตอบได้ทุกคน เช่น ให้เลือกหรือให้ยกมือ แล้วค่อยถามคำถามที่ต้องอธิบาย</li>
+    <li>รับทุกคำตอบด้วยคำขอบคุณ แล้วเชื่อมเข้าสู่ข้อมูลที่ถูกต้อง</li>
+    <li>หลีกเลี่ยงคำถาม "เข้าใจไหมคะ" และ "มีคำถามไหมครับ" ให้ใช้ "ส่วนไหนที่อยากให้ขยายเพิ่มคะ" แทน</li>
+  </ul></div>
+</section>
+
+<!-- RANDOM PAGES (generic) -->
+<section class="page" id="p-situation"></section>
+<section class="page" id="p-audience"></section>
+<section class="page" id="p-station-pick"></section>
+<section class="page" id="p-technical"></section>
+<section class="page" id="p-threeways"></section>
+<section class="page" id="p-makeover"></section>
+
+<!-- MISSION -->
+<section class="page" id="p-mission">
+  <div class="kicker">ใช้ใน Session 4 · Mission Briefing</div>
+  <h1>Mission Generator</h1>
+  <p class="lead">สุ่มโจทย์การนำชมครบชุดในครั้งเดียว ได้แก่ จุดนิทรรศการ กลุ่มผู้ชม สถานการณ์ และเวลา กดล็อกช่องที่ต้องการเก็บไว้ แล้วสุ่มเฉพาะช่องที่เหลือได้</p>
+  <div class="controls"><button class="btn big" id="mRoll">🎲 สุ่มภารกิจ</button><button class="btn ghost" data-proj>โหมดจอใหญ่</button></div>
+  <div class="mission" id="mSlots"></div>
+</section>
+
+<!-- NAMES -->
+<section class="page" id="p-names">
+  <div class="kicker">เครื่องมือวิทยากร</div>
+  <h1>สุ่มชื่อ / แบ่งกลุ่ม</h1>
+  <p class="lead">พิมพ์หรือวางรายชื่อ บรรทัดละ 1 ชื่อ หรือใช้หมายเลขแทนชื่อ ข้อมูลอยู่ในหน้าจอนี้เท่านั้น ไม่ถูกบันทึกหรือส่งออกไปที่ใด</p>
+  <div class="grid g2">
+    <div class="card">
+      <div class="row" style="margin-bottom:8px"><label class="chk"><input type="radio" name="nmode" value="list" checked> ใช้รายชื่อ</label><label class="chk"><input type="radio" name="nmode" value="num"> ใช้หมายเลข 1 ถึง <input type="number" id="nMax" value="30" min="2" max="300" style="width:80px;padding:6px"></label></div>
+      <textarea id="nList" placeholder="สมชาย&#10;สมหญิง&#10;..."></textarea>
+      <div class="controls"><label class="chk"><input type="checkbox" id="nNoRep" checked> ไม่สุ่มซ้ำคนเดิม</label><button class="btn ghost sm" id="nReset">เริ่มรอบใหม่</button></div>
+    </div>
+    <div class="stage" id="nStage" style="text-align:center;align-items:center">
+      <div class="names-out" id="nOut">?</div>
+      <div class="controls" style="justify-content:center"><button class="btn big" id="nRoll">🎲 สุ่มผู้พูด</button><button class="btn ghost" data-proj>โหมดจอใหญ่</button></div>
+      <div class="counter" id="nCount"></div>
+      <div class="history" id="nHist"></div>
+    </div>
+  </div>
+  <h2>สุ่มแบ่งกลุ่ม</h2>
+  <div class="card">
+    <div class="row"><span>แบ่งเป็นกลุ่มละ</span><input type="number" id="gSize" value="5" min="2" max="20" style="width:80px"><span>คน</span><button class="btn leaf" id="gRoll">🎲 สุ่มแบ่งกลุ่ม</button></div>
+    <p class="counter" style="margin:.5em 0 0">แนะนำกลุ่มละ 4–6 คน เพื่อให้ทุกคนได้พูดและได้รับ Feedback</p>
+    <div class="groups" id="gOut"></div>
+  </div>
+</section>
+
+<!-- TIMER -->
+<section class="page" id="p-timer">
+  <div class="kicker">เครื่องมือวิทยากร</div>
+  <h1>ตัวจับเวลา</h1>
+  <div class="card">
+    <div class="row" id="tPresets"></div>
+    <div class="timer-face" id="tFace">01:00</div>
+    <div class="bar"><i id="tBar"></i></div>
+    <div class="controls" style="justify-content:center;margin-top:18px">
+      <button class="btn big leaf" id="tStart">▶ เริ่ม</button>
+      <button class="btn big ghost" id="tReset">รีเซ็ต</button>
+      <label class="chk"><input type="checkbox" id="tSound" checked> เสียงเตือนเมื่อหมดเวลา</label>
+      <button class="btn ghost" data-proj>โหมดจอใหญ่</button>
+    </div>
+    <div class="row" style="justify-content:center"><span class="counter">กำหนดเอง</span><input type="number" id="tMin" value="1" min="0" max="120" style="width:70px"><span class="counter">นาที</span><input type="number" id="tSec" value="0" min="0" max="59" style="width:70px"><span class="counter">วินาที</span><button class="btn ghost sm" id="tSet">ตั้งเวลา</button></div>
+  </div>
+</section>
+
+<!-- RUBRIC -->
+<section class="page" id="p-rubric">
+  <div class="kicker">Performance-based Assessment</div>
+  <h1>แบบประเมินการนำชมและการให้ Feedback</h1>
+  <p class="lead">ใช้คะแนนเพื่อพัฒนา ไม่ใช่เพื่อตัดสินผ่านหรือไม่ผ่าน ผู้ประเมินกรอกคะแนนบนแบบประเมินกระดาษ เว็บนี้แสดงเกณฑ์เพื่อให้ทุกคนใช้มาตรฐานเดียวกัน</p>
+  <div id="rubTable"></div>
+  <h2>รูปแบบการให้ Feedback: ชม 1 · แนะ 1 · ลอง 1</h2>
+  <div class="grid g3">
+    <div class="card"><span class="tag leaf">ชม 1</span><p>ระบุพฤติกรรมที่ทำได้ดี 1 อย่างให้ชัด เช่น "หยุดรอคำตอบหลังถามได้ดีมาก ผู้ชมกล้าตอบ"</p></div>
+    <div class="card"><span class="tag">แนะ 1</span><p>ระบุจุดที่ควรปรับ 1 อย่าง โดยพูดถึงพฤติกรรม ไม่พูดถึงตัวบุคคล เช่น "ช่วงอธิบายดินดาน มองแต่ป้าย ไม่ได้มองผู้ชม"</p></div>
+    <div class="card"><span class="tag water">ลอง 1</span><p>เสนอวิธีทดลองในรอบถัดไป 1 อย่าง เช่น "ลองชี้โมเดลแล้วหันกลับมาถามผู้ชมก่อนอธิบายต่อ"</p></div>
+  </div>
+  <h2>การประเมินความมั่นใจของตนเอง</h2>
+  <div class="card">
+    <p>ให้ผู้เข้าอบรมให้คะแนนตนเอง 1–5 บนกระดาษของตนเอง 2 ครั้ง คือ ต้น Session 1 และท้าย Session 4 แล้วเปรียบเทียบด้วยตนเอง</p>
+    <ul class="clean">
+      <li>ฉันมั่นใจที่จะพูดต่อหน้าผู้ชมกลุ่มใหม่</li>
+      <li>ฉันอธิบายเรื่องดินอัดแน่นให้คนทั่วไปเข้าใจได้</li>
+      <li>ฉันตั้งคำถามชวนผู้ชมคิดได้อย่างน้อย 3 แบบ</li>
+      <li>ฉันรับมือได้เมื่อผู้ชมถามสิ่งที่ฉันไม่รู้</li>
+      <li>ฉันจบการนำชมได้ตรงเวลา</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PREP -->
+<section class="page" id="p-prep">
+  <div class="kicker">สำหรับทีมวิทยากร</div>
+  <h1>สิ่งที่ต้องเตรียม</h1>
+  <div class="grid g2">
+    <div class="card"><h3>การจัดห้อง</h3><ul class="clean"><li>โต๊ะกลุ่มย่อย 4–6 คน</li><li>พื้นที่ว่างสำหรับจำลองการนำชม 3–4 จุด</li><li>จอโปรเจกเตอร์สำหรับเปิดเว็บนี้ในโหมดจอใหญ่</li><li>Wi-Fi หรือ QR Code ลิงก์เว็บ ให้ผู้เข้าอบรมเปิดบนโทรศัพท์</li></ul></div>
+    <div class="card"><h3>สื่อและเอกสาร</h3><ul class="clean"><li>Speaking &amp; Storytelling Worksheet (บทเปิด 60 วิ และโครงเรื่อง 90 วิ)</li><li>แบบประเมินการนำชมฉบับกระดาษ พร้อมช่อง ชม 1 · แนะ 1 · ลอง 1</li><li>กระดาษประเมินความมั่นใจของตนเอง</li><li>เอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ ฉบับเต็ม 1 ชุดต่อกลุ่ม</li></ul></div>
+    <div class="card"><h3>อุปกรณ์</h3><ul class="clean"><li>ไมโครโฟน 2 ตัว</li><li>โทรศัพท์สำหรับบันทึกวิดีโอการพูดของตนเอง</li><li>ตัวอย่างดินอัดแน่นและดินร่วน ขวดน้ำ แก้วใส สำหรับสาธิตการซึมผ่านของน้ำ</li><li>ภาพรากหญ้าแฝก ภาพไส้เดือนดิน หรือของจริงจากนิทรรศการ</li></ul></div>
+    <div class="card"><h3>ก่อนวันอบรม</h3><ul class="clean"><li>ยืนยันจำนวนผู้เข้าอบรม ระดับประสบการณ์ และภาษาที่ใช้นำชม</li><li>มอบหมายจุดนิทรรศการหลักให้ผู้เข้าอบรมแต่ละคน</li><li>ตรวจตัวเลขใน Fact Cards กับเอกสารฉบับล่าสุด</li><li>ทดลองเปิดเว็บบนจอห้องอบรมและโทรศัพท์</li></ul></div>
+  </div>
+</section>
+
+<footer class="foot"><img src="logo.webp" alt=""><div>เว็บประกอบการอบรมมัคคุเทศก์ วันดินโลก 2569 สำหรับใช้ภายในการอบรม ไม่ใช่เว็บไซต์ทางการของกรมพัฒนาที่ดิน<br>โลโก้วันดินโลก 2569 จาก <a href="https://worldsoilday.ldd.go.th/01-logo.php">worldsoilday.ldd.go.th</a> · ข้อมูลอ้างอิงจากเอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์</div></footer>
+</main>
+</div>
+<button class="btn water projbtn" id="projExit" style="display:none">ออกจากโหมดจอใหญ่</button>
+
+<script>
+/* ===================== DATA ===================== */
+const STATIONS = [
+ {id:'wsd',grp:'A3-1',name:'วันดินโลก (World Soil Day)',zone:'Zone A3-1 · หัวข้อ 1',
+  facts:['5 ธันวาคม ตรงกับวันคล้ายวันพระบรมราชสมภพของในหลวงรัชกาลที่ 9 สหภาพวิทยาศาสตร์ทางดินนานาชาติเสนอให้เป็นวันดินโลก','สหประชาชาติรับรองวันดินโลกอย่างเป็นทางการในปี 2556 ปัจจุบันมีมากกว่า 220 ประเทศร่วมจัดงาน','ไทยเริ่มจัดงานครั้งแรกในปี 2555 ที่สยามพารากอน กรมพัฒนาที่ดินเป็นหน่วยงานหลัก','อาหารของมนุษย์ร้อยละ 95 มีแหล่งกำเนิดจากดิน ดินให้ธาตุอาหารพืช 15 จาก 18 ธาตุ','ธีมปี 2569: Tackle Soil Compaction, Boost Food Production'],
+  terms:['GSP (Global Soil Partnership)','King Bhumibol World Soil Day Award'],
+  hook:'อาหารบนจานของเราเมื่อเช้า มีกี่อย่างที่ไม่ได้มาจากดินคะ',
+  q:'ถ้าให้เดา อาหารที่เรากินกี่เปอร์เซ็นต์มาจากดิน'},
+ {id:'land',grp:'A3-1',name:'ดินดีเพื่ออนาคตที่ยั่งยืน',zone:'Zone A3-1 · หัวข้อ 2.1',
+  facts:['พื้นที่เกษตรของไทยร้อยละ 72.03 เสี่ยงต่อดินอัดแน่น ส่วนใหญ่อยู่ในระยะเริ่มอัดแน่น (เฝ้าระวัง)','ดินอัดแน่นระดับวิกฤตมีประมาณ 0.95 ล้านไร่ (ร้อยละ 0.54) ภาคกลางมีสัดส่วนมากที่สุด','สาเหตุหลัก: เครื่องจักรหนักบดอัดซ้ำ ไถพรวนขณะดินชื้น ไถที่ความลึกเดิมจนเกิดชั้นดินดาน ขาดอินทรียวัตถุ','ผลกระทบ: รากชอนไชไม่ได้ น้ำขังในฤดูฝน แห้งแล้งในฤดูแล้ง ต้นทุนปุ๋ยและน้ำสูงขึ้น','แนวทางแก้: ลดรอบไถ ไม่ลงเครื่องจักรขณะดินเปียก เติมอินทรียวัตถุ ปลูกพืชคลุมดิน'],
+  terms:['Soil Compaction','Plow pan (ชั้นดินดาน)','Bulk Density','Macro-pores'],
+  hook:'ถ้าเหยียบดินจุดเดิมทุกวันเป็นปี ๆ ดินตรงนั้นจะเป็นอย่างไรครับ',
+  q:'ร้อยละ 72 คือประมาณกี่ส่วนใน 4 ส่วน (ตอบ: เกือบ 3 ใน 4)'},
+ {id:'lab',grp:'A3-1',name:'LAB: วิทยาศาสตร์และข้อมูล',zone:'Zone A3-1 · หัวข้อ 2.2',
+  facts:['โมเดลอะคริลิกใสเปรียบเทียบดินอัดแน่นกับดินโครงสร้างดี ดินอัดแน่นทำให้น้ำไหลบ่าและพาธาตุอาหารออกไป','ตรวจดิน 3 ด้าน: กายภาพ เคมี (ธาตุอาหาร pH อินทรียวัตถุ) และชีวภาพ','ด้านชีวภาพ: Metagenomics ด้วย NGS, การหายใจของดิน (Soil Respiration), Bait-lamina test','Agri-Map เชื่อมข้อมูลจาก 22 หน่วยงาน มี 5 แอป Agri Map Online ใช้ได้โดยไม่ต้องลงทะเบียน','AI Chatbot น้องดินดี รวมความรู้มากกว่า 4,500 เรื่อง ทาง LINE ID @dindee ตลอด 24 ชั่วโมง'],
+  terms:['Soil Health','LDN','UNCCD COP17','SDG 15.3'],
+  hook:'ดินก็หายใจได้ เชื่อไหมคะ',
+  q:'ถ้าเทน้ำลงบนสองฝั่งนี้ ฝั่งไหนน้ำจะไหลลงถังด้านล่างมากกว่ากัน'},
+ {id:'live',grp:'A3-1',name:'LIVE: สุขภาพดิน ระบบนิเวศ และคุณภาพชีวิต',zone:'Zone A3-1 · หัวข้อ 2.3',
+  facts:['จอ Touchscreen ให้ผู้ชมเลือกดูแนวทางจัดการดินปัญหา เช่น ดินดาน ดินตื้น ดินทราย ดินเค็ม ดินเปรี้ยวจัด','แนวทางปรับปรุงดิน: ไถกลบตอซัง ปลูกพืชบำรุงดิน ใส่วัสดุปรับปรุงดิน ปลูกหญ้าแฝก','เกษตรกรต้นแบบ: นางเกษร ทองคำ (เกษตรอินทรีย์ผสมผสานและท่องเที่ยวเชิงเกษตร)','เกษตรกรต้นแบบ: นายกิตติวุฒิ สระทองพิมพ์ (น้ำหมักชีวภาพเพิ่มผลผลิตมันสำปะหลัง)','มีการจัดการดินก่อนและหลังน้ำท่วม'],
+  terms:['ดินปัญหา','วัสดุปรับปรุงดิน'],
+  hook:'เกษตรกรท่านนี้เคยเจอปัญหาเดียวกับที่หลายคนเจอ แต่แก้ได้ด้วยวิธีที่ไม่คาดคิด',
+  q:'ถ้าเป็นเกษตรกร ปัญหาดินแบบไหนที่น่าจะเจอบ่อยที่สุดในจังหวัดของเรา'},
+ {id:'stage',grp:'A3-1',name:'Edutainment Soil Stage',zone:'Zone A3-1 · หัวข้อ 2.4',
+  facts:['แนวคิด "เชื่อมดินสู่อาหาร"','Soil Talk: ดินดี สู่จานอร่อย 6 เรื่อง เช่น หญ้าแฝก สว่านธรรมชาติ ทลายดินดาน','หมอดิน New Gen: หมอดินอาสารุ่นใหม่ 3 ท่าน แลกเปลี่ยนประสบการณ์','Junior Soil Contest: ประกวดพูดระดับประถมปลายและมัธยมต้น','Soil Quiz: วงล้อพาเพลิน, Soil Bingo, เกมจับคู่ช่วยน้องเม็ดดิน'],
+  terms:['พด.14 ไตรโคเดอร์มา','พด.15 แบคทีเรียสังเคราะห์แสง','ปอเทือง'],
+  hook:'ใครอยากรู้สูตรลับปรับดินให้อร่อยเหมือนเชฟ ยกมือหน่อยครับ',
+  q:'ถ้าหญ้าแฝกเป็นเครื่องมือช่าง จะเป็นเครื่องมืออะไร'},
+ {id:'maerang',grp:'บ้านแม่รัง',name:'บ้านแม่รัง',zone:'หัวข้อ 3 · 8 จุดจัดแสดง',
+  facts:['อาคารสร้างจากดิน รูปทรงโค้งมน สะท้อนความสัมพันธ์ระหว่างมนุษย์กับดิน','เล่าเรื่องศูนย์ศึกษาวิธีการฟื้นฟูที่ดินเสื่อมโทรมเขาชะงุ้ม อันเนื่องมาจากพระราชดำริ ซึ่งเคยประสบปัญหาดินลูกรังและขาดแคลนน้ำ','3D Projection Mapping แสดงการฟื้นฟูพื้นที่ด้วยแหล่งน้ำ ป่าไม้ หญ้าแฝก ปุ๋ยหมัก และปอเทือง','AI Photo Kiosk ถ่ายภาพการ์ตูน 5 อาชีพ: นักสำรวจดิน นักวิทยาศาสตร์ นักวิชาการเกษตร หมอดิน Smart Farmer','จัดแสดงรางวัล International Merit Award และรางวัลรากหญ้าแฝกชุบสำริด'],
+  terms:['ผืนป่าและแผ่นดินที่พ่อสร้าง','ดินลูกรัง'],
+  hook:'อาคารที่ทุกท่านยืนอยู่นี้ สร้างจากวัสดุที่อยู่ใต้เท้าเรา',
+  q:'ถ้าพื้นที่หนึ่งมีแต่ดินลูกรังและไม่มีน้ำ เราจะเริ่มฟื้นฟูจากอะไรก่อน'},
+ {id:'b1',grp:'นิทรรศการมีชีวิต',name:'B1 แฝกกำแพงมีชีวิต',zone:'นิทรรศการมีชีวิต · ฐาน B1',
+  facts:['แปลงหญ้าแฝกเพื่ออนุรักษ์ดินและน้ำตามแนวพระราชดำริ','ปลูกบริเวณร่องน้ำเป็นรูปตัววีคว่ำ เพื่อชะลอความเร็วน้ำ ดักตะกอน และลดการชะล้างหน้าดิน','รากหญ้าแฝกหยั่งลึกและหนาแน่น ช่วยยึดดินและเสริมความมั่นคงของพื้นที่'],
+  terms:['การชะล้างพังทลายของดิน','ตะกอนดิน'],
+  hook:'กำแพงนี้ไม่ได้ใช้อิฐหรือปูนสักก้อน',
+  q:'ลองสังเกตรากหญ้าแฝก คิดว่ารากแบบนี้ช่วยดินได้อย่างไร'},
+ {id:'b2',grp:'นิทรรศการมีชีวิต',name:'B2 เกษตรทฤษฎีใหม่',zone:'นิทรรศการมีชีวิต · ฐาน B2',
+  facts:['แปลงสาธิตการใช้ที่ดินผสมผสาน: บ่อน้ำ นาข้าว ไม้ผล พืชผัก และที่อยู่อาศัย','มีการเลี้ยงสัตว์ เพาะเห็ด และแปรรูปผลผลิต','สาธิตระบบจัดการดินและน้ำอัจฉริยะด้วย IoT เพื่อใช้น้ำอย่างมีประสิทธิภาพ'],
+  terms:['เกษตรทฤษฎีใหม่','Internet of Things (IoT)'],
+  hook:'ถ้ามีที่ดิน 1 แปลง จะแบ่งเป็นบ่อน้ำ นา สวน และบ้านอย่างไรดี',
+  q:'ถ้าให้เลือก จะแบ่งพื้นที่ให้บ่อน้ำมากหรือน้อย เพราะอะไร'},
+ {id:'b3',grp:'นิทรรศการมีชีวิต',name:'B3 ฟาร์มอินทรีย์ดีต่อใจ',zone:'นิทรรศการมีชีวิต · ฐาน B3',
+  facts:['สวนอินทรีย์กินได้ ปลูกผักและไม้ดอก เช่น ชาดอกไม้','ใช้ไบโอชาร์ (Biochar) เป็นวัสดุปรับปรุงดิน','ใช้จุลินทรีย์ พด. ผลิตปุ๋ยหมักและน้ำหมักชีวภาพ เพื่อเพิ่มอินทรียวัตถุในดิน'],
+  terms:['Biochar','อินทรียวัตถุ','จุลินทรีย์ พด.'],
+  hook:'ดอกไม้ในแปลงนี้ บางชนิดชงเป็นชาได้',
+  q:'เศษอาหารที่บ้านเรา เปลี่ยนเป็นอะไรที่ช่วยดินได้บ้าง'},
+ {id:'b4',grp:'นิทรรศการมีชีวิต',name:'B4 จุลินทรีย์ตัวจี๊ดฤทธิ์เยอะ',zone:'นิทรรศการมีชีวิต · ฐาน B4',
+  facts:['จัดแสดงผลิตภัณฑ์จุลินทรีย์ พด. และจุลินทรีย์สังเคราะห์แสง','สาธิตการนำไปใช้และการผลิตปุ๋ยอินทรีย์','จุลินทรีย์มีบทบาทในการหมุนเวียนธาตุอาหารและรักษาสมดุลระบบนิเวศดิน'],
+  terms:['จุลินทรีย์สังเคราะห์แสง','การหมุนเวียนธาตุอาหาร'],
+  hook:'ในดินหนึ่งกำมือ มีสิ่งมีชีวิตตัวเล็กที่เรามองไม่เห็นทำงานอยู่ตลอดเวลา',
+  q:'ถ้าในดินไม่มีจุลินทรีย์เลย ใบไม้ที่ร่วงลงดินจะเป็นอย่างไร'},
+ {id:'b5',grp:'นิทรรศการมีชีวิต',name:'B5 แก๊งดึ๋ย ซุยดิน',zone:'นิทรรศการมีชีวิต · ฐาน B5',
+  facts:['ความรู้เรื่องไส้เดือนดิน: ชนิด สายพันธุ์ การเตรียมวัสดุ การเลี้ยงและดูแล','ไส้เดือนช่วยย่อยสลายอินทรียวัตถุ','ช่องทางที่ไส้เดือนเคลื่อนที่ช่วยให้อากาศถ่ายเทและน้ำซึมผ่านดินได้ดี','มูลไส้เดือนนำไปใช้ประโยชน์ทางการเกษตรได้'],
+  terms:['มูลไส้เดือน','โครงสร้างดิน'],
+  hook:'ไส้เดือนเป็นวิศวกรตัวเล็กที่ขุดอุโมงค์ให้ดินฟรี ๆ ทุกวัน',
+  q:'ถ้าเราเป็นไส้เดือน จะชอบอยู่ในดินแบบไหน ดินแน่นหรือดินร่วน'},
+ {id:'ext',grp:'หน่วยงานภายนอก',name:'นิทรรศการหน่วยงานภายนอก',zone:'ภาครัฐ เอกชน สมาคมวิชาการ',
+  facts:['ใช้เครื่องจักรกลการเกษตรแก้ปัญหาดินดานและดินอัดแน่น เพื่อเพิ่มการซึมผ่านของน้ำ','แพลตฟอร์มดิจิทัลให้คำแนะนำระดับรายแปลง และระบบให้น้ำอัจฉริยะด้วย IoT','งานวิจัยพัฒนาพันธุ์พืช และการจัดการดินและปุ๋ย','การเรียนรู้ตามหลักปรัชญาของเศรษฐกิจพอเพียง'],
+  terms:['เกษตรอัจฉริยะ','เศรษฐกิจพอเพียง'],
+  hook:'เทคโนโลยีที่เกษตรกรใช้วันนี้ เริ่มจากโทรศัพท์ในมือเรา',
+  q:'เทคโนโลยีไหนในโซนนี้ที่คิดว่าเกษตรกรใกล้ตัวเราน่าจะใช้ได้ทันที'}
+];
+
+const SITUATIONS = [
+ {t:'The Quiet Group',d:'ผู้ชม 6 คน ไม่มีใครยอมตอบคำถามเลย',g:'ชวนคุยโดยไม่กดดันผู้ชม',tip:'เปลี่ยนเป็นคำถามให้เลือกหรือยกมือ ตอบเองเป็นตัวอย่างก่อน 1 ครั้ง'},
+ {t:'The Curious Child',d:'เด็กถามว่า "ทำไมไส้เดือนถึงชอบอยู่ในดิน"',g:'ใช้ภาษาง่ายและตัวอย่างที่เหมาะกับวัย',tip:'ชมคำถาม ตอบด้วยการเปรียบเทียบ เช่น ดินเป็นบ้านที่มีอาหารและความชื้น'},
+ {t:'The Expert Visitor',d:'ผู้ชมถามคำถามวิชาการที่มัคคุเทศก์ไม่มั่นใจคำตอบ',g:'ยอมรับข้อจำกัดและส่งต่อให้ผู้เชี่ยวชาญ',tip:'"เป็นคำถามที่ดีมากค่ะ ขอส่งต่อให้นักวิชาการประจำจุดตอบให้ถูกต้องนะคะ"'},
+ {t:'The Time Challenge',d:'เหลือเวลา 2 นาที แต่ยังอธิบายเนื้อหาไม่ครบ',g:'เลือกประเด็นสำคัญและสรุปอย่างกระชับ',tip:'ข้ามไปที่ Takeaway 1 ประโยค แล้วชี้จุดที่ผู้ชมไปดูต่อเองได้'},
+ {t:'The Distracted Group',d:'ผู้ชมบางคนถ่ายภาพหรือสนใจสิ่งอื่นระหว่างบรรยาย',g:'ดึงความสนใจกลับด้วยคำถามหรือสิ่งจัดแสดง',tip:'ชวนถ่ายภาพจุดสำคัญ แล้วถามคำถามเกี่ยวกับสิ่งที่เขาถ่าย'},
+ {t:'The Wrong Fact',d:'ผู้ชมพูดว่า "ดินแน่น ๆ ดีแล้ว ต้นไม้จะได้ยืนต้นแข็งแรง"',g:'แก้ข้อมูลผิดอย่างสุภาพ ไม่ทำให้ผู้ชมเสียหน้า',tip:'"เป็นความเข้าใจที่หลายคนมีค่ะ ลองมาดูรากในโมเดลนี้ด้วยกันนะคะ"'},
+ {t:'The Big Crowd',d:'กลุ่มผู้ชมเพิ่มจาก 8 คนเป็น 25 คน และรอบข้างเสียงดัง',g:'ปรับเสียง ตำแหน่งยืน และการจัดกลุ่ม',tip:'ยืนให้หันหน้าเข้าหาผู้ชม หลังพิงผนัง ขอให้คนตัวเล็กยืนด้านหน้า'},
+ {t:'The Foreign Visitor',d:'นักท่องเที่ยวต่างชาติ 3 คนเข้ามาร่วมกลุ่ม และสื่อสารภาษาอังกฤษ',g:'ใช้ภาษาง่าย ท่าทาง และของจริงช่วยอธิบาย',tip:'ใช้ประโยคสั้น ชี้ของจริง เช่น "Hard soil. Water cannot go down."'},
+ {t:'The Farmer with a Problem',d:'เกษตรกรปลูกอ้อยถามว่าดินที่แปลงของเขาแน่นมาก ต้องทำอย่างไร',g:'ให้แนวทางทั่วไปตามนิทรรศการ และแนะนำช่องทางผู้เชี่ยวชาญ',tip:'สรุปแนวทางจากนิทรรศการ แล้วแนะนำหมอดินอาสา หรือ LINE น้องดินดี @dindee'},
+ {t:'The Dominator',d:'ผู้ชม 1 คนพูดแทรกและตอบทุกคำถามก่อนคนอื่น',g:'ให้เกียรติ และเปิดพื้นที่ให้คนอื่น',tip:'"ขอบคุณมากครับ ขอฟังจากอีกฝั่งบ้างนะครับ"'},
+ {t:'Equipment Down',d:'จอ Touchscreen หรือโมเดลสาธิตใช้งานไม่ได้',g:'อธิบายต่อโดยไม่พึ่งอุปกรณ์',tip:'ใช้มือ ภาพในโทรศัพท์ หรือวัสดุใกล้ตัวแทน เช่น ฟองน้ำแห้งกับฟองน้ำที่ถูกกด'},
+ {t:'The Senior Group',d:'กลุ่มผู้สูงอายุ ยืนนานไม่ได้ และได้ยินไม่ค่อยชัด',g:'ปรับจังหวะ ระดับเสียง และระยะเวลา',tip:'พูดช้าลง หันหน้าเข้าหาผู้ชม หาที่นั่ง และตัดเนื้อหาเหลือ 2 ประเด็น'},
+ {t:'The Skeptic',d:'ผู้ชมพูดว่า "แค่ดิน จะสำคัญอะไรนักหนา"',g:'ใช้ข้อมูลที่จับต้องได้เปลี่ยนมุมมอง',tip:'เชื่อมกับอาหาร: อาหารของมนุษย์ร้อยละ 95 มาจากดิน'},
+ {t:'The Royal Content',d:'ผู้ชมถามรายละเอียดพระราชกรณียกิจที่บ้านแม่รัง ซึ่งไม่มีในเอกสาร',g:'ใช้ภาษาที่เหมาะสม และไม่ให้ข้อมูลที่ไม่แน่ใจ',tip:'ตอบเฉพาะข้อมูลตามเอกสาร แล้วแนะนำเจ้าหน้าที่ประจำจุดหรือแหล่งข้อมูลทางการ'}
+];
+
+const AUDIENCES = [
+ {t:'นักเรียน ป.4–ป.5',s:'15 คน พร้อมครู 1 ท่าน',like:'เกม การลงมือทำ สัตว์ตัวเล็ก',tip:'ประโยคสั้น ใช้การเปรียบเทียบ ให้แตะหรือดูของจริง'},
+ {t:'นักเรียน ม.2 ทำรายงาน',s:'6 คน ถือโทรศัพท์จดข้อมูล',like:'ข้อมูลที่ใช้ทำรายงานได้ ภาพถ่าย',tip:'บอกข้อเท็จจริงสำคัญให้ชัด และบอกแหล่งข้อมูลที่ค้นต่อได้'},
+ {t:'เกษตรกรปลูกอ้อยและมันสำปะหลัง',s:'8 คน จากภาคตะวันออกเฉียงเหนือ',like:'วิธีแก้ปัญหาที่ใช้ได้จริง ต้นทุน ผลผลิต',tip:'เริ่มจากปัญหาในแปลง ใช้ภาษาเกษตรกร หลีกเลี่ยงศัพท์อังกฤษ'},
+ {t:'หมอดินอาสา',s:'5 คน มีความรู้พื้นฐานเรื่องดินดี',like:'เทคโนโลยีใหม่ ข้อมูลเชิงลึก',tip:'ชวนแลกเปลี่ยนประสบการณ์ ถามความเห็นมากกว่าบรรยาย'},
+ {t:'ครอบครัวพ่อแม่ลูกเล็ก',s:'พ่อแม่ 2 คน ลูกอายุ 5 และ 8 ขวบ',like:'กิจกรรมทำร่วมกัน ถ่ายรูป',tip:'พูดกับเด็กโดยตรง และให้ผู้ปกครองมีบทบาทช่วยตอบ'},
+ {t:'ผู้สูงอายุ',s:'10 คน มากับคณะทัศนศึกษา',like:'เรื่องเล่า ความทรงจำ ประวัติศาสตร์',tip:'พูดช้าและชัด เชื่อมกับประสบการณ์การทำเกษตรในอดีต'},
+ {t:'นักศึกษาสาขาเกษตร',s:'12 คน มากับอาจารย์',like:'ข้อมูลวิชาการ ตัวเลข วิธีการวัด',tip:'ใช้ศัพท์วิชาการได้ ชวนตั้งคำถามและเชื่อมกับบทเรียน'},
+ {t:'นักท่องเที่ยวต่างชาติ',s:'4 คน สื่อสารภาษาอังกฤษ',like:'วัฒนธรรมไทย เรื่องราวที่ไม่เหมือนประเทศตน',tip:'ใช้ภาษาอังกฤษง่าย ท่าทาง และของจริง เล่าที่มาของวันดินโลก'},
+ {t:'ผู้บริหารหรือแขกพิเศษ',s:'3 คน มีเวลาเพียง 3 นาที',like:'ภาพรวม ผลลัพธ์ ตัวเลขสำคัญ',tip:'เริ่มด้วยประเด็นหลัก 1 ประโยค ตามด้วยตัวเลข 1–2 ตัว'},
+ {t:'คนทำงานในเมือง',s:'2–3 คน สนใจปลูกผักที่บ้าน',like:'สิ่งที่ทำได้เองที่บ้าน',tip:'เชื่อมกับปุ๋ยหมัก ไส้เดือน และผักอินทรีย์ที่ทำได้ในพื้นที่เล็ก'},
+ {t:'สื่อมวลชนหรืออินฟลูเอนเซอร์',s:'2 คน กำลังถ่ายวิดีโอ',like:'ประโยคสั้นที่ใช้เป็นคำพูดได้ จุดถ่ายภาพสวย',tip:'เตรียมประโยคสรุป 1 ประโยค พูดชัด และตรวจข้อมูลให้ถูกต้อง'}
+];
+
+const TECHNICAL = [
+ {s:'เมื่อดินอยู่ในภาวะการอัดแน่น ปริมาณช่องว่างขนาดใหญ่ (Macro-pores) ภายในดินจะลดลงอย่างมีนัยสำคัญ ดินจึงสูญเสียความสามารถในการระบายน้ำและการถ่ายเทอากาศ',src:'หัวข้อ 2.1'},
+ {s:'หากดินมีค่าความหนาแน่นรวม (Bulk Density) สูงเกินค่าวิกฤตในช่วง 1.55–1.80 g/cm³ ซึ่งผันแปรตามกลุ่มเนื้อดิน จะถือว่าอยู่ในระดับวิกฤตต่อระบบรากพืช',src:'หัวข้อ 2.1'},
+ {s:'การไถพรวนที่ระดับความลึกเดิมอย่างต่อเนื่องก่อให้เกิดชั้นดินดาน (Plow pan) อัดแน่นทึบซ่อนอยู่ใต้ระดับรอยไถ',src:'หัวข้อ 2.1'},
+ {s:'อินทรียวัตถุเป็นเสมือนกาวประสานเม็ดดิน การขาดอินทรียวัตถุทำให้โครงสร้างดินอ่อนแอและสูญเสียความพรุนอย่างรวดเร็ว',src:'หัวข้อ 2.1'},
+ {s:'การวัดอัตราการหายใจของดิน (Soil Respiration) เป็นการวัดการปลดปล่อยก๊าซคาร์บอนไดออกไซด์จากกิจกรรมของจุลินทรีย์ เพื่อประเมินกิจกรรมทางชีวภาพในดิน',src:'หัวข้อ 2.2'},
+ {s:'Bait-lamina test ใช้แผ่นทดสอบที่บรรจุอาหาร เพื่อประเมินกิจกรรมการกินอาหารของจุลินทรีย์และสัตว์ขนาดเล็กในดิน',src:'หัวข้อ 2.2'},
+ {s:'การวิเคราะห์ความหลากหลายของจุลินทรีย์ด้วยเทคนิค Metagenomics โดยใช้เทคโนโลยี Next-Generation Sequencing (NGS)',src:'หัวข้อ 2.2'},
+ {s:'Agri-Map Platform เป็นแพลตฟอร์มแผนที่กลางด้านการเกษตร เชื่อมโยงข้อมูลเชิงพื้นที่จาก 22 หน่วยงาน โดยใช้เทคโนโลยี GIS และ AI',src:'หัวข้อ 2.2'},
+ {s:'การประเมินสุขภาพดินเพื่อสนับสนุนเป้าหมายความเป็นกลางทางการเสื่อมโทรมของที่ดิน (LDN) ภายใต้กรอบ UNCCD',src:'หัวข้อ 2.2'},
+ {s:'การปลูกหญ้าแฝกบริเวณร่องน้ำในลักษณะรูปตัววีคว่ำ ช่วยชะลอความเร็วของน้ำ ดักตะกอน และลดการชะล้างพังทลายของดิน',src:'ฐาน B1'},
+ {s:'ไส้เดือนดินช่วยย่อยสลายอินทรียวัตถุและสร้างช่องทางเคลื่อนที่ในดิน ส่งเสริมการถ่ายเทอากาศและการซึมผ่านของน้ำ',src:'ฐาน B5'},
+ {s:'ไบโอชาร์ (Biochar) ใช้เป็นวัสดุปรับปรุงดิน ร่วมกับจุลินทรีย์ พด. ในการผลิตปุ๋ยหมัก เพื่อเพิ่มอินทรียวัตถุและกิจกรรมทางชีวภาพในดิน',src:'ฐาน B3'}
+];
+
+const TONES = [
+ {t:'ทางการ',d:'ใช้ภาษาสุภาพ ครบประโยค เหมาะกับผู้บริหารหรือพิธีการ'},
+ {t:'เป็นกันเอง',d:'พูดเหมือนเล่าให้เพื่อนฟัง ใช้คำง่าย มีคำลงท้ายนุ่มนวล'},
+ {t:'กระตุ้นความสนใจ',d:'เปิดด้วยคำถาม ความแปลกใจ หรือสิ่งที่ผู้ชมไม่คาดคิด'},
+ {t:'สำหรับเด็ก 10 ขวบ',d:'ประโยคสั้นมาก ใช้การเปรียบเทียบกับสิ่งที่เด็กรู้จัก'},
+ {t:'สำหรับเกษตรกร',d:'เชื่อมกับแปลงปลูก ต้นทุน และผลผลิต'}
+];
+
+const PLAINQ = [
+ 'ทุกคนรู้จักหญ้าแฝกไหมคะ','เข้าใจไหมครับ','มีคำถามไหมคะ','รู้ไหมว่าวันดินโลกคือวันที่เท่าไร','ไส้เดือนมีประโยชน์ใช่ไหมครับ','ดินแน่นไม่ดีใช่ไหมคะ','เคยใช้ Agri-Map ไหมครับ','ชอบผักอินทรีย์ไหมคะ','จุลินทรีย์สำคัญใช่ไหมครับ','ทุกคนเห็นโมเดลนี้ไหมคะ','รู้จักเกษตรทฤษฎีใหม่ไหมครับ','น่าสนใจไหมคะ'
+];
+
+const QTYPES = [
+ {t:'Prediction · คำถามให้คาดเดา',u:'ใช้ก่อนสาธิตหรือก่อนเฉลยข้อมูล',ex:['ถ้าเรารดน้ำลงบนดินสองแบบนี้ คิดว่าน้ำจะซึมผ่านดินแบบไหนได้เร็วกว่ากัน','ทายดูไหมคะ อาหารที่เรากินกี่เปอร์เซ็นต์มาจากดิน']},
+ {t:'Observation · คำถามชวนสังเกต',u:'ใช้เมื่อมีของจริง โมเดล หรือภาพ',ex:['ลองดูรากหญ้าแฝกกับรากหญ้าทั่วไป เห็นอะไรที่ต่างกันบ้างครับ','ในโมเดลฝั่งซ้าย เม็ดน้ำสีฟ้าไปอยู่ตรงไหนมากที่สุดคะ']},
+ {t:'Connection · คำถามเชื่อมโยงชีวิตจริง',u:'ใช้หลังอธิบาย เพื่อให้ผู้ชมเห็นว่าเกี่ยวกับตนเอง',ex:['สนามหญ้าหรือทางเดินที่คนเหยียบทุกวัน ฝนตกแล้วเป็นอย่างไรครับ','เศษผักที่บ้าน เราเปลี่ยนเป็นอะไรที่ช่วยดินได้บ้างคะ']},
+ {t:'Choice · คำถามให้เลือก',u:'ใช้กับกลุ่มที่เงียบ ตอบง่าย ไม่มีผิด',ex:['ถ้าเป็นไส้เดือน จะเลือกอยู่ในดินแน่นหรือดินร่วน ยกมือเลยค่ะ','ระหว่างลดการไถ กับเติมปุ๋ยหมัก คิดว่าแบบไหนทำได้ง่ายกว่าครับ']},
+ {t:'Reflection · คำถามชวนคิดทบทวน',u:'ใช้ตอนปิดการนำชม',ex:['จากที่ดูมาทั้งหมด มีอะไร 1 อย่างที่อยากกลับไปลองทำคะ','ถ้าต้องเล่าเรื่องนี้ให้คนที่บ้านฟังใน 1 ประโยค จะเล่าว่าอะไรครับ']}
+];
+
+const SESSIONS = {
+ s1:{n:1,time:'08.30–10.20 น. (110 นาที)',title:'Speak with Confidence',th:'พูดอย่างมั่นใจ ใช้น้ำเสียงและภาษากายอย่างมีประสิทธิภาพ',color:'#33691e',
+  obj:'ลดความกังวลในการพูดต่อหน้ากลุ่มคน และฝึกการใช้เสียง ท่าทาง และการเปิดการนำชมให้ดึงดูดความสนใจ',
+  acts:[
+   {m:10,k:'in',n:'Opening & Confidence Check',h:'แนะนำเป้าหมายของวัน ผู้เข้าอบรมให้คะแนนความมั่นใจของตนเอง 1–5 บนกระดาษ 5 ข้อ เก็บไว้เปรียบเทียบตอนท้ายวัน',tool:['#rubric','ดูข้อคำถามประเมินตนเอง']},
+   {m:15,k:'pr',n:'First Impression Challenge',h:'ในกลุ่มย่อย ทุกคนแนะนำจุดนิทรรศการที่สุ่มได้ภายใน 30 วินาที โดยไม่เตรียมตัว เพื่อดูทักษะเริ่มต้นของตนเอง',tool:['#station-pick','สุ่มจุดนิทรรศการ'],t2:['#timer','จับเวลา 30 วิ']},
+   {m:15,k:'in',n:'Voice & Body Language Lab',h:'วิทยากรสาธิตระดับเสียง จังหวะ การหยุดพูด การสบตา ตำแหน่งยืน และการชี้สิ่งจัดแสดง เทียบแบบที่ควรทำกับไม่ควรทำ'},
+   {m:25,k:'pr',n:'Say It Three Ways',h:'สุ่มข้อเท็จจริง 1 ข้อ แล้วฝึกพูดเรื่องเดียวกัน 3 แบบ ได้แก่ ทางการ เป็นกันเอง และกระตุ้นความสนใจ ผลัดกันพูดในคู่',tool:['#threeways','สุ่มข้อเท็จจริงและโทน']},
+   {m:30,k:'pr',n:'The 60-Second Opening',h:'เขียนและฝึกบทเปิดการนำชม 60 วินาที สำหรับกลุ่มผู้ชมที่สุ่มได้ บันทึกวิดีโอด้วยโทรศัพท์ของตนเอง แล้วรับ Feedback จากเพื่อน',tool:['#audience','สุ่มกลุ่มผู้ชม'],t2:['#timer','จับเวลา 60 วิ']},
+   {m:15,k:'pr',n:'Confidence Replay',h:'พูดบทเปิดอีกครั้งหลังได้รับข้อเสนอแนะ ดูวิดีโอรอบแรกเทียบกับรอบสอง และบอกสิ่งที่ดีขึ้น 1 อย่าง'}
+  ],
+  extra:`<h2>ตัวอย่างโจทย์ฝึก: เปิดนิทรรศการวันดินโลก</h2>
+  <div class="grid g2"><div class="card"><span class="tag water">Version A · บรรยายข้อมูล</span><p>"วันดินโลกตรงกับวันที่ 5 ธันวาคมของทุกปี โดยมีวัตถุประสงค์เพื่อสร้างความตระหนักถึงความสำคัญของทรัพยากรดิน"</p></div>
+  <div class="card"><span class="tag leaf">Version B · ดึงดูดความสนใจ</span><p>"ทุกท่านเคยสงสัยไหมคะว่า อาหารที่เรารับประทานในแต่ละวันเกี่ยวข้องกับดินมากแค่ไหน วันนี้เราจะมาค้นหาคำตอบไปด้วยกันค่ะ"</p></div></div>
+  <h2>โครงบทเปิด 60 วินาที</h2>
+  <div class="card"><ol class="clean"><li><b>ทักทายและแนะนำตัว</b> (10 วิ)</li><li><b>Hook</b> คำถามหรือข้อเท็จจริงที่ทำให้สงสัย (15 วิ)</li><li><b>บอกเส้นทาง</b> วันนี้จะไปดูอะไร กี่จุด ใช้เวลาเท่าไร (20 วิ)</li><li><b>ข้อตกลง</b> เช่น ถามได้ตลอด เดินตามป้ายสีเขียว (15 วิ)</li></ol></div>`,
+  out:'ผู้เข้าอบรมมีบทเปิดการนำชม 1 นาที และสื่อสารโดยใช้ภาษากายและน้ำเสียงที่เหมาะสม'},
+ s2:{n:2,time:'10.30–12.30 น. (120 นาที)',title:'Make Information Interesting',th:'เปลี่ยนข้อมูลวิชาการให้เป็นเรื่องเล่าที่น่าสนใจและจดจำง่าย',color:'#6d4c41',
+  obj:'ฝึกคัดเลือกใจความสำคัญ ลดศัพท์วิชาการที่ไม่จำเป็น ใช้การเปรียบเทียบและการเล่าเรื่อง และพูดตัวเลขให้เข้าใจง่ายโดยยังถูกต้อง',
+  acts:[
+   {m:15,k:'pr',n:'Too Technical!',h:'สุ่มข้อความวิชาการจากเอกสาร แล้วให้ผู้เข้าอบรมอธิบายด้วยภาษาพูดที่เข้าใจง่ายภายใน 30 วินาที',tool:['#technical','สุ่มข้อความวิชาการ']},
+   {m:15,k:'in',n:'Storytelling Toolkit',h:'แนะนำโครง Hook → Explain → Connect → Takeaway พร้อมสาธิตด้วยเรื่องดินอัดแน่น'},
+   {m:30,k:'pr',n:"Explain It Like I'm 10",h:'จับกลุ่มแปลงข้อมูลเรื่องดินอัดแน่น สุขภาพดิน หญ้าแฝก หรือไส้เดือน ให้เด็กอายุ 10 ปีเข้าใจ ใช้การเปรียบเทียบอย่างน้อย 1 อย่าง',tool:['#stations','เปิด Fact Cards']},
+   {m:15,k:'pr',n:'ตัวเลขต้องถูก (Numbers Made Simple)',h:'ฝึกพูดตัวเลขจากเอกสารให้เข้าใจง่าย เช่น ร้อยละ 72.03 เป็น "เกือบ 3 ใน 4" แล้วให้เพื่อนตรวจว่าความหมายยังถูกต้องหรือไม่'},
+   {m:30,k:'pr',n:'90-Second Soil Story',h:'สร้างเรื่องเล่า 90 วินาทีจากจุดนิทรรศการที่ได้รับมอบหมาย และนำเสนอโดยไม่อ่านสคริปต์',tool:['#station-pick','สุ่มจุดนิทรรศการ'],t2:['#timer','จับเวลา 90 วิ']},
+   {m:15,k:'pr',n:'Story Feedback',h:'เพื่อนประเมิน 3 ข้อ: ข้อมูลถูกต้องหรือไม่ น่าสนใจหรือไม่ และจำประเด็นหลักได้ 1 ประโยคหรือไม่',tool:['#rubric','รูปแบบ Feedback']}
+  ],
+  extra:`<h2>เทคนิคหลัก: HOOK → EXPLAIN → CONNECT → TAKEAWAY</h2>
+  <div class="grid g4">
+   <div class="card"><span class="tag">1 · Hook</span><p>เปิดด้วยสิ่งที่ทำให้สงสัย เช่น "ทำไมฝนตกแล้วน้ำจึงไม่ซึมลงดิน"</p></div>
+   <div class="card"><span class="tag">2 · Explain</span><p>อธิบายสั้น ๆ ว่าดินอัดแน่นมีช่องว่างระหว่างเม็ดดินลดลง น้ำและอากาศจึงเคลื่อนผ่านได้ยาก</p></div>
+   <div class="card"><span class="tag">3 · Connect</span><p>เชื่อมกับสิ่งที่ผู้ชมรู้จัก เช่น น้ำขังในแปลงปลูก หรือรากพืชที่โตไม่ดี</p></div>
+   <div class="card"><span class="tag">4 · Takeaway</span><p>ปิดด้วยข้อความสำคัญ "โครงสร้างดินที่ดีช่วยให้รากพืชเติบโตและใช้น้ำได้อย่างมีประสิทธิภาพ"</p></div>
+  </div>
+  <h2>ตัวอย่าง: ตัวเลขต้องถูก</h2>
+  <table><tr><th>ข้อมูลในเอกสาร</th><th>พูดให้เข้าใจง่าย</th><th>ระวัง</th></tr>
+   <tr><td>อาหารของมนุษย์ร้อยละ 95 มีแหล่งกำเนิดจากดิน</td><td>อาหาร 20 จาน มี 19 จานที่เริ่มต้นจากดิน</td><td>ไม่พูดว่า "อาหารทุกอย่าง"</td></tr>
+   <tr><td>พื้นที่เกษตรร้อยละ 72.03 เสี่ยงต่อดินอัดแน่น</td><td>เกือบ 3 ใน 4 ของพื้นที่เกษตรมีความเสี่ยง</td><td>ส่วนใหญ่เป็นระยะเริ่มอัดแน่น ไม่ใช่ระดับวิกฤต</td></tr>
+   <tr><td>ดินอัดแน่นระดับวิกฤต 0.95 ล้านไร่</td><td>เกือบ 1 ล้านไร่ ที่ต้องแก้ไขเร่งด่วน</td><td>เป็นร้อยละ 0.54 ของพื้นที่ ไม่ควรพูดให้ดูใหญ่เกินจริง</td></tr>
+   <tr><td>จัดการดินเหมาะสมเพิ่มผลผลิตอาหารได้ถึงร้อยละ 58</td><td>ผลผลิตเพิ่มได้เกือบครึ่งเท่าตัว</td><td>คำว่า "ได้ถึง" หมายถึงค่าสูงสุด ไม่ใช่ทุกกรณี</td></tr>
+  </table>
+  <p class="counter">ที่มาของตัวเลข: เอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ บทนำ และหัวข้อ 2.1</p>`,
+  out:'เรื่องเล่าประจำจุดนิทรรศการความยาว 90 วินาที อย่างน้อย 1 เรื่องต่อคน'},
+ s3:{n:3,time:'13.30–15.20 น. (110 นาที)',title:'Ask, Engage & Involve',th:'ใช้คำถาม เกม และกิจกรรมเพื่อกระตุ้นการมีส่วนร่วม',color:'#2f6f8f',
+  obj:'ให้มัคคุเทศก์ตั้งคำถามได้หลากหลายรูปแบบ ชวนผู้ชมสนทนา และรับมือกับกลุ่มที่ไม่ค่อยมีปฏิสัมพันธ์',
+  acts:[
+   {m:15,k:'in',n:'Bad Questions vs Good Questions',h:'เปรียบเทียบคำถามที่ตอบได้เพียงใช่หรือไม่ใช่ กับคำถามที่ชวนสังเกต คิด และแลกเปลี่ยน แนะนำคำถาม 5 แบบ',tool:['#questions','เปิด Question Toolkit']},
+   {m:20,k:'pr',n:'Question Makeover',h:'สุ่มคำถามธรรมดา แล้วเปลี่ยนเป็นคำถามที่กระตุ้นความสนใจตามประเภทที่สุ่มได้',tool:['#makeover','สุ่มคำถามและประเภท']},
+   {m:30,k:'pr',n:'Design a Mini Interaction',h:'ออกแบบกิจกรรม 2–3 นาทีสำหรับจุดนิทรรศการที่สุ่มได้ เช่น ทายคำตอบ โหวตด้วยมือ สังเกตสิ่งของ หรือทดลองง่าย ๆ',tool:['#station-pick','สุ่มจุดนิทรรศการ']},
+   {m:30,k:'pr',n:'The Silent Audience Challenge',h:'จำลองสถานการณ์ผู้ชมไม่ตอบ ไม่สนใจ หรือพูดแทรก ผู้เล่นบทผู้ชมสุ่ม Situation Card และแสดงตามบัตร ผู้นำชมไม่รู้ล่วงหน้า',tool:['#situation','สุ่ม Situation Card']},
+   {m:15,k:'pr',n:'Interaction Demo',h:'แต่ละกลุ่มสาธิตกิจกรรมสั้นของตนเองต่อทั้งห้อง และรับข้อเสนอแนะ',tool:['#names','สุ่มกลุ่มที่นำเสนอ']}
+  ],
+  extra:`<h2>ตัวอย่าง Mini Interaction</h2>
+  <div class="grid g3">
+   <div class="card"><span class="tag water">ทายผล</span><p>ก่อนเทน้ำบนโมเดล LAB ให้ผู้ชมยกมือเลือกฝั่งที่คิดว่าน้ำจะไหลลงถังมากกว่า</p></div>
+   <div class="card"><span class="tag water">สังเกต</span><p>ที่ฐาน B1 ให้ผู้ชมหาจุดที่รากหญ้าแฝกยาวที่สุด แล้วเดาความยาว</p></div>
+   <div class="card"><span class="tag water">โหวต</span><p>ที่ฐาน B5 ถามว่าไส้เดือนชอบดินแบบไหน ให้ยืนฝั่งซ้ายหรือขวาตามคำตอบ</p></div>
+  </div>`,
+  out:'ชุดคำถามอย่างน้อย 5 ข้อ (ครบ 5 แบบ) และกิจกรรมสร้างการมีส่วนร่วม 1 กิจกรรม สำหรับจุดนิทรรศการที่ได้รับมอบหมาย'},
+ s4:{n:4,time:'15.30–17.30 น. (120 นาที)',title:'The Real Guide Challenge',th:'จำลองสถานการณ์การนำชมจริงพร้อมรับข้อเสนอแนะ',color:'#8a5a00',
+  obj:'บูรณาการทุกทักษะจาก 3 ช่วงแรก และฝึกจัดการสถานการณ์ที่อาจพบระหว่างปฏิบัติงานจริง',
+  acts:[
+   {m:10,k:'in',n:'Mission Briefing',h:'อธิบายกติกาและเกณฑ์ประเมิน แต่ละคนสุ่มภารกิจ ได้แก่ จุดนิทรรศการ กลุ่มผู้ชม และเวลา',tool:['#mission','เปิด Mission Generator']},
+   {m:20,k:'pr',n:'Tour Preparation',h:'เตรียมการนำชมเป็นคู่ ใช้บทเปิด 60 วิ เรื่องเล่า 90 วิ และคำถามจาก Session 3 ตรวจความถูกต้องของเนื้อหากับ Fact Cards',tool:['#stations','เปิด Fact Cards']},
+   {m:60,k:'pr',n:'Guided Tour Simulation',h:'กลุ่มละ 5–6 คน สลับบทบาทเป็นมัคคุเทศก์ ผู้ชม และผู้ประเมิน นำชมรอบละ 5–7 นาที ตามด้วย Feedback 2–3 นาที ระหว่างรอบ วิทยากรสุ่ม Situation Card ให้ผู้เล่นบทผู้ชม',tool:['#situation','สุ่ม Situation Card'],t2:['#timer','จับเวลา 7 นาที']},
+   {m:15,k:'pr',n:'Feedback & Improvement',h:'สรุป Feedback แบบ ชม 1 · แนะ 1 · ลอง 1 แต่ละคนเลือกจุดที่จะปรับปรุง 1 อย่างก่อนปฏิบัติงานจริง',tool:['#rubric','เปิดแบบประเมิน']},
+   {m:15,k:'pr',n:'Final Confidence Check & Wrap-up',h:'ประเมินความมั่นใจซ้ำด้วยข้อคำถามชุดเดิม เปรียบเทียบกับตอนเช้า และแลกเปลี่ยนเทคนิคที่จะใช้ทันที 1 อย่าง'}
+  ],
+  extra:`<div class="note" style="margin-top:18px"><b>การจัดเวลาช่วง Simulation 60 นาที</b> กลุ่ม 6 คน × (นำชม 6 นาที + Feedback 3 นาที) = 54 นาที เหลือ 6 นาทีสำหรับเปลี่ยนรอบ ถ้ากลุ่มมีมากกว่า 6 คน ให้ลดเวลานำชมเหลือ 5 นาที</div>`,
+  out:'ทุกคนได้เป็นผู้นำชมอย่างน้อย 1 รอบ และได้รับ Feedback รายบุคคล'}
+};
+
+const RUBRIC = [
+ {c:'Confidence & Delivery',th:'ความมั่นใจ น้ำเสียง และภาษากาย',w:20,l:['เสียงชัด จังหวะดี สบตาทั่วกลุ่ม ท่าทางเป็นธรรมชาติ','เสียงชัด สบตาเป็นส่วนใหญ่ มีความตื่นเต้นบ้าง','เสียงเบาหรือเร็วเกินไปบางช่วง สบตาน้อย','อ่านหรือมองป้ายเป็นหลัก ผู้ชมฟังไม่ชัด']},
+ {c:'Content Accuracy & Clarity',th:'ความถูกต้องและความชัดเจนของข้อมูล',w:20,l:['ข้อมูลและตัวเลขถูกต้องทั้งหมด เรียงลำดับเข้าใจง่าย','ข้อมูลถูกต้อง มีจุดที่อธิบายไม่ชัดเล็กน้อย','มีข้อมูลคลาดเคลื่อน 1 จุด หรือใช้ศัพท์ยากโดยไม่อธิบาย','ข้อมูลผิดหลายจุด หรือบิดเบือนตัวเลข']},
+ {c:'Storytelling',th:'การอธิบายที่น่าสนใจและเข้าใจง่าย',w:20,l:['ใช้ Hook Explain Connect Takeaway ครบ มีการเปรียบเทียบที่ชัด','มีโครงเรื่อง ขาดบางส่วน เช่น Connect','เล่าเป็นรายการข้อมูล ไม่มีจุดเชื่อมโยง','ไม่มีโครงเรื่อง ผู้ชมจับประเด็นไม่ได้']},
+ {c:'Questioning & Engagement',th:'การตั้งคำถามและสร้างการมีส่วนร่วม',w:25,l:['ใช้คำถามหลายแบบ รอคำตอบ ผู้ชมมีส่วนร่วมหลายคน','มีคำถามชวนคิด ผู้ชมตอบบางคน','ถามคำถามใช่หรือไม่ใช่เป็นหลัก','ไม่มีการถามหรือชวนผู้ชมมีส่วนร่วม']},
+ {c:'Tour Management',th:'การบริหารเวลา กลุ่มผู้ชม และสถานการณ์',w:15,l:['ตรงเวลา รับมือสถานการณ์ได้อย่างสุภาพและเหมาะสม','เกินเวลาเล็กน้อย รับมือสถานการณ์ได้','เกินเวลาชัดเจน หรือรับมือสถานการณ์ได้บางส่วน','ควบคุมเวลาและกลุ่มไม่ได้']}
+];
+
+
+const ICO = {
+ wsd:'<circle cx="24" cy="24" r="20" fill="#f1f8e9"/><path d="M8 28h32v8a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4z" fill="#6d4c41"/><path d="M24 28V16" stroke="#33691e" stroke-width="3" stroke-linecap="round"/><path d="M24 20q-8-2-9-9 8 0 9 9zM24 18q7-2 9-8-8 0-9 8z" fill="#7cb342"/><text x="24" y="38" text-anchor="middle" font-size="8" font-weight="800" fill="#fff">5 ธ.ค.</text>',
+ land:'<circle cx="24" cy="24" r="20" fill="#f3ece7"/><rect x="8" y="14" width="32" height="7" rx="2" fill="#7cb342"/><rect x="8" y="22" width="32" height="7" rx="2" fill="#6d4c41"/><rect x="8" y="30" width="32" height="7" rx="2" fill="#a1887f"/><path d="M10 33l4-3 4 3 4-3 4 3 4-3 4 3 4-3" stroke="#5d4037" stroke-width="1.5" fill="none"/>',
+ lab:'<circle cx="24" cy="24" r="20" fill="#e1f0f7"/><path d="M19 9h10M21 9v10l-9 15a3 3 0 0 0 3 5h18a3 3 0 0 0 3-5l-9-15V9" fill="#fff" stroke="#2f6f8f" stroke-width="2.4" stroke-linejoin="round"/><path d="M15 31h18l3 5a2 2 0 0 1-2 3H14a2 2 0 0 1-2-3z" fill="#6d4c41"/><circle cx="22" cy="26" r="1.8" fill="#4fc3f7"/><circle cx="27" cy="22" r="1.4" fill="#4fc3f7"/>',
+ live:'<circle cx="24" cy="24" r="20" fill="#f1f8e9"/><rect x="9" y="12" width="30" height="20" rx="3" fill="#3e2723"/><rect x="12" y="15" width="24" height="14" rx="2" fill="#7cb342"/><path d="M18 26q6-10 12-4" stroke="#fff" stroke-width="2" fill="none"/><path d="M20 36h8M24 32v4" stroke="#3e2723" stroke-width="2.4" stroke-linecap="round"/>',
+ stage:'<circle cx="24" cy="24" r="20" fill="#fff3d6"/><rect x="19" y="9" width="10" height="17" rx="5" fill="#6d4c41"/><path d="M15 22a9 9 0 0 0 18 0M24 31v6M18 37h12" stroke="#3e2723" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M36 12l3-3M38 18h4M12 12L9 9M10 18H6" stroke="#f9a825" stroke-width="2.4" stroke-linecap="round"/>',
+ maerang:'<circle cx="24" cy="24" r="20" fill="#f3ece7"/><path d="M8 36q0-20 16-22 16 2 16 22z" fill="#a1887f"/><path d="M20 36v-8a4 4 0 0 1 8 0v8z" fill="#5d4037"/><path d="M8 36h32" stroke="#6d4c41" stroke-width="3" stroke-linecap="round"/><path d="M14 22q10-6 20 0" stroke="#d7ccc8" stroke-width="1.5" fill="none"/>',
+ b1:'<circle cx="24" cy="24" r="20" fill="#f1f8e9"/><g stroke="#558b2f" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M24 24q-2-8-6-14M24 24V8M24 24q2-8 6-14M24 24q-6-4-11-6M24 24q6-4 11-6"/></g><rect x="6" y="24" width="36" height="16" rx="3" fill="#6d4c41"/><g stroke="#f3e5ab" stroke-width="1.6" stroke-linecap="round"><path d="M22 25v13M24 25v15M26 25v13M20 26l-2 9M28 26l2 9"/></g>',
+ b2:'<circle cx="24" cy="24" r="20" fill="#e1f0f7"/><rect x="7" y="22" width="16" height="12" rx="2" fill="#4fc3f7"/><rect x="25" y="22" width="16" height="12" rx="2" fill="#c5e1a5"/><path d="M27 30h12M27 26h12" stroke="#7cb342" stroke-width="1.6"/><path d="M14 18l6-6 6 6v4H14z" fill="#a1887f"/><rect x="7" y="34" width="34" height="4" rx="2" fill="#6d4c41"/><circle cx="36" cy="13" r="3" fill="#f9a825"/>',
+ b3:'<circle cx="24" cy="24" r="20" fill="#fdecef"/><g fill="#f48fb1"><circle cx="24" cy="15" r="4.5"/><circle cx="31" cy="20" r="4.5"/><circle cx="28" cy="28" r="4.5"/><circle cx="20" cy="28" r="4.5"/><circle cx="17" cy="20" r="4.5"/></g><circle cx="24" cy="22" r="4" fill="#f9a825"/><path d="M24 30v10" stroke="#558b2f" stroke-width="2.6"/><path d="M24 36q-6-1-8-5 6 0 8 5z" fill="#7cb342"/>',
+ b4:'<circle cx="24" cy="24" r="20" fill="#ede7f6"/><ellipse cx="22" cy="24" rx="11" ry="8" fill="#9575cd"/><g fill="#d1c4e9"><circle cx="18" cy="22" r="2"/><circle cx="25" cy="26" r="2.4"/><circle cx="23" cy="20" r="1.4"/></g><path d="M33 24q4-3 6 0M11 24q-4 3-5 0M22 16q0-4 3-5M22 32q0 4-3 5" stroke="#7e57c2" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="36" cy="14" r="3" fill="#b39ddb"/>',
+ b5:'<circle cx="24" cy="24" r="20" fill="#f3ece7"/><rect x="6" y="20" width="36" height="20" rx="4" fill="#6d4c41"/><path d="M10 30q5-6 10 0t10 0t8-2" stroke="#ef9a9a" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="37" cy="27.5" r="1.2" fill="#3e2723"/><path d="M14 14q4-4 8 0" stroke="#7cb342" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M18 12v8" stroke="#558b2f" stroke-width="2.4"/>',
+ ext:'<circle cx="24" cy="24" r="20" fill="#fff3d6"/><rect x="10" y="20" width="18" height="10" rx="2" fill="#558b2f"/><rect x="22" y="14" width="10" height="10" rx="2" fill="#7cb342"/><circle cx="16" cy="33" r="5.5" fill="#3e2723"/><circle cx="16" cy="33" r="2" fill="#a1887f"/><circle cx="33" cy="34" r="4" fill="#3e2723"/><circle cx="33" cy="34" r="1.5" fill="#a1887f"/><path d="M30 12v-3" stroke="#6d4c41" stroke-width="2.4"/>'
+};
+const icon = id => `<svg class="st-ico" viewBox="0 0 48 48" aria-hidden="true">${ICO[id]||''}</svg>`;
+const LAYERS = c => `<svg class="layers" viewBox="0 0 800 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 18 Q200 4 400 16 T800 12 V56 H0Z" fill="#7cb342" opacity=".55"/><path d="M0 28 Q220 16 420 28 T800 24 V56 H0Z" fill="#6d4c41"/><path d="M0 42 Q200 34 400 42 T800 38 V56 H0Z" fill="#a1887f"/><g fill="#d7ccc8" opacity=".6"><circle cx="90" cy="36" r="2.5"/><circle cx="260" cy="34" r="2"/><circle cx="470" cy="37" r="2.5"/><circle cx="640" cy="33" r="2"/></g></svg>`;
+
+/* ===================== HELPERS ===================== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function rnd(n){ if(window.crypto&&crypto.getRandomValues){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n;} return Math.floor(Math.random()*n); }
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* A pool that draws without repeat until reset */
+function Pool(items){ this.items=items; this.used=new Set(); }
+Pool.prototype.draw=function(noRep){
+  let idx=[...this.items.keys()];
+  if(noRep){ idx=idx.filter(i=>!this.used.has(i)); if(!idx.length){ this.used.clear(); idx=[...this.items.keys()]; } }
+  const i=idx[rnd(idx.length)]; this.used.add(i); return i;
+};
+
+function roll(el,frames,render,done){
+  el.classList.add('rolling'); let k=0;
+  const iv=setInterval(()=>{ render(frames[k%frames.length]); k++; },70);
+  setTimeout(()=>{ clearInterval(iv); el.classList.remove('rolling'); done(); el.classList.remove('flip'); void el.offsetWidth; el.classList.add('flip'); confetti(el); },700);
+}
+
+/* ===================== SESSIONS ===================== */
+function renderSessions(){
+  Object.entries(SESSIONS).forEach(([id,s])=>{
+    const acts=s.acts.map((a,i)=>{
+      const tools=[a.tool,a.t2].filter(Boolean).map(t=>`<a class="btn sm ${t[0]=='#timer'?'ghost':''}" href="${t[0]}">${t[0]=='#timer'?'⏱️':'🎲'} ${esc(t[1])}</a>`).join(' ');
+      return `<div class="act"><div class="min">${a.m} นาที<small>กิจกรรม ${i+1}</small></div><div><h4>${esc(a.n)}<span class="kind ${a.k}">${a.k=='in'?'บรรยาย/สาธิต':'ฝึกปฏิบัติ'}</span></h4><p>${esc(a.h)}</p>${tools?`<div class="row">${tools}</div>`:''}</div></div>`;
+    }).join('');
+    const total=s.acts.reduce((x,a)=>x+a.m,0);
+    $('#p-'+id).innerHTML=`
+      <div class="sess-head" style="background:linear-gradient(120deg,${s.color},#2b1d18,${s.color})"><span class="big-n">0${s.n}</span><div class="kicker" style="color:#f9a825">SESSION ${s.n} · ${s.time}</div><h1>${esc(s.title)}</h1><p>${esc(s.th)}</p>${LAYERS()}</div>
+      <div class="card" style="margin-top:14px"><b>วัตถุประสงค์:</b> ${esc(s.obj)}</div>
+      <h2>ลำดับกิจกรรม <span class="counter">(รวม ${total} นาที)</span></h2>
+      <div class="card">${acts}</div>
+      ${s.extra||''}
+      <div class="ok" style="margin-top:20px"><b>ผลผลิต:</b> ${esc(s.out)}</div>
+      <div class="row" style="margin-top:20px">${s.n>1?`<a class="btn ghost" href="#s${s.n-1}">← Session ${s.n-1}</a>`:''}${s.n<4?`<a class="btn" href="#s${s.n+1}">Session ${s.n+1} →</a>`:''}</div>`;
+  });
+}
+
+/* ===================== STATIONS ===================== */
+function stationCard(s){
+  return `<div class="card st-card"><div class="st-head">${icon(s.id)}<div><span class="tag">${esc(s.grp)}</span><h3>${esc(s.name)}</h3><div class="zone">${esc(s.zone)}</div></div></div>
+   <ul>${s.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+   <div>${s.terms.map(t=>`<span class="tag water">${esc(t)}</span>`).join('')}</div>
+   <div class="hook"><b>Hook:</b> ${esc(s.hook)}</div>
+   <div class="qbox"><b>คำถามชวนคิด:</b> ${esc(s.q)}</div></div>`;
+}
+function renderStations(){
+  const groups=['ทั้งหมด',...new Set(STATIONS.map(s=>s.grp))];
+  let cur='ทั้งหมด';
+  const draw=()=>{
+    $('#stFilter').innerHTML=groups.map(g=>`<button class="${g==cur?'on':''}" data-g="${esc(g)}">${esc(g)}</button>`).join('');
+    $('#stGrid').innerHTML=STATIONS.filter(s=>cur=='ทั้งหมด'||s.grp==cur).map(stationCard).join('');
+  };
+  $('#stFilter').addEventListener('click',e=>{ if(e.target.dataset.g){cur=e.target.dataset.g;draw();} });
+  draw();
+  $('#qGrid').innerHTML=QTYPES.map(q=>`<div class="card"><h3 style="margin-top:0">${esc(q.t)}</h3><p class="counter" style="margin:0 0 6px">${esc(q.u)}</p>${q.ex.map(x=>`<div class="qbox">"${esc(x)}"</div>`).join('')}</div>`).join('');
+}
+
+/* ===================== GENERIC RANDOMISER PAGES ===================== */
+const RAND_PAGES = {
+ 'situation':{kicker:'ใช้ใน Session 3 และ 4',title:'Situation Cards',lead:'สุ่มสถานการณ์จำลองระหว่างการนำชม ผู้เล่นบทผู้ชมแสดงตามบัตร ผู้นำชมฝึกรับมือ',items:SITUATIONS,label:'สุ่ม Situation Card',
+   view:(x,i)=>`<div class="res-num">CARD ${i+1} / ${SITUATIONS.length}</div><div class="res-title">${esc(x.t)}</div><div class="res-body"><dl><dt>สถานการณ์</dt><dd>${esc(x.d)}</dd><dt>เป้าหมายการฝึก</dt><dd>${esc(x.g)}</dd></dl><details class="more"><summary>ดูแนวทางรับมือ (เปิดหลังฝึก)</summary><p>${esc(x.tip)}</p></details></div>`,
+   mini:x=>`<b>${esc(x.t)}</b>${esc(x.d)}`},
+ 'audience':{kicker:'ใช้ใน Session 1 และ 4',title:'สุ่มกลุ่มผู้ชม',lead:'สุ่มลักษณะผู้ชมเพื่อฝึกปรับภาษา ตัวอย่าง และจังหวะการพูดให้เหมาะกับผู้ฟัง',items:AUDIENCES,label:'สุ่มกลุ่มผู้ชม',
+   view:(x,i)=>`<div class="res-num">ผู้ชมของคุณคือ</div><div class="res-title">${esc(x.t)}</div><div class="res-body"><dl><dt>ลักษณะกลุ่ม</dt><dd>${esc(x.s)}</dd><dt>สิ่งที่สนใจ</dt><dd>${esc(x.like)}</dd></dl><details class="more"><summary>เคล็ดลับการสื่อสาร</summary><p>${esc(x.tip)}</p></details></div>`,
+   mini:x=>`<b>${esc(x.t)}</b>${esc(x.s)}`},
+ 'station-pick':{kicker:'ใช้ทุก Session',title:'สุ่มจุดนิทรรศการ',lead:'สุ่มจุดนิทรรศการที่ต้องพูดถึง พร้อมข้อเท็จจริงสำคัญสำหรับเตรียมตัว',items:STATIONS,label:'สุ่มจุดนิทรรศการ',
+   view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><ul style="padding-left:1.1em;margin:.2em 0">${x.facts.slice(0,3).map(f=>`<li>${esc(f)}</li>`).join('')}</ul><details class="more"><summary>ดู Hook และคำถามตัวอย่าง</summary><div class="hook"><b>Hook:</b> ${esc(x.hook)}</div><div class="qbox"><b>คำถาม:</b> ${esc(x.q)}</div></details></div>`,
+   mini:x=>`<b>${esc(x.name)}</b>${esc(x.zone)}`},
+ 'technical':{kicker:'ใช้ใน Session 2 · Too Technical!',title:'Too Technical!',lead:'สุ่มข้อความวิชาการจากเอกสาร แล้วอธิบายใหม่ด้วยภาษาพูดภายใน 30 วินาที โดยไม่ทำให้ความหมายผิดไป',items:TECHNICAL,label:'สุ่มข้อความวิชาการ',
+   view:(x,i)=>`<div class="res-num">ข้อความวิชาการ · ${esc(x.src)}</div><div class="res-body" style="font-size:clamp(19px,2.3vw,26px);font-family:var(--head);color:var(--soil);margin:.3em 0">"${esc(x.s)}"</div><p class="counter">โจทย์: อธิบายใหม่ให้คนทั่วไปเข้าใจใน 30 วินาที ใช้การเปรียบเทียบอย่างน้อย 1 อย่าง</p>`,
+   mini:x=>`<b>${esc(x.src)}</b>${esc(x.s.slice(0,70))}…`},
+ 'threeways':{kicker:'ใช้ใน Session 1 · Say It Three Ways',title:'Say It Three Ways',lead:'สุ่มข้อเท็จจริง 1 ข้อ และโทนการพูด 1 แบบ ฝึกพูดเรื่องเดียวกันหลายแบบ กดสุ่มโทนใหม่ได้โดยใช้ข้อเท็จจริงเดิม',custom:true},
+ 'makeover':{kicker:'ใช้ใน Session 3 · Question Makeover',title:'Question Makeover',lead:'สุ่มคำถามธรรมดา และประเภทคำถามเป้าหมาย แล้วเปลี่ยนคำถามให้ชวนคิดมากขึ้น',custom:true}
+};
+
+const state={};
+function buildRandPage(id){
+  const cfg=RAND_PAGES[id]; const sec=$('#p-'+id);
+  if(cfg.custom){ return buildCustom(id,cfg,sec); }
+  const pool=new Pool(cfg.items); state[id]=pool;
+  sec.innerHTML=`<div class="kicker">${esc(cfg.kicker)}</div><h1>${esc(cfg.title)}</h1><p class="lead">${esc(cfg.lead)}</p>
+   <div class="controls"><button class="btn big" data-roll>🎲 ${esc(cfg.label)}</button><label class="chk"><input type="checkbox" data-norep checked> ไม่ซ้ำจนกว่าจะครบทุกใบ</label><button class="btn ghost sm" data-reset>เริ่มรอบใหม่</button><button class="btn ghost sm" data-proj>โหมดจอใหญ่</button><span class="counter" data-count></span></div>
+   <div class="stage empty" data-stage><div style="font-size:48px">🎲</div><div>กดปุ่มสุ่มเพื่อเริ่ม</div></div>
+   <details class="more"><summary>ดูทั้งหมด ${cfg.items.length} รายการ (คลิกเพื่อเลือกเอง)</summary><div class="deck" data-deck></div></details>`;
+  const stage=sec.querySelector('[data-stage]'), deck=sec.querySelector('[data-deck]'), cnt=sec.querySelector('[data-count]');
+  const drawDeck=()=>{ deck.innerHTML=cfg.items.map((x,i)=>`<div class="mini ${pool.used.has(i)?'used':''}" data-i="${i}">${cfg.mini(x)}</div>`).join(''); cnt.textContent=`สุ่มแล้ว ${pool.used.size} / ${cfg.items.length}`; };
+  const show=i=>{ stage.classList.remove('empty'); stage.innerHTML=cfg.view(cfg.items[i],i); };
+  sec.querySelector('[data-roll]').onclick=()=>{
+    const i=pool.draw(sec.querySelector('[data-norep]').checked);
+    roll(stage,shuffle([...cfg.items.keys()]),k=>{stage.classList.remove('empty');stage.innerHTML=`<div class="res-title">${esc(cfg.items[k].t||cfg.items[k].name||cfg.items[k].src)}</div>`;},()=>{show(i);drawDeck();});
+  };
+  sec.querySelector('[data-reset]').onclick=()=>{ pool.used.clear(); drawDeck(); stage.classList.add('empty'); stage.innerHTML='<div style="font-size:48px">🎲</div><div>เริ่มรอบใหม่แล้ว กดปุ่มสุ่ม</div>'; };
+  deck.onclick=e=>{ const m=e.target.closest('.mini'); if(!m)return; const i=+m.dataset.i; pool.used.add(i); show(i); drawDeck(); stage.scrollIntoView({behavior:'smooth',block:'center'}); };
+  drawDeck();
+}
+
+function allFacts(){ const out=[]; STATIONS.forEach(s=>s.facts.forEach(f=>out.push({f,st:s.name}))); return out; }
+function buildCustom(id,cfg,sec){
+  if(id==='threeways'){
+    const facts=allFacts(); let cf=null, ct=null;
+    sec.innerHTML=`<div class="kicker">${esc(cfg.kicker)}</div><h1>${esc(cfg.title)}</h1><p class="lead">${esc(cfg.lead)}</p>
+     <div class="controls"><button class="btn big" id="twBoth">🎲 สุ่มข้อเท็จจริง + โทน</button><button class="btn water" id="twTone">🎲 สุ่มโทนใหม่</button><button class="btn ghost sm" data-proj>โหมดจอใหญ่</button></div>
+     <div class="grid g2"><div class="stage empty" id="twF"><div style="font-size:40px">📄</div>ข้อเท็จจริง</div><div class="stage empty" id="twT"><div style="font-size:40px">🎙️</div>โทนการพูด</div></div>
+     <div class="card" style="margin-top:14px"><b>โทนทั้งหมด:</b> ${TONES.map(t=>`<span class="tag leaf">${esc(t.t)}</span>`).join('')}<p class="counter" style="margin:.4em 0 0">ฝึกขั้นพื้นฐานใช้ 3 โทนแรก โทนสำหรับเด็กและเกษตรกรใช้เป็นโจทย์ท้าทาย</p></div>`;
+    const fEl=$('#twF'), tEl=$('#twT');
+    const showF=()=>{fEl.classList.remove('empty');fEl.innerHTML=`<div class="res-num">ข้อเท็จจริง · ${esc(cf.st)}</div><div class="res-body" style="font-family:var(--head);color:var(--soil);font-size:clamp(18px,2.2vw,24px)">${esc(cf.f)}</div>`;};
+    const showT=()=>{tEl.classList.remove('empty');tEl.innerHTML=`<div class="res-num">พูดด้วยโทน</div><div class="res-title">${esc(ct.t)}</div><div class="res-body">${esc(ct.d)}</div>`;};
+    const rollT=()=>{ ct=TONES[rnd(TONES.length)]; roll(tEl,TONES,x=>{tEl.classList.remove('empty');tEl.innerHTML=`<div class="res-title">${esc(x.t)}</div>`;},showT); };
+    $('#twBoth').onclick=()=>{ cf=facts[rnd(facts.length)]; roll(fEl,shuffle(facts).slice(0,10),x=>{fEl.classList.remove('empty');fEl.innerHTML=`<div class="res-body">${esc(x.f)}</div>`;},showF); rollT(); };
+    $('#twTone').onclick=()=>{ if(!cf){ $('#twBoth').click(); return; } rollT(); };
+  }
+  if(id==='makeover'){
+    sec.innerHTML=`<div class="kicker">${esc(cfg.kicker)}</div><h1>${esc(cfg.title)}</h1><p class="lead">${esc(cfg.lead)}</p>
+     <div class="controls"><button class="btn big" id="mkRoll">🎲 สุ่มโจทย์</button><button class="btn ghost sm" data-proj>โหมดจอใหญ่</button></div>
+     <div class="grid g2"><div class="stage empty" id="mkQ"><div style="font-size:40px">💬</div>คำถามธรรมดา</div><div class="stage empty" id="mkT"><div style="font-size:40px">✨</div>เปลี่ยนเป็นคำถามแบบ</div></div>
+     <p class="counter" style="margin-top:12px">ดูตัวอย่างคำถามแต่ละแบบได้ที่ <a href="#questions">Question Toolkit</a></p>`;
+    const qEl=$('#mkQ'), tEl=$('#mkT'); const qp=new Pool(PLAINQ);
+    $('#mkRoll').onclick=()=>{
+      const q=PLAINQ[qp.draw(true)], t=QTYPES[rnd(QTYPES.length)];
+      roll(qEl,PLAINQ,x=>{qEl.classList.remove('empty');qEl.innerHTML=`<div class="res-title">"${esc(x)}"</div>`;},()=>{qEl.innerHTML=`<div class="res-num">คำถามธรรมดา</div><div class="res-title">"${esc(q)}"</div>`;});
+      roll(tEl,QTYPES,x=>{tEl.classList.remove('empty');tEl.innerHTML=`<div class="res-title">${esc(x.t)}</div>`;},()=>{tEl.innerHTML=`<div class="res-num">เปลี่ยนเป็นคำถามแบบ</div><div class="res-title">${esc(t.t)}</div><div class="res-body">${esc(t.u)}</div><details class="more"><summary>ดูตัวอย่าง</summary><p>"${esc(t.ex[0])}"</p></details>`;});
+    };
+  }
+}
+
+/* ===================== MISSION ===================== */
+const TIMES=['3 นาที (แขกมีเวลาน้อย)','5 นาที','6 นาที','7 นาที'];
+function buildMission(){
+  const slots=[
+    {k:'st',lab:'📍 จุดนิทรรศการ',arr:STATIONS,v:x=>x.name,s:x=>x.zone},
+    {k:'au',lab:'👥 กลุ่มผู้ชม',arr:AUDIENCES,v:x=>x.t,s:x=>x.s},
+    {k:'si',lab:'🃏 สถานการณ์ (ให้ผู้เล่นบทผู้ชม)',arr:SITUATIONS,v:x=>x.t,s:x=>x.d},
+    {k:'tm',lab:'⏱️ เวลานำชม',arr:TIMES,v:x=>x,s:()=>'รวมการตอบคำถาม'}
+  ];
+  const cur={}, lock={};
+  const paint=()=>{ $('#mSlots').innerHTML=slots.map(sl=>{const x=cur[sl.k];return `<div class="slot"><div class="row" style="justify-content:space-between"><span class="lab">${sl.lab}</span><label class="chk"><input type="checkbox" data-lock="${sl.k}" ${lock[sl.k]?'checked':''}> ล็อก</label></div><div class="val">${x!=null?esc(sl.v(x)):'?'}</div><div class="sub">${x!=null?esc(sl.s(x)):''}</div></div>`;}).join(''); };
+  $('#mSlots').addEventListener('change',e=>{ if(e.target.dataset.lock) lock[e.target.dataset.lock]=e.target.checked; });
+  $('#mRoll').onclick=()=>{
+    let k=0; const box=$('#mSlots'); box.classList.add('rolling');
+    const iv=setInterval(()=>{ slots.forEach(sl=>{ if(!lock[sl.k]) cur[sl.k]=sl.arr[rnd(sl.arr.length)]; }); paint(); k++; },80);
+    setTimeout(()=>{ clearInterval(iv); slots.forEach(sl=>{ if(!lock[sl.k]) cur[sl.k]=sl.arr[rnd(sl.arr.length)]; }); paint(); box.classList.remove('rolling'); box.classList.remove('pop'); void box.offsetWidth; box.classList.add('pop'); },800);
+  };
+  paint();
+}
+
+/* ===================== NAMES ===================== */
+function buildNames(){
+  let used=new Set(), hist=[];
+  const list=()=>{ const mode=document.querySelector('input[name=nmode]:checked').value;
+    if(mode==='num'){ const n=Math.max(2,Math.min(300,+$('#nMax').value||2)); return Array.from({length:n},(_,i)=>String(i+1)); }
+    return $('#nList').value.split(/\n/).map(s=>s.trim()).filter(Boolean); };
+  const upd=()=>{ const L=list(); $('#nCount').textContent=L.length?`ทั้งหมด ${L.length} · สุ่มแล้ว ${[...used].filter(x=>L.includes(x)).length}`:'ยังไม่มีรายชื่อ'; $('#nHist').textContent=hist.length?'ลำดับที่สุ่มได้: '+hist.join(' · '):''; };
+  $('#nRoll').onclick=()=>{
+    const L=list(); if(!L.length){ $('#nOut').textContent='ใส่รายชื่อก่อน'; return; }
+    let cand=$('#nNoRep').checked?L.filter(x=>!used.has(x)):L;
+    if(!cand.length){ used.clear(); hist=[]; cand=L; }
+    const pick=cand[rnd(cand.length)];
+    roll($('#nStage'),shuffle(L),x=>{$('#nOut').textContent=x;},()=>{ $('#nOut').textContent=pick; used.add(pick); hist.push(pick); upd(); });
+  };
+  $('#nReset').onclick=()=>{ used.clear(); hist=[]; $('#nOut').textContent='?'; upd(); };
+  ['input','change'].forEach(ev=>{ $('#nList').addEventListener(ev,upd); $('#nMax').addEventListener(ev,upd); document.querySelectorAll('input[name=nmode]').forEach(r=>r.addEventListener(ev,upd)); });
+  $('#gRoll').onclick=()=>{
+    const L=shuffle(list()); const size=Math.max(2,+$('#gSize').value||5);
+    if(L.length<2){ $('#gOut').innerHTML='<p class="counter">ใส่รายชื่ออย่างน้อย 2 ชื่อ</p>'; return; }
+    const ng=Math.max(1,Math.round(L.length/size)); const groups=Array.from({length:ng},()=>[]);
+    L.forEach((x,i)=>groups[i%ng].push(x));
+    $('#gOut').innerHTML=groups.map((g,i)=>`<div class="card"><b>กลุ่ม ${i+1}</b> <span class="counter">(${g.length} คน)</span><div>${g.map(esc).join('<br>')}</div></div>`).join('');
+  };
+  upd();
+}
+
+/* ===================== TIMER ===================== */
+function buildTimer(){
+  const presets=[[30,'30 วิ'],[60,'60 วิ'],[90,'90 วิ'],[120,'2 นาที'],[180,'3 นาที'],[300,'5 นาที'],[420,'7 นาที'],[600,'10 นาที']];
+  let total=60,left=60,iv=null,actx=null,endAt=0;
+  $('#tPresets').innerHTML=presets.map(p=>`<button class="btn ghost sm" data-s="${p[0]}">${p[1]}</button>`).join('');
+  const fmt=s=>{s=Math.max(0,Math.ceil(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');};
+  const paint=()=>{ const f=$('#tFace'); f.textContent=fmt(left); f.classList.toggle('warn',left<=10&&left>0); f.classList.toggle('done',left<=0); $('#tBar').style.width=(total?Math.max(0,left/total*100):0)+'%'; $('#tBar').style.background=left<=10?'var(--clay)':'var(--leaf)'; };
+  const beep=()=>{ if(!$('#tSound').checked||!actx)return; try{ [0,0.35,0.7].forEach(d=>{const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;o.connect(g);g.connect(actx.destination);g.gain.setValueAtTime(0.25,actx.currentTime+d);g.gain.exponentialRampToValueAtTime(0.001,actx.currentTime+d+0.3);o.start(actx.currentTime+d);o.stop(actx.currentTime+d+0.3);}); }catch(e){} };
+  const stop=()=>{ clearInterval(iv); iv=null; $('#tStart').textContent='▶ เริ่ม'; };
+  const set=s=>{ stop(); total=left=s; paint(); };
+  $('#tPresets').onclick=e=>{ if(e.target.dataset.s) set(+e.target.dataset.s); };
+  $('#tSet').onclick=()=>set((+$('#tMin').value||0)*60+(+$('#tSec').value||0));
+  $('#tReset').onclick=()=>set(total);
+  $('#tStart').onclick=()=>{
+    try{ if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==='suspended') actx.resume(); }catch(e){}
+    if(iv){ stop(); return; }
+    if(left<=0) left=total;
+    endAt=Date.now()+left*1000; $('#tStart').textContent='❚❚ หยุดชั่วคราว';
+    iv=setInterval(()=>{ left=(endAt-Date.now())/1000; if(left<=0){ left=0; paint(); stop(); beep(); return; } paint(); },200);
+  };
+  paint();
+}
+
+/* ===================== RUBRIC ===================== */
+function buildRubric(){
+  const tot=RUBRIC.reduce((a,r)=>a+r.w,0);
+  $('#rubTable').innerHTML=`<table class="lvl"><tr><th>เกณฑ์ (คะแนนเต็ม)</th><th>ดีมาก<br><span class="counter">90–100%</span></th><th>ดี<br><span class="counter">70–89%</span></th><th>พอใช้<br><span class="counter">50–69%</span></th><th>ควรพัฒนา<br><span class="counter">ต่ำกว่า 50%</span></th></tr>
+   ${RUBRIC.map(r=>`<tr><td>${esc(r.c)}<br><span class="counter">${esc(r.th)} (${r.w})</span></td>${r.l.map(x=>`<td>${esc(x)}</td>`).join('')}</tr>`).join('')}
+   <tr><td>รวม</td><td colspan="4"><b>${tot} คะแนน</b></td></tr></table>`;
+}
+
+/* ===================== ROUTER & UI ===================== */
+const PAGES=['home','plan','s1','s2','s3','s4','stations','questions','situation','audience','station-pick','technical','threeways','makeover','mission','names','timer','rubric','prep'];
+function route(){
+  let h=(location.hash||'#home').slice(1); if(!PAGES.includes(h)) h='home';
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('show',p.id==='p-'+h));
+  document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+h));
+  document.body.classList.remove('nav-open');
+  window.scrollTo(0,0);
+}
+function setProj(on){
+  document.body.classList.toggle('proj',on); $('#projExit').style.display=on?'inline-flex':'none';
+  try{ if(on&&document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{}); else if(!on&&document.fullscreenElement) document.exitFullscreen().catch(()=>{}); }catch(e){}
+}
+document.addEventListener('click',e=>{ if(e.target.closest('[data-proj]')) setProj(!document.body.classList.contains('proj')); });
+$('#projExit').onclick=()=>setProj(false);
+document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement&&document.body.classList.contains('proj')) setProj(false); });
+$('#menuBtn').onclick=e=>{e.stopPropagation();document.body.classList.toggle('nav-open');};
+document.addEventListener('click',e=>{ if(document.body.classList.contains('nav-open')&&!e.target.closest('#side')) document.body.classList.remove('nav-open'); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') setProj(false); });
+
+renderSessions(); renderStations();
+Object.keys(RAND_PAGES).forEach(buildRandPage);
+buildMission(); buildNames(); buildTimer(); buildRubric();
+window.addEventListener('hashchange',route); route();
+
+/* ===================== MOTION EXTRAS ===================== */
+function confetti(el){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const r=el.getBoundingClientRect(); const cols=['#7cb342','#558b2f','#f9a825','#a1887f','#6d4c41','#4fc3f7'];
+  for(let i=0;i<18;i++){
+    const d=document.createElement('i'); const sz=6+rnd(6);
+    d.style.cssText=`position:fixed;z-index:50;pointer-events:none;left:${r.left+r.width/2}px;top:${r.top+40}px;width:${sz}px;height:${sz*0.6}px;border-radius:${rnd(2)?'50%':'2px'};background:${cols[rnd(cols.length)]}`;
+    document.body.appendChild(d);
+    const dx=(rnd(400)-200), dy=-(60+rnd(120));
+    d.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:`translate(${dx*0.6}px,${dy}px) rotate(${rnd(360)}deg)`,opacity:1,offset:.45},{transform:`translate(${dx}px,${dy+220}px) rotate(${rnd(720)}deg)`,opacity:0}],{duration:1100+rnd(500),easing:'cubic-bezier(.2,.7,.4,1)'}).onfinish=()=>d.remove();
+  }
+}
+function countdown(){
+  const el=$('#cd'); if(!el) return;
+  const target=new Date('2026-12-05T09:00:00+07:00').getTime(); let last={};
+  const tickf=()=>{
+    let diff=Math.max(0,target-Date.now()); const v={d:Math.floor(diff/864e5),h:Math.floor(diff/36e5)%24,m:Math.floor(diff/6e4)%60,s:Math.floor(diff/1e3)%60};
+    Object.entries(v).forEach(([k,n])=>{ const b=el.querySelector(`[data-u="${k}"]`); const t=String(n).padStart(2,'0'); if(last[k]!==t){ b.textContent=t; b.classList.remove('tick'); void b.offsetWidth; b.classList.add('tick'); last[k]=t; } });
+  };
+  tickf(); setInterval(tickf,1000);
+}
+function reveals(){
+  const sel='.card,.tile,.act,table,.mission .slot,.sec-head';
+  let io=null;
+  if('IntersectionObserver' in window){ io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.08}); }
+  const scan=()=>document.querySelectorAll('.page.show '+sel.split(',').join(',.page.show ')).forEach((n,i)=>{
+    if(n.closest('.stage')||n.dataset.rv) return; n.dataset.rv=1;
+    if(!io){ return; } n.classList.add('reveal'); n.style.transitionDelay=Math.min(i*40,320)+'ms'; io.observe(n);
+  });
+  window.addEventListener('hashchange',()=>setTimeout(scan,30)); scan();
+  document.addEventListener('click',e=>{ if(e.target.closest('#stFilter')) setTimeout(scan,30); });
+}
+countdown(); reveals();
+
+</script>
+</body>
+</html>
