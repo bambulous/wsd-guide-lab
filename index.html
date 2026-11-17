@@ -159,6 +159,16 @@ body.proj .res-body{font-size:clamp(20px,2.6vw,30px)}
 
 <style>
 /* ===== Theme inspired by World Soil Day 2569 site ===== */
+.qlist{margin:10px 0 6px;padding:0;list-style:none}
+.qlist li{background:#f7faf3;border:1px solid #e3efd3;border-radius:12px;padding:8px 12px;margin:6px 0;font-size:15px;transition:background .3s,transform .3s}
+.qlist li.hl{background:#fff3d6;border-color:#f9a825;transform:scale(1.02)}
+.qlist .qt{display:inline-block;font-size:11.5px;font-weight:700;background:#fff;border:1px solid #c5e1a5;color:var(--leaf);border-radius:999px;padding:0 8px;margin-right:6px}
+.qlist details{margin-top:4px;font-size:14px;color:var(--soil-600)}
+.qlist summary{cursor:pointer;font-weight:600}
+.qpick{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.qpick select{min-width:220px}
+@media (max-width:700px){.qpick{grid-template-columns:1fr}}
+
 .tram-map{width:100%;height:auto;display:block}
 .road{animation:dash 2s linear infinite}
 @keyframes dash{to{stroke-dashoffset:-44}}
@@ -440,7 +450,7 @@ td.time{color:var(--leaf)}
 
   <div class="sec-head"><div><div class="eyebrow">QUICK TOOLS</div><h2>เครื่องมือสุ่มที่ใช้บ่อย</h2></div></div>
   <div class="grid g3">
-    <a class="tile" href="#tram"><div class="ico">🚋</div><b>เส้นทางรถราง 7 จุด</b><span>สรุปแต่ละจุด กิจกรรม และตัวอย่างพูดบนรถ</span></a>
+    <a class="tile" href="#tram"><div class="ico">🚋</div><b>เส้นทางรถราง 7 จุด</b><span>สรุปแต่ละจุด กิจกรรม ตัวอย่างพูดและคำถามบนรถ</span></a>
     <a class="tile" href="#situation"><div class="ico">🃏</div><b>Situation Cards</b><span>สุ่มสถานการณ์จำลองระหว่างนำชม</span></a>
     <a class="tile" href="#audience"><div class="ico">👥</div><b>สุ่มกลุ่มผู้ชม</b><span>ฝึกปรับภาษาให้เข้ากับผู้ฟัง</span></a>
     <a class="tile" href="#station-pick"><div class="ico">📍</div><b>สุ่มจุดนิทรรศการ</b><span>กำหนดโจทย์พูดจากนิทรรศการจริง</span></a>
@@ -548,6 +558,19 @@ td.time{color:var(--leaf)}
     <div class="card"><span class="tag">2 · ก่อนลงรถ</span><p>บอกเวลาที่ใช้ในจุดนี้ จุดขึ้นรถ และเวลานัดกลับขึ้นรถ</p></div>
     <div class="card"><span class="tag">3 · ที่จุดนำชม</span><p>นำชมด้วย Hook → Explain → Connect → Takeaway และใช้คำถามชวนสังเกต</p></div>
     <div class="card"><span class="tag">4 · ก่อนออกรถ</span><p>นับจำนวนผู้ชมให้ครบ สรุป 1 ประโยค และเชื่อมไปยังจุดถัดไป</p></div>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">CURIOSITY QUESTIONS</div><h2>คำถามชวนคิดก่อนถึงแต่ละจุด</h2></div></div>
+  <div class="grid g2">
+    <div class="card"><b>หลักการถามบนรถราง</b><ul class="clean">
+      <li><b>ถามแต่ยังไม่เฉลย</b> ให้ผู้ชมไปหาคำตอบเองเมื่อถึงจุด ความสงสัยทำให้ผู้ชมตั้งใจดู</li>
+      <li><b>ใช้คำถามให้เลือกหรือยกมือ</b> เพราะบนรถเสียงดัง ผู้ชมตอบได้โดยไม่ต้องตะโกน</li>
+      <li><b>ถาม 1–2 คำถามต่อช่วง</b> ไม่ถามรัวจนผู้ชมเหนื่อย</li>
+      <li><b>เฉลยที่จุดนำชม</b> แล้วชี้ของจริงประกอบคำตอบ</li>
+      <li><b>คำถามที่ไม่มีคำตอบผิด</b> ใช้กับกลุ่มเงียบหรือเด็ก เพื่อให้กล้าตอบ</li>
+    </ul></div>
+    <div class="card"><div class="qpick"><b>🎲 สุ่มคำถามบนรถราง</b><select id="tqStop" aria-label="เลือกจุด"></select></div>
+      <div class="controls"><button class="btn" id="tqRoll">🎲 สุ่มคำถาม</button><button class="btn ghost sm" data-proj>โหมดจอใหญ่</button></div>
+      <div class="stage empty" id="tqStage" style="min-height:170px"><div style="font-size:40px">❓</div>เลือกจุด แล้วกดสุ่มคำถาม</div></div>
   </div>
   <div class="sec-head"><div><div class="eyebrow">7 STOPS</div><h2>ข้อมูลแต่ละจุด</h2></div></div>
   <div class="grid g2" id="tramGrid"></div>
@@ -793,6 +816,47 @@ const TRAM = [
   tip:'เป็นจุดปิดท้ายที่ดีสำหรับสรุปทั้งเส้นทาง: ดินแน่นแก้ได้ด้วยราก จุลินทรีย์ อินทรียวัตถุ และไส้เดือน'}
 ];
 
+const TRAMQ = {
+ 1:[
+  {t:'ทาย',q:'ทายดูไหมคะ อาหารที่เรากินทุกวัน กี่เปอร์เซ็นต์ที่มีต้นกำเนิดจากดิน',a:'ร้อยละ 95 หรือประมาณ 19 ใน 20 จาน'},
+  {t:'ให้เลือก',q:'ถ้าฝนตกลงบนดินที่ถูกเหยียบจนแน่น กับดินร่วน น้ำจะซึมลงดินแบบไหนได้ดีกว่ากัน ยกมือเลือกได้เลยครับ',a:'ดินร่วน ให้ไปพิสูจน์ที่โมเดลอะคริลิกในโซน LAB'},
+  {t:'เชื่อมโยง',q:'ใครเคยเห็นน้ำขังบนสนามหรือทางเดินที่คนเดินผ่านบ่อย ๆ บ้างคะ คิดว่าเกิดจากอะไร',a:'ดินถูกกดทับจนช่องว่างในดินลดลง น้ำจึงซึมลงไม่ได้ คือดินอัดแน่น ธีมของงานปีนี้'},
+  {t:'ทาย',q:'พื้นที่เกษตรของไทยที่เสี่ยงดินอัดแน่นมีประมาณเท่าไร 1 ใน 4 ครึ่งหนึ่ง หรือเกือบ 3 ใน 4',a:'เกือบ 3 ใน 4 (ร้อยละ 72.03) แต่ส่วนใหญ่อยู่ในระยะเริ่มอัดแน่น ไม่ใช่ระดับวิกฤต'},
+  {t:'ชวนสังเกต',q:'เข้าไปแล้วลองหาดูว่า วันดินโลกตรงกับวันที่เท่าไร และเกี่ยวข้องกับใคร',a:'5 ธันวาคม ตรงกับวันคล้ายวันพระบรมราชสมภพของในหลวงรัชกาลที่ 9'}],
+ 2:[
+  {t:'ทาย',q:'อาคารที่เรากำลังจะเข้าไป สร้างจากวัสดุอะไร ทายดูครับ',a:'สร้างจากดิน ออกแบบเป็นรูปทรงโค้งมนกลมกลืนกับธรรมชาติ'},
+  {t:'ชวนคิด',q:'ถ้าพื้นที่หนึ่งมีแต่ดินลูกรังและขาดน้ำ คิดว่าควรเริ่มฟื้นฟูจากอะไรก่อนคะ',a:'ให้ไปดูคำตอบจาก 3D Projection Mapping: พัฒนาแหล่งน้ำ ฟื้นฟูป่า ปลูกหญ้าแฝก ปรับปรุงดินด้วยปุ๋ยหมักและปอเทือง'},
+  {t:'ให้เลือก',q:'ถ้าได้ถ่ายรูปเป็นอาชีพด้านดิน 1 อาชีพ จะเลือกเป็นนักสำรวจดิน นักวิทยาศาสตร์ หรือหมอดินครับ',a:'AI Photo Kiosk มีให้เลือก 5 อาชีพ: นักสำรวจดิน นักวิทยาศาสตร์ นักวิชาการเกษตร หมอดิน และ Smart Farmer'},
+  {t:'ชวนสังเกต',q:'ในส่วนจัดแสดงหญ้าแฝก ลองหารางวัลที่ทำจากรากหญ้าแฝกดูนะคะ',a:'รางวัลรากหญ้าแฝกชุบสำริด และรางวัล International Merit Award'}],
+ 3:[
+  {t:'ทาย',q:'กำแพงที่เรากำลังจะไปดู ไม่มีอิฐหรือปูนสักก้อน ทายดูว่าทำจากอะไร',a:'หญ้าแฝก จึงเรียกว่า "แฝกกำแพงมีชีวิต"'},
+  {t:'ชวนสังเกต',q:'พอถึงแล้วลองดูว่าแปลงหญ้าแฝกปลูกเป็นรูปอะไร แล้วเดาว่าทำไมต้องปลูกแบบนั้น',a:'รูปตัววีคว่ำในร่องน้ำ ช่วยชะลอความเร็วน้ำ ดักตะกอน และลดการชะล้างหน้าดิน'},
+  {t:'ให้เลือก',q:'คิดว่ารากหญ้าแฝกแผ่ออกด้านข้างตื้น ๆ หรือหยั่งลึกลงไปใต้ดินครับ',a:'หยั่งลึกและหนาแน่น ช่วยยึดดินและเสริมความมั่นคงของพื้นที่'},
+  {t:'เชื่อมโยง',q:'ถ้าบ้านอยู่บนเนิน ฝนตกหนักทีไรดินไหลลงมา จะใช้อะไรช่วยยึดดินได้บ้างคะ',a:'เชื่อมสู่การปลูกหญ้าแฝกเพื่ออนุรักษ์ดินและน้ำ'}],
+ 4:[
+  {t:'ชวนสังเกต',q:'ระหว่างเดินชม ลองนับดูว่าเห็นกิจกรรมเกษตรกี่อย่าง ใครนับได้มากที่สุด',a:'เช่น บ่อน้ำ นาข้าว ไม้ผล พืชผัก ปลานิลในกระชัง แพะ ไก่ เป็ด กบ ปลาดุก โรงเรือนเห็ด'},
+  {t:'ให้เลือก',q:'ถ้ามีที่ดิน 1 แปลง จะแบ่งให้บ่อน้ำมากหรือน้อย เพราะอะไรครับ',a:'ไม่มีคำตอบผิด ใช้ชวนคุยถึงการแบ่งพื้นที่ตามเกษตรทฤษฎีใหม่'},
+  {t:'ทาย',q:'ข้าวในแปลงนี้มีกำหนดเก็บเกี่ยวตรงกับวันสำคัญวันไหน ทายดูค่ะ',a:'5 ธันวาคม 2569 ตรงกับวันดินโลก (ตามภาพประกอบในเอกสาร)'},
+  {t:'ทาย',q:'หลังเก็บเกี่ยวข้าว เกษตรกรปลูกพืชอะไรเพื่อบำรุงดินก่อนปลูกรอบใหม่',a:'ปอเทือง ปลูกเพื่อปรับปรุงบำรุงดินหลังนา'},
+  {t:'ชวนคิด',q:'ถ้าต้องดูแลแปลง 17 ไร่ จะรู้ได้อย่างไรว่าตอนไหนต้องให้น้ำ',a:'ระบบจัดการดินและน้ำอัจฉริยะด้วย IoT'}],
+ 5:[
+  {t:'เชื่อมโยง',q:'เศษผักและเปลือกผลไม้ในครัวบ้านเรา ปกติทิ้งไปไหนคะ',a:'นำมาทำปุ๋ยหมักหรือน้ำหมักชีวภาพด้วยจุลินทรีย์ พด. ได้'},
+  {t:'ทาย',q:'ดอกไม้บางชนิดในแปลงนี้ นำไปทำอะไรได้นอกจากความสวยงาม',a:'ทำชาดอกไม้ มีคาเฟ่ชาดอกไม้ในจุดนี้'},
+  {t:'ทาย',q:'มีถ่านชนิดหนึ่งที่ใส่ลงดินแล้วช่วยปรับปรุงดินได้ ใครรู้จักชื่อบ้างครับ',a:'ไบโอชาร์ (Biochar)'},
+  {t:'ให้เลือก',q:'ถ้าจะเริ่มปลูกผักที่บ้านในพื้นที่เล็ก ๆ จะปลูกอะไรเป็นอย่างแรกคะ',a:'ไม่มีคำตอบผิด ใช้เชื่อมกับสวนอินทรีย์กินได้'}],
+ 6:[
+  {t:'ทาย',q:'ในดินหนึ่งกำมือ มีสิ่งมีชีวิตที่มองไม่เห็นด้วยตาเปล่าอยู่ไหมครับ',a:'มี คือจุลินทรีย์ ซึ่งทำงานตลอดเวลาในดิน'},
+  {t:'ชวนคิด',q:'ถ้าในดินไม่มีจุลินทรีย์เลย ใบไม้ที่ร่วงลงดินจะเป็นอย่างไรคะ',a:'ย่อยสลายได้ยาก ธาตุอาหารไม่หมุนเวียนกลับสู่ดิน'},
+  {t:'ทาย',q:'จุลินทรีย์บางชนิดใช้แสงแดดได้เหมือนพืช รู้ไหมว่าเรียกว่าอะไร',a:'จุลินทรีย์สังเคราะห์แสง เช่น พด.15'},
+  {t:'ชวนสังเกต',q:'พอถึงแล้วลองดูว่าผลิตภัณฑ์ พด. มีหมายเลขอะไรบ้าง และแต่ละตัวใช้ทำอะไร',a:'เช่น พด.1 พด.2 พด.7 และ พด.15 ในศาลาเรียนรู้'}],
+ 7:[
+  {t:'ให้เลือก',q:'ถ้าเราเป็นไส้เดือน จะเลือกอยู่ในดินแน่นหรือดินร่วนครับ',a:'ดินร่วน และไส้เดือนเองก็ช่วยทำให้ดินร่วนขึ้น'},
+  {t:'ทาย',q:'ไส้เดือนช่วยให้ดินดีขึ้นอย่างไร ย่อยเศษใบไม้ ขุดทางให้อากาศและน้ำผ่าน หรือทั้งสองอย่าง',a:'ทั้งสองอย่าง ย่อยสลายอินทรียวัตถุและสร้างช่องทางในดิน'},
+  {t:'ทาย',q:'มูลของไส้เดือนนำไปใช้ทำอะไรได้คะ',a:'ใช้ประโยชน์ทางการเกษตร เช่น ใช้บำรุงดินและพืช'},
+  {t:'ทบทวน',q:'จากทั้ง 7 จุด ถ้าต้องแก้ดินแน่นที่บ้าน จะเลือกวิธีไหน 1 วิธีครับ',a:'ใช้ปิดทริป เชื่อมราก หญ้าแฝก จุลินทรีย์ อินทรียวัตถุ และไส้เดือน'}]
+};
+TRAM.forEach(t=>t.qs=TRAMQ[t.n]||[]);
+
 const SITUATIONS = [
  {t:'The Quiet Group',d:'ผู้ชม 6 คน ไม่มีใครยอมตอบคำถามเลย',g:'ชวนคุยโดยไม่กดดันผู้ชม',tip:'เปลี่ยนเป็นคำถามให้เลือกหรือยกมือ ตอบเองเป็นตัวอย่างก่อน 1 ครั้ง'},
  {t:'The Curious Child',d:'เด็กถามว่า "ทำไมไส้เดือนถึงชอบอยู่ในดิน"',g:'ใช้ภาษาง่ายและตัวอย่างที่เหมาะกับวัย',tip:'ชมคำถาม ตอบด้วยการเปรียบเทียบ เช่น ดินเป็นบ้านที่มีอาหารและความชื้น'},
@@ -909,7 +973,7 @@ const SESSIONS = {
   obj:'ให้มัคคุเทศก์ตั้งคำถามได้หลากหลายรูปแบบ ชวนผู้ชมสนทนา และรับมือกับกลุ่มที่ไม่ค่อยมีปฏิสัมพันธ์',
   acts:[
    {m:15,k:'in',n:'Bad Questions vs Good Questions',h:'เปรียบเทียบคำถามที่ตอบได้เพียงใช่หรือไม่ใช่ กับคำถามที่ชวนสังเกต คิด และแลกเปลี่ยน แนะนำคำถาม 5 แบบ',tool:['#questions','เปิด Question Toolkit']},
-   {m:20,k:'pr',n:'Question Makeover',h:'สุ่มคำถามธรรมดา แล้วเปลี่ยนเป็นคำถามที่กระตุ้นความสนใจตามประเภทที่สุ่มได้',tool:['#makeover','สุ่มคำถามและประเภท']},
+   {m:20,k:'pr',n:'Question Makeover',t2:['#tram','คำถามบนรถราง 7 จุด'],h:'สุ่มคำถามธรรมดา แล้วเปลี่ยนเป็นคำถามที่กระตุ้นความสนใจตามประเภทที่สุ่มได้',tool:['#makeover','สุ่มคำถามและประเภท']},
    {m:30,k:'pr',n:'Design a Mini Interaction',h:'ออกแบบกิจกรรม 2–3 นาทีสำหรับจุดนิทรรศการที่สุ่มได้ เช่น ทายคำตอบ โหวตด้วยมือ สังเกตสิ่งของ หรือทดลองง่าย ๆ',tool:['#station-pick','สุ่มจุดนิทรรศการ']},
    {m:30,k:'pr',n:'The Silent Audience Challenge',h:'จำลองสถานการณ์ผู้ชมไม่ตอบ ไม่สนใจ หรือพูดแทรก ผู้เล่นบทผู้ชมสุ่ม Situation Card และแสดงตามบัตร ผู้นำชมไม่รู้ล่วงหน้า',tool:['#situation','สุ่ม Situation Card']},
    {m:15,k:'pr',n:'Interaction Demo',h:'แต่ละกลุ่มสาธิตกิจกรรมสั้นของตนเองต่อทั้งห้อง และรับข้อเสนอแนะ',tool:['#names','สุ่มกลุ่มที่นำเสนอ']}
@@ -1012,7 +1076,19 @@ function renderTram(){
     <b>กิจกรรมและสิ่งที่ชมได้</b><ul>${t.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul>
     <div class="hook"><b>ไฮไลต์ที่ควรชี้ให้ดู:</b> ${esc(t.hi)}</div>
     <div class="say"><b>🚋 ตัวอย่างพูดบนรถก่อนถึง:</b> "${esc(t.say)}"</div>
+    <div class="row" style="justify-content:space-between;margin-top:10px"><b>❓ คำถามชวนคิดก่อนถึงจุด</b><button class="btn sm water" data-qroll="${t.n}">🎲 สุ่ม 1 คำถาม</button></div>
+    <ul class="qlist" id="ql-${t.n}">${t.qs.map(q=>`<li><span class="qt">${esc(q.t)}</span>${esc(q.q)}<details><summary>แนวคำตอบ</summary>${esc(q.a)}</details></li>`).join('')}</ul>
     <div class="qbox"><b>ข้อควรรู้:</b> ${esc(t.tip)}</div></div>`).join('');
+  $('#tramGrid').addEventListener('click',e=>{ const b=e.target.closest('[data-qroll]'); if(!b) return; const ul=$('#ql-'+b.dataset.qroll); const li=[...ul.children]; li.forEach(x=>x.classList.remove('hl')); const k=rnd(li.length); li[k].classList.add('hl'); confetti(li[k]); });
+  // tram question picker
+  const sel=$('#tqStop'); sel.innerHTML='<option value="0">ทุกจุด (สุ่มรวม)</option>'+TRAM.map(t=>`<option value="${t.n}">จุดที่ ${t.n} · ${esc(t.name)}</option>`).join('');
+  const st=$('#tqStage');
+  $('#tqRoll').onclick=()=>{
+    const n=+sel.value; const pool=[]; TRAM.forEach(t=>{ if(!n||t.n===n) t.qs.forEach(q=>pool.push({t,q})); });
+    const pick=pool[rnd(pool.length)];
+    roll(st,shuffle(pool).slice(0,10),x=>{st.classList.remove('empty');st.innerHTML=`<div class="res-title" style="font-size:22px">${esc(x.q.q)}</div>`;},()=>{
+      st.innerHTML=`<div class="res-num">ก่อนถึงจุดที่ ${pick.t.n} · ${esc(pick.t.name)} · <span class="qt">${esc(pick.q.t)}</span></div><div class="res-title" style="font-size:clamp(22px,2.8vw,32px)">"${esc(pick.q.q)}"</div><details class="more"><summary>แนวคำตอบ (เฉลยเมื่อถึงจุด)</summary><p>${esc(pick.q.a)}</p></details>`; });
+  };
 }
 
 /* ===================== STATIONS ===================== */
@@ -1044,7 +1120,7 @@ const RAND_PAGES = {
    view:(x,i)=>`<div class="res-num">ผู้ชมของคุณคือ</div><div class="res-title">${esc(x.t)}</div><div class="res-body"><dl><dt>ลักษณะกลุ่ม</dt><dd>${esc(x.s)}</dd><dt>สิ่งที่สนใจ</dt><dd>${esc(x.like)}</dd></dl><details class="more"><summary>เคล็ดลับการสื่อสาร</summary><p>${esc(x.tip)}</p></details></div>`,
    mini:x=>`<b>${esc(x.t)}</b>${esc(x.s)}`},
  'tram-pick':{kicker:'ใช้ใน Session 1, 2 และ 4',title:'สุ่มจุดจอดรถราง',lead:'สุ่ม 1 ใน 7 จุดจอดรถราง เพื่อฝึกพูดแนะนำบนรถ 30 วินาที หรือนำชม ณ จุดนั้น',items:TRAM,label:'สุ่มจุดจอดรถราง',
-   view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">จุดที่ ${x.n} · ${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><p style="margin:.3em 0">${esc(x.what)}</p><details class="more"><summary>ดูกิจกรรมและตัวอย่างพูดบนรถ</summary><ul style="padding-left:1.1em">${x.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><div class="say">"${esc(x.say)}"</div></details></div>`,
+   view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">จุดที่ ${x.n} · ${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><p style="margin:.3em 0">${esc(x.what)}</p><details class="more"><summary>ดูกิจกรรมและตัวอย่างพูดบนรถ</summary><ul style="padding-left:1.1em">${x.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><div class="say">"${esc(x.say)}"</div></details>${(q=>`<div class="qbox" style="margin-top:10px"><b>❓ คำถามก่อนถึงจุด:</b> "${esc(q.q)}"</div>`)(x.qs[rnd(x.qs.length)])}</div>`,
    mini:x=>`<b>จุดที่ ${x.n}</b>${esc(x.name)}`},
  'station-pick':{kicker:'ใช้ทุก Session',title:'สุ่มจุดนิทรรศการ',lead:'สุ่มจุดนิทรรศการที่ต้องพูดถึง พร้อมข้อเท็จจริงสำคัญสำหรับเตรียมตัว',items:STATIONS,label:'สุ่มจุดนิทรรศการ',
    view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><ul style="padding-left:1.1em;margin:.2em 0">${x.facts.slice(0,3).map(f=>`<li>${esc(f)}</li>`).join('')}</ul><details class="more"><summary>ดู Hook และคำถามตัวอย่าง</summary><div class="hook"><b>Hook:</b> ${esc(x.hook)}</div><div class="qbox"><b>คำถาม:</b> ${esc(x.q)}</div></details></div>`,
