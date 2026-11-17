@@ -159,6 +159,22 @@ body.proj .res-body{font-size:clamp(20px,2.6vw,30px)}
 
 <style>
 /* ===== Theme inspired by World Soil Day 2569 site ===== */
+.tram-map{width:100%;height:auto;display:block}
+.road{animation:dash 2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-44}}
+.stop-dot{cursor:pointer}
+.stop-dot circle.ring{transform-box:fill-box;transform-origin:center;animation:ring 2.4s ease-out infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.9);opacity:0}}
+.stop-dot:hover circle.core{fill:#f9a825}
+.tram-card{position:relative;overflow:hidden;scroll-margin-top:80px}
+.tram-card .num{position:absolute;right:14px;top:6px;font-size:64px;font-weight:800;color:var(--clay-soft);line-height:1}
+.tram-card h3{margin:0;position:relative}
+.tram-card .what{font-size:15.5px;margin:.5em 0}
+.tram-card ul{padding-left:1.1em;margin:.3em 0;font-size:15px}
+.say{background:#fff8e6;border-left:4px solid var(--sun);border-radius:10px;padding:8px 12px;margin:8px 0;font-size:15px}
+.tram-card.flash{animation:flash 1.2s ease}
+@keyframes flash{0%,100%{box-shadow:0 2px 10px rgba(62,39,35,.05)}30%{box-shadow:0 0 0 4px var(--leaf-400)}}
+
 :root{
   --soil:#3e2723; --soil-900:#2b1d18; --soil-600:#6d4c41; --soil-400:#a1887f; --soil-100:#f3ece7;
   --clay:#558b2f; --clay-soft:#f1f8e9; --leaf:#33691e; --leaf-400:#7cb342; --leaf-soft:#e6f0d9;
@@ -309,11 +325,13 @@ td.time{color:var(--leaf)}
     <a href="#s3">Session 3 · Ask, Engage &amp; Involve</a>
     <a href="#s4">Session 4 · Real Guide Challenge</a>
     <div class="nav-group">เนื้อหานิทรรศการ</div>
+    <a href="#tram">เส้นทางรถราง 7 จุด 🚋</a>
     <a href="#stations">Exhibition Fact Cards</a>
     <a href="#questions">Question Toolkit</a>
     <div class="nav-group">เครื่องมือสุ่ม</div>
     <a href="#situation">Situation Cards <span class="dice">🎲</span></a>
     <a href="#audience">สุ่มกลุ่มผู้ชม <span class="dice">🎲</span></a>
+    <a href="#tram-pick">สุ่มจุดจอดรถราง <span class="dice">🎲</span></a>
     <a href="#station-pick">สุ่มจุดนิทรรศการ <span class="dice">🎲</span></a>
     <a href="#technical">Too Technical! <span class="dice">🎲</span></a>
     <a href="#threeways">Say It Three Ways <span class="dice">🎲</span></a>
@@ -422,6 +440,7 @@ td.time{color:var(--leaf)}
 
   <div class="sec-head"><div><div class="eyebrow">QUICK TOOLS</div><h2>เครื่องมือสุ่มที่ใช้บ่อย</h2></div></div>
   <div class="grid g3">
+    <a class="tile" href="#tram"><div class="ico">🚋</div><b>เส้นทางรถราง 7 จุด</b><span>สรุปแต่ละจุด กิจกรรม และตัวอย่างพูดบนรถ</span></a>
     <a class="tile" href="#situation"><div class="ico">🃏</div><b>Situation Cards</b><span>สุ่มสถานการณ์จำลองระหว่างนำชม</span></a>
     <a class="tile" href="#audience"><div class="ico">👥</div><b>สุ่มกลุ่มผู้ชม</b><span>ฝึกปรับภาษาให้เข้ากับผู้ฟัง</span></a>
     <a class="tile" href="#station-pick"><div class="ico">📍</div><b>สุ่มจุดนิทรรศการ</b><span>กำหนดโจทย์พูดจากนิทรรศการจริง</span></a>
@@ -476,7 +495,8 @@ td.time{color:var(--leaf)}
     <li><b>เพิ่มกิจกรรม "ตัวเลขต้องถูก"</b> ใน Session 2 เพราะเอกสารนิทรรศการมีตัวเลขสถิติจำนวนมาก มัคคุเทศก์ต้องพูดให้เข้าใจง่ายโดยไม่บิดเบือนข้อมูล</li>
     <li><b>อ้างอิงเนื้อหาตามหัวข้อในเอกสาร</b> เช่น 2.1 และ 2.2 แทนเลขหน้า เพื่อให้ค้นได้ตรงกับเอกสารข้อมูลวิชาการ</li>
     <li><b>ขยายการเชื่อมโยงกับนิทรรศการ</b> ให้ครอบคลุม B1–B5, Agri-Map, น้องดินดี, เวที Edutainment และนิทรรศการหน่วยงานภายนอก</li>
-    <li><b>เพิ่ม Situation Cards จาก 5 เป็น 14 ใบ</b> ครอบคลุมผู้ชมต่างชาติ เกษตรกรที่ถามปัญหาแปลงของตนเอง ข้อมูลผิด และอุปกรณ์ขัดข้อง</li>
+    <li><b>เพิ่ม Situation Cards จาก 5 เป็น 17 ใบ</b> ครอบคลุมผู้ชมต่างชาติ เกษตรกรที่ถามปัญหาแปลงของตนเอง ข้อมูลผิด และอุปกรณ์ขัดข้อง</li>
+    <li><b>ปรับให้ตรงกับการนำชมด้วยรถราง 7 จุด</b> ฝึกพูดแนะนำบนรถ 30 วินาทีก่อนถึงแต่ละจุด เพิ่มหน้าสรุป 7 จุด และ Situation Cards เรื่องรถราง</li>
     <li><b>ย้ายทุกกิจกรรมที่ต้องสุ่มมาไว้บนเว็บ</b> ได้แก่ สถานการณ์ ผู้ชม จุดนิทรรศการ ข้อความวิชาการ คำถาม และรายชื่อผู้พูด</li>
     <li><b>แบบประเมินใช้กระดาษ</b> เว็บแสดงเกณฑ์และระดับคะแนนเท่านั้น ไม่เก็บคะแนนหรือคำตอบ</li>
   </ul>
@@ -502,6 +522,37 @@ td.time{color:var(--leaf)}
 <section class="page" id="p-s2"></section>
 <section class="page" id="p-s3"></section>
 <section class="page" id="p-s4"></section>
+
+
+<section class="page" id="p-tram">
+  <div class="kicker">ข้อมูลสำหรับมัคคุเทศก์ประจำรถราง</div>
+  <h1>เส้นทางรถราง 7 จุดนำชม</h1>
+  <p class="lead">มัคคุเทศก์พาผู้ชมขึ้นรถราง และส่งลงชมทีละจุด สรุปนี้บอกว่าแต่ละจุดคืออะไร มีกิจกรรมอะไร และควรพูดอะไรระหว่างอยู่บนรถ ลำดับจุดอาจปรับตามเส้นทางจริงในวันงาน</p>
+  <div class="card tram-map-card">
+    <svg class="tram-map" viewBox="0 0 900 250" role="img" aria-label="เส้นทางรถราง 7 จุด">
+      <path id="tramPath" d="M40 190 C120 190 120 70 210 70 S300 190 390 190 S480 70 570 70 S660 190 750 190 S860 120 860 70" fill="none" stroke="#d7ccc8" stroke-width="18" stroke-linecap="round"/>
+      <path d="M40 190 C120 190 120 70 210 70 S300 190 390 190 S480 70 570 70 S660 190 750 190 S860 120 860 70" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="10 12" class="road"/>
+      <g id="tramStops"></g>
+      <g id="tram"><g transform="translate(-26 -30)">
+        <rect x="0" y="6" width="52" height="24" rx="6" fill="#558b2f"/><rect x="0" y="2" width="52" height="7" rx="3" fill="#33691e"/>
+        <rect x="5" y="12" width="10" height="9" rx="2" fill="#e6f0d9"/><rect x="21" y="12" width="10" height="9" rx="2" fill="#e6f0d9"/><rect x="37" y="12" width="10" height="9" rx="2" fill="#e6f0d9"/>
+        <circle cx="12" cy="31" r="5" fill="#3e2723"/><circle cx="40" cy="31" r="5" fill="#3e2723"/><rect x="44" y="22" width="8" height="4" fill="#f9a825"/></g>
+        <animateMotion dur="26s" repeatCount="indefinite" rotate="0"><mpath href="#tramPath"/></animateMotion>
+      </g>
+    </svg>
+    <p class="counter" style="margin:4px 0 0;text-align:center">กดหมายเลขบนเส้นทางเพื่อไปยังข้อมูลจุดนั้น</p>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">ON THE TRAM</div><h2>ลำดับการทำงานของมัคคุเทศก์ในแต่ละจุด</h2></div></div>
+  <div class="grid g4">
+    <div class="card"><span class="tag">1 · บนรถ</span><p>พูดแนะนำจุดถัดไป 20–30 วินาที ใช้ Hook 1 ประโยค และบอกสิ่งที่ควรสังเกต</p></div>
+    <div class="card"><span class="tag">2 · ก่อนลงรถ</span><p>บอกเวลาที่ใช้ในจุดนี้ จุดขึ้นรถ และเวลานัดกลับขึ้นรถ</p></div>
+    <div class="card"><span class="tag">3 · ที่จุดนำชม</span><p>นำชมด้วย Hook → Explain → Connect → Takeaway และใช้คำถามชวนสังเกต</p></div>
+    <div class="card"><span class="tag">4 · ก่อนออกรถ</span><p>นับจำนวนผู้ชมให้ครบ สรุป 1 ประโยค และเชื่อมไปยังจุดถัดไป</p></div>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">7 STOPS</div><h2>ข้อมูลแต่ละจุด</h2></div></div>
+  <div class="grid g2" id="tramGrid"></div>
+  <p class="counter" style="margin-top:14px">ที่มา: เอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ วันดินโลก ปี 2569 หัวข้อ 1–3 และหน้าผังพื้นที่ Zone B ขนาดพื้นที่และศาลาเรียนรู้อ่านจากภาพประกอบในเอกสาร</p>
+</section>
 
 <!-- STATIONS -->
 <section class="page" id="p-stations">
@@ -530,6 +581,7 @@ td.time{color:var(--leaf)}
 <!-- RANDOM PAGES (generic) -->
 <section class="page" id="p-situation"></section>
 <section class="page" id="p-audience"></section>
+<section class="page" id="p-tram-pick"></section>
 <section class="page" id="p-station-pick"></section>
 <section class="page" id="p-technical"></section>
 <section class="page" id="p-threeways"></section>
@@ -695,6 +747,52 @@ const STATIONS = [
   q:'เทคโนโลยีไหนในโซนนี้ที่คิดว่าเกษตรกรใกล้ตัวเราน่าจะใช้ได้ทันที'}
 ];
 
+
+const TRAM = [
+ {n:1,id:'wsd',name:'อาคารนิทรรศการวันดินโลกและนิทรรศการวิชาการ',zone:'Zone A3-1',
+  what:'อาคารนิทรรศการหลักของงาน เล่าที่มาของวันดินโลก ธีมปี 2569 เรื่องดินอัดแน่น และวิทยาศาสตร์การฟื้นฟูดิน',
+  acts:['นิทรรศการวันดินโลก: ที่มาของวันที่ 5 ธันวาคม ธีมแต่ละปี และรางวัล King Bhumibol World Soil Day Award','ดินดีเพื่ออนาคตที่ยั่งยืน: สถานการณ์ดินอัดแน่นของไทย สาเหตุ ผลกระทบ และแนวทางแก้','LAB: โมเดลอะคริลิกเทียบน้ำไหลบ่ากับน้ำซึมลงดิน การตรวจดิน 3 ด้าน แผนที่ Agri-Map และ AI Chatbot น้องดินดี','LIVE: จอ Touchscreen แนวทางจัดการดินปัญหา คลิปวิดีโอ และเรื่องราวเกษตรกรต้นแบบ 2 ท่าน','เวที Edutainment Soil Stage: Soil Talk, หมอดิน New Gen, Junior Soil Contest และเกม Soil Quiz'],
+  hi:'โมเดลอะคริลิกน้ำไหลบ่า ให้ผู้ชมทายก่อนว่าน้ำฝั่งไหนจะไหลลงถังมากกว่า',
+  say:'จุดแรกของเราคืออาคารนิทรรศการหลักค่ะ ที่นี่จะได้รู้ว่าทำไมโลกต้องมีวันดินโลก และดินที่ถูกเหยียบจนแน่นส่งผลต่ออาหารบนจานเราอย่างไร ลองสังเกตโมเดลน้ำไหลบ่าในโซน LAB ให้ดีนะคะ',
+  tip:'นิทรรศการหน่วยงานภายนอก (A3-3) อยู่ติดกัน แนะนำให้ผู้ชมแวะชมต่อได้ถ้ามีเวลา'},
+ {n:2,id:'maerang',name:'บ้านแม่รัง',zone:'Zone A3-2',
+  what:'อาคารนิทรรศการที่สร้างจากดิน รูปทรงโค้งมน เล่าพระอัจฉริยภาพด้านดิน และเรื่องราวการฟื้นฟูศูนย์ศึกษาวิธีการฟื้นฟูที่ดินเสื่อมโทรมเขาชะงุ้มฯ',
+  acts:['จัดแสดง 8 จุด ตั้งแต่พระอัจฉริยภาพด้านดินของในหลวงรัชกาลที่ 9 จนถึงแท่นลงพระปรมาภิไธยวันดินโลก','3D Projection Mapping แสดงการฟื้นฟูพื้นที่ด้วยแหล่งน้ำ ป่าไม้ หญ้าแฝก ปุ๋ยหมัก และปอเทือง','AI Photo Kiosk ถ่ายภาพการ์ตูน 5 อาชีพด้านการพัฒนาที่ดิน','หญ้าแฝกเพื่ออนุรักษ์ดินและน้ำ พร้อมรางวัลรากหญ้าแฝกชุบสำริด','โมเดลจำลองพื้นที่ศูนย์ศึกษาฯ เขาชะงุ้ม'],
+  hi:'ตัวอาคารที่สร้างจากดิน และ AI Photo Kiosk ที่ผู้ชมทุกวัยสนุก',
+  say:'อาคารที่เรากำลังจะเข้าไปชมสร้างจากดินทั้งหลังครับ ข้างในจะเล่าว่าพื้นที่เขาชะงุ้มซึ่งเคยเป็นดินลูกรังและขาดน้ำ ถูกฟื้นฟูจนกลายเป็นพื้นที่สีเขียวได้อย่างไร',
+  tip:'เนื้อหาเกี่ยวกับสถาบันพระมหากษัตริย์ ใช้ราชาศัพท์ให้ถูกต้อง และตอบเฉพาะข้อมูลที่มีในเอกสาร'},
+ {n:3,id:'b1',name:'B1 แฝกกำแพงมีชีวิต',zone:'Zone B · พื้นที่ 6 ไร่',
+  what:'แปลงสาธิตการปลูกหญ้าแฝกเพื่ออนุรักษ์ดินและน้ำตามแนวพระราชดำริ',
+  acts:['ชมแปลงหญ้าแฝกปลูกรูปตัววีคว่ำในร่องน้ำ ซึ่งช่วยชะลอน้ำ ดักตะกอน และลดการชะล้างหน้าดิน','เรียนรู้สายพันธุ์หญ้าแฝกและระบบรากที่หยั่งลึกและหนาแน่น','ศาลาเรียนรู้ขนาด 6×6 เมตร','ซุ้มวันดินโลก 2569 จุดถ่ายภาพ'],
+  hi:'มองแปลงตัววีคว่ำจากมุมสูงหรือแนวยาว แล้วชวนผู้ชมเดาว่ารูปทรงนี้ช่วยน้ำอย่างไร',
+  say:'จุดต่อไปคือกำแพงที่ไม่มีอิฐสักก้อนค่ะ เป็นกำแพงหญ้าแฝกที่รากยาวลงไปใต้ดิน ลองดูว่าแปลงถูกปลูกเป็นรูปอะไร แล้วเดาว่าทำไมต้องปลูกแบบนั้น',
+  tip:'ถ้ามีตัวอย่างรากหญ้าแฝก ให้ผู้ชมจับหรือดูใกล้ ๆ จะจำได้ดีกว่าการฟังอย่างเดียว'},
+ {n:4,id:'b2',name:'B2 เกษตรทฤษฎีใหม่',zone:'Zone B · พื้นที่ 17 ไร่',
+  what:'แปลงสาธิตการจัดการพื้นที่เกษตรแบบผสมผสานตามแนวเกษตรทฤษฎีใหม่ พร้อมระบบจัดการดินและน้ำอัจฉริยะ',
+  acts:['เดินชมการจัดพื้นที่: บ่อน้ำ นาข้าว ไม้ผล พืชผัก และที่อยู่อาศัย','การเลี้ยงปลานิลในกระชัง และการเลี้ยงแพะ ไก่ เป็ด','กิจกรรมเลี้ยงสัตว์ เช่น กบ ปลาดุก ไก่ไข่ เป็ดไข่ และโรงเรือนเห็ดสไตล์คนเมือง','การปลูกปอเทืองปรับปรุงบำรุงดินหลังนา','ระบบจัดการดินและน้ำอัจฉริยะด้วย IoT และศาลาเรียนรู้ขนาด 6×6 เมตร'],
+  hi:'ตามเอกสาร ข้าวในแปลงกำหนดเก็บเกี่ยววันที่ 5 ธันวาคม 2569 ตรงกับวันดินโลก',
+  say:'ที่นี่คือพื้นที่ 17 ไร่ที่จัดแบ่งแบบเกษตรทฤษฎีใหม่ครับ มีทั้งบ่อน้ำ นาข้าว สวน และสัตว์เลี้ยง ระหว่างเดินลองนับดูว่าเห็นกิจกรรมเกษตรกี่อย่าง',
+  tip:'จุดนี้มีเส้นทางวิ่งรถรางรอบพื้นที่ แยกจุดลงรถและจุดขึ้นรถ ควรบอกผู้ชมก่อนลงว่าจะไปขึ้นรถที่จุดไหน'},
+ {n:5,id:'b3',name:'B3 ฟาร์มอินทรีย์ดีต่อใจ',zone:'Zone B · พื้นที่ 1 ไร่',
+  what:'สวนอินทรีย์กินได้ ปลูกผักและไม้ดอกเพื่อใช้ประโยชน์ พร้อมความรู้เรื่องวัสดุปรับปรุงดิน',
+  acts:['ชมสวนอินทรีย์กินได้ และไม้ดอกที่นำมาทำชาดอกไม้','เรียนรู้การใช้ไบโอชาร์ (Biochar) เป็นวัสดุปรับปรุงดิน','การใช้ผลิตภัณฑ์จุลินทรีย์ พด. ผลิตปุ๋ยหมักและน้ำหมักชีวภาพ','คาเฟ่ชาดอกไม้'],
+  hi:'เชื่อมกับชีวิตประจำวัน เช่น เศษผักที่บ้านเปลี่ยนเป็นปุ๋ยหมักได้',
+  say:'จุดนี้เหมาะกับคนที่อยากปลูกผักที่บ้านค่ะ ลองดูว่าผักและดอกไม้ในสวนนี้ใช้อะไรบำรุงดิน และดอกไม้บางชนิดชงเป็นชาได้ด้วย',
+  tip:'ใช้คำถามเชื่อมโยงชีวิตจริงได้ดีที่สุดในจุดนี้'},
+ {n:6,id:'b4',name:'B4 จุลินทรีย์ตัวจี๊ดฤทธิ์เยอะ',zone:'Zone B · ใช้พื้นที่ 2 ฝั่งถนน',
+  what:'ฐานเรียนรู้บทบาทของจุลินทรีย์ที่เป็นประโยชน์ต่อการเกษตร และการนำผลิตภัณฑ์จุลินทรีย์ พด. ไปใช้',
+  acts:['ชมผลิตภัณฑ์จุลินทรีย์ พด. ต่าง ๆ และจุลินทรีย์สังเคราะห์แสง','ศาลาเรียนรู้ขนาด 8×8 เมตร: จุลินทรีย์สังเคราะห์แสง พด.15','ศาลาเรียนรู้ขนาด 3×3 เมตร: พด.1 พด.2 พด.7','สาธิตการนำไปใช้และการผลิตปุ๋ยอินทรีย์'],
+  hi:'สิ่งมีชีวิตที่มองไม่เห็นแต่ทำงานตลอดเวลาในดิน',
+  say:'จุดนี้เราจะไปรู้จักผู้ช่วยตัวจิ๋วที่มองไม่เห็นด้วยตาเปล่าครับ จุลินทรีย์เหล่านี้ช่วยย่อยสลายและหมุนเวียนธาตุอาหารให้พืช',
+  tip:'ฐานนี้ใช้พื้นที่ 2 ฝั่งถนน ควรพาผู้ชมข้ามถนนอย่างระมัดระวังและนับจำนวนคนก่อนกลับขึ้นรถ'},
+ {n:7,id:'b5',name:'B5 แก๊งดึ๋ย ซุยดิน',zone:'Zone B',
+  what:'ฐานเรียนรู้ไส้เดือนดินและบทบาทต่อระบบนิเวศดิน',
+  acts:['เรียนรู้ชนิดและสายพันธุ์ไส้เดือนดิน','การเตรียมวัสดุ การเลี้ยงและดูแล','การนำมูลไส้เดือนไปใช้ประโยชน์ทางการเกษตร','ศาลาเรียนรู้ขนาด 12×6 เมตร และ 22×6 เมตร และพื้นที่เตรียมอาหารไส้เดือน'],
+  hi:'ไส้เดือนสร้างช่องทางในดินให้อากาศและน้ำผ่านได้ เชื่อมกลับไปที่ธีมดินอัดแน่น',
+  say:'จุดสุดท้ายคือแก๊งดึ๋ยค่ะ ไส้เดือนเป็นวิศวกรตัวเล็กที่ขุดอุโมงค์ให้ดินทุกวัน ช่วยให้ดินร่วนซุยโดยไม่ต้องใช้เครื่องจักรเลย',
+  tip:'เป็นจุดปิดท้ายที่ดีสำหรับสรุปทั้งเส้นทาง: ดินแน่นแก้ได้ด้วยราก จุลินทรีย์ อินทรียวัตถุ และไส้เดือน'}
+];
+
 const SITUATIONS = [
  {t:'The Quiet Group',d:'ผู้ชม 6 คน ไม่มีใครยอมตอบคำถามเลย',g:'ชวนคุยโดยไม่กดดันผู้ชม',tip:'เปลี่ยนเป็นคำถามให้เลือกหรือยกมือ ตอบเองเป็นตัวอย่างก่อน 1 ครั้ง'},
  {t:'The Curious Child',d:'เด็กถามว่า "ทำไมไส้เดือนถึงชอบอยู่ในดิน"',g:'ใช้ภาษาง่ายและตัวอย่างที่เหมาะกับวัย',tip:'ชมคำถาม ตอบด้วยการเปรียบเทียบ เช่น ดินเป็นบ้านที่มีอาหารและความชื้น'},
@@ -709,6 +807,9 @@ const SITUATIONS = [
  {t:'Equipment Down',d:'จอ Touchscreen หรือโมเดลสาธิตใช้งานไม่ได้',g:'อธิบายต่อโดยไม่พึ่งอุปกรณ์',tip:'ใช้มือ ภาพในโทรศัพท์ หรือวัสดุใกล้ตัวแทน เช่น ฟองน้ำแห้งกับฟองน้ำที่ถูกกด'},
  {t:'The Senior Group',d:'กลุ่มผู้สูงอายุ ยืนนานไม่ได้ และได้ยินไม่ค่อยชัด',g:'ปรับจังหวะ ระดับเสียง และระยะเวลา',tip:'พูดช้าลง หันหน้าเข้าหาผู้ชม หาที่นั่ง และตัดเนื้อหาเหลือ 2 ประเด็น'},
  {t:'The Skeptic',d:'ผู้ชมพูดว่า "แค่ดิน จะสำคัญอะไรนักหนา"',g:'ใช้ข้อมูลที่จับต้องได้เปลี่ยนมุมมอง',tip:'เชื่อมกับอาหาร: อาหารของมนุษย์ร้อยละ 95 มาจากดิน'},
+ {t:'Tram Talk',d:'รถรางเสียงดัง ผู้ชมด้านหลังได้ยินไม่ชัดระหว่างเดินทาง',g:'สื่อสารบนรถรางให้ทุกคนได้ยินและไม่เหนื่อยเกินไป',tip:'พูดสั้นเฉพาะประเด็นนำ 2–3 ประโยค เก็บรายละเอียดไว้พูดเมื่อลงจากรถ'},
+ {t:'The Left-Behind',d:'ก่อนรถรางออกจากจุด พบว่าผู้ชม 2 คนยังไม่กลับมาขึ้นรถ',g:'จัดการเวลาและความปลอดภัยของกลุ่ม',tip:'นับจำนวนคนทุกครั้งก่อนออกรถ และบอกเวลานัดพร้อมจุดขึ้นรถให้ชัดก่อนลงทุกจุด'},
+ {t:'Behind Schedule',d:'รถรางมาถึงช้า เหลือเวลาที่จุดนี้เพียง 3 นาที',g:'ปรับเนื้อหาให้เหลือประเด็นสำคัญ',tip:'พูด Hook และ Takeaway บนรถ แล้วใช้เวลาที่จุดให้ผู้ชมดูของจริง'},
  {t:'The Royal Content',d:'ผู้ชมถามรายละเอียดพระราชกรณียกิจที่บ้านแม่รัง ซึ่งไม่มีในเอกสาร',g:'ใช้ภาษาที่เหมาะสม และไม่ให้ข้อมูลที่ไม่แน่ใจ',tip:'ตอบเฉพาะข้อมูลตามเอกสาร แล้วแนะนำเจ้าหน้าที่ประจำจุดหรือแหล่งข้อมูลทางการ'}
 ];
 
@@ -766,7 +867,7 @@ const SESSIONS = {
   obj:'ลดความกังวลในการพูดต่อหน้ากลุ่มคน และฝึกการใช้เสียง ท่าทาง และการเปิดการนำชมให้ดึงดูดความสนใจ',
   acts:[
    {m:10,k:'in',n:'Opening & Confidence Check',h:'แนะนำเป้าหมายของวัน ผู้เข้าอบรมให้คะแนนความมั่นใจของตนเอง 1–5 บนกระดาษ 5 ข้อ เก็บไว้เปรียบเทียบตอนท้ายวัน',tool:['#rubric','ดูข้อคำถามประเมินตนเอง']},
-   {m:15,k:'pr',n:'First Impression Challenge',h:'ในกลุ่มย่อย ทุกคนแนะนำจุดนิทรรศการที่สุ่มได้ภายใน 30 วินาที โดยไม่เตรียมตัว เพื่อดูทักษะเริ่มต้นของตนเอง',tool:['#station-pick','สุ่มจุดนิทรรศการ'],t2:['#timer','จับเวลา 30 วิ']},
+   {m:15,k:'pr',n:'First Impression Challenge',h:'ในกลุ่มย่อย ทุกคนแนะนำจุดจอดรถรางที่สุ่มได้ภายใน 30 วินาที เหมือนพูดบนรถก่อนถึงจุด โดยไม่เตรียมตัว เพื่อดูทักษะเริ่มต้นของตนเอง',tool:['#tram-pick','สุ่มจุดจอดรถราง'],t2:['#timer','จับเวลา 30 วิ']},
    {m:15,k:'in',n:'Voice & Body Language Lab',h:'วิทยากรสาธิตระดับเสียง จังหวะ การหยุดพูด การสบตา ตำแหน่งยืน และการชี้สิ่งจัดแสดง เทียบแบบที่ควรทำกับไม่ควรทำ'},
    {m:25,k:'pr',n:'Say It Three Ways',h:'สุ่มข้อเท็จจริง 1 ข้อ แล้วฝึกพูดเรื่องเดียวกัน 3 แบบ ได้แก่ ทางการ เป็นกันเอง และกระตุ้นความสนใจ ผลัดกันพูดในคู่',tool:['#threeways','สุ่มข้อเท็จจริงและโทน']},
    {m:30,k:'pr',n:'The 60-Second Opening',h:'เขียนและฝึกบทเปิดการนำชม 60 วินาที สำหรับกลุ่มผู้ชมที่สุ่มได้ บันทึกวิดีโอด้วยโทรศัพท์ของตนเอง แล้วรับ Feedback จากเพื่อน',tool:['#audience','สุ่มกลุ่มผู้ชม'],t2:['#timer','จับเวลา 60 วิ']},
@@ -776,7 +877,7 @@ const SESSIONS = {
   <div class="grid g2"><div class="card"><span class="tag water">Version A · บรรยายข้อมูล</span><p>"วันดินโลกตรงกับวันที่ 5 ธันวาคมของทุกปี โดยมีวัตถุประสงค์เพื่อสร้างความตระหนักถึงความสำคัญของทรัพยากรดิน"</p></div>
   <div class="card"><span class="tag leaf">Version B · ดึงดูดความสนใจ</span><p>"ทุกท่านเคยสงสัยไหมคะว่า อาหารที่เรารับประทานในแต่ละวันเกี่ยวข้องกับดินมากแค่ไหน วันนี้เราจะมาค้นหาคำตอบไปด้วยกันค่ะ"</p></div></div>
   <h2>โครงบทเปิด 60 วินาที</h2>
-  <div class="card"><ol class="clean"><li><b>ทักทายและแนะนำตัว</b> (10 วิ)</li><li><b>Hook</b> คำถามหรือข้อเท็จจริงที่ทำให้สงสัย (15 วิ)</li><li><b>บอกเส้นทาง</b> วันนี้จะไปดูอะไร กี่จุด ใช้เวลาเท่าไร (20 วิ)</li><li><b>ข้อตกลง</b> เช่น ถามได้ตลอด เดินตามป้ายสีเขียว (15 วิ)</li></ol></div>`,
+  <div class="card"><ol class="clean"><li><b>ทักทายและแนะนำตัว</b> (10 วิ)</li><li><b>Hook</b> คำถามหรือข้อเท็จจริงที่ทำให้สงสัย (15 วิ)</li><li><b>บอกเส้นทาง</b> รถรางจะพาไป 7 จุด จุดไหนบ้าง ใช้เวลาเท่าไร (20 วิ)</li><li><b>ข้อตกลงบนรถราง</b> เช่น จำนวนจุดที่จะแวะ การขึ้นลงตามจุดที่กำหนด และถามได้ตลอด (15 วิ)</li></ol></div>`,
   out:'ผู้เข้าอบรมมีบทเปิดการนำชม 1 นาที และสื่อสารโดยใช้ภาษากายและน้ำเสียงที่เหมาะสม'},
  s2:{n:2,time:'10.30–12.30 น. (120 นาที)',title:'Make Information Interesting',th:'เปลี่ยนข้อมูลวิชาการให้เป็นเรื่องเล่าที่น่าสนใจและจดจำง่าย',color:'#6d4c41',
   obj:'ฝึกคัดเลือกใจความสำคัญ ลดศัพท์วิชาการที่ไม่จำเป็น ใช้การเปรียบเทียบและการเล่าเรื่อง และพูดตัวเลขให้เข้าใจง่ายโดยยังถูกต้อง',
@@ -785,7 +886,7 @@ const SESSIONS = {
    {m:15,k:'in',n:'Storytelling Toolkit',h:'แนะนำโครง Hook → Explain → Connect → Takeaway พร้อมสาธิตด้วยเรื่องดินอัดแน่น'},
    {m:30,k:'pr',n:"Explain It Like I'm 10",h:'จับกลุ่มแปลงข้อมูลเรื่องดินอัดแน่น สุขภาพดิน หญ้าแฝก หรือไส้เดือน ให้เด็กอายุ 10 ปีเข้าใจ ใช้การเปรียบเทียบอย่างน้อย 1 อย่าง',tool:['#stations','เปิด Fact Cards']},
    {m:15,k:'pr',n:'ตัวเลขต้องถูก (Numbers Made Simple)',h:'ฝึกพูดตัวเลขจากเอกสารให้เข้าใจง่าย เช่น ร้อยละ 72.03 เป็น "เกือบ 3 ใน 4" แล้วให้เพื่อนตรวจว่าความหมายยังถูกต้องหรือไม่'},
-   {m:30,k:'pr',n:'90-Second Soil Story',h:'สร้างเรื่องเล่า 90 วินาทีจากจุดนิทรรศการที่ได้รับมอบหมาย และนำเสนอโดยไม่อ่านสคริปต์',tool:['#station-pick','สุ่มจุดนิทรรศการ'],t2:['#timer','จับเวลา 90 วิ']},
+   {m:30,k:'pr',n:'90-Second Soil Story',h:'สร้างเรื่องเล่า 90 วินาทีจากจุดจอดรถรางที่ได้รับมอบหมาย และนำเสนอโดยไม่อ่านสคริปต์',tool:['#tram','ดูข้อมูล 7 จุด'],t2:['#timer','จับเวลา 90 วิ']},
    {m:15,k:'pr',n:'Story Feedback',h:'เพื่อนประเมิน 3 ข้อ: ข้อมูลถูกต้องหรือไม่ น่าสนใจหรือไม่ และจำประเด็นหลักได้ 1 ประโยคหรือไม่',tool:['#rubric','รูปแบบ Feedback']}
   ],
   extra:`<h2>เทคนิคหลัก: HOOK → EXPLAIN → CONNECT → TAKEAWAY</h2>
@@ -825,7 +926,7 @@ const SESSIONS = {
   acts:[
    {m:10,k:'in',n:'Mission Briefing',h:'อธิบายกติกาและเกณฑ์ประเมิน แต่ละคนสุ่มภารกิจ ได้แก่ จุดนิทรรศการ กลุ่มผู้ชม และเวลา',tool:['#mission','เปิด Mission Generator']},
    {m:20,k:'pr',n:'Tour Preparation',h:'เตรียมการนำชมเป็นคู่ ใช้บทเปิด 60 วิ เรื่องเล่า 90 วิ และคำถามจาก Session 3 ตรวจความถูกต้องของเนื้อหากับ Fact Cards',tool:['#stations','เปิด Fact Cards']},
-   {m:60,k:'pr',n:'Guided Tour Simulation',h:'กลุ่มละ 5–6 คน สลับบทบาทเป็นมัคคุเทศก์ ผู้ชม และผู้ประเมิน นำชมรอบละ 5–7 นาที ตามด้วย Feedback 2–3 นาที ระหว่างรอบ วิทยากรสุ่ม Situation Card ให้ผู้เล่นบทผู้ชม',tool:['#situation','สุ่ม Situation Card'],t2:['#timer','จับเวลา 7 นาที']},
+   {m:60,k:'pr',n:'Guided Tour Simulation',h:'กลุ่มละ 5–6 คน สลับบทบาทเป็นมัคคุเทศก์ ผู้ชม และผู้ประเมิน แต่ละรอบจำลองการนำชมแบบรถราง คือพูดแนะนำบนรถ 30 วินาที แล้วนำชม ณ จุด 5–6 นาที ตามด้วย Feedback 2–3 นาที ระหว่างรอบ วิทยากรสุ่ม Situation Card ให้ผู้เล่นบทผู้ชม',tool:['#situation','สุ่ม Situation Card'],t2:['#timer','จับเวลา 7 นาที']},
    {m:15,k:'pr',n:'Feedback & Improvement',h:'สรุป Feedback แบบ ชม 1 · แนะ 1 · ลอง 1 แต่ละคนเลือกจุดที่จะปรับปรุง 1 อย่างก่อนปฏิบัติงานจริง',tool:['#rubric','เปิดแบบประเมิน']},
    {m:15,k:'pr',n:'Final Confidence Check & Wrap-up',h:'ประเมินความมั่นใจซ้ำด้วยข้อคำถามชุดเดิม เปรียบเทียบกับตอนเช้า และแลกเปลี่ยนเทคนิคที่จะใช้ทันที 1 อย่าง'}
   ],
@@ -898,6 +999,22 @@ function renderSessions(){
   });
 }
 
+
+function renderTram(){
+  // stops on path
+  const path=document.getElementById('tramPath'); const g=document.getElementById('tramStops'); const L=path.getTotalLength();
+  g.innerHTML=TRAM.map((t,i)=>{ const pt=path.getPointAtLength(L*(0.03+i*0.94/6)); const up=i%2===0;
+    return `<g class="stop-dot" data-n="${t.n}" transform="translate(${pt.x} ${pt.y})"><circle class="ring" r="14" fill="#7cb342"/><circle class="core" r="14" fill="#558b2f" stroke="#fff" stroke-width="3"/><text y="5" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">${t.n}</text><text y="${up?-24:38}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3e2723">${esc(t.name.replace('อาคารนิทรรศการวันดินโลกและนิทรรศการวิชาการ','อาคาร A3-1').replace(/^B\d /,m=>m))}</text></g>`; }).join('');
+  g.addEventListener('click',e=>{ const d=e.target.closest('.stop-dot'); if(!d) return; const c=document.getElementById('tram-'+d.dataset.n); c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); });
+  $('#tramGrid').innerHTML=TRAM.map(t=>`<div class="card tram-card" id="tram-${t.n}"><span class="num">${t.n}</span>
+    <div class="st-head">${icon(t.id)}<div><span class="tag">จุดที่ ${t.n} · ${esc(t.zone)}</span><h3>${esc(t.name)}</h3></div></div>
+    <p class="what"><b>คือจุดอะไร:</b> ${esc(t.what)}</p>
+    <b>กิจกรรมและสิ่งที่ชมได้</b><ul>${t.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul>
+    <div class="hook"><b>ไฮไลต์ที่ควรชี้ให้ดู:</b> ${esc(t.hi)}</div>
+    <div class="say"><b>🚋 ตัวอย่างพูดบนรถก่อนถึง:</b> "${esc(t.say)}"</div>
+    <div class="qbox"><b>ข้อควรรู้:</b> ${esc(t.tip)}</div></div>`).join('');
+}
+
 /* ===================== STATIONS ===================== */
 function stationCard(s){
   return `<div class="card st-card"><div class="st-head">${icon(s.id)}<div><span class="tag">${esc(s.grp)}</span><h3>${esc(s.name)}</h3><div class="zone">${esc(s.zone)}</div></div></div>
@@ -926,6 +1043,9 @@ const RAND_PAGES = {
  'audience':{kicker:'ใช้ใน Session 1 และ 4',title:'สุ่มกลุ่มผู้ชม',lead:'สุ่มลักษณะผู้ชมเพื่อฝึกปรับภาษา ตัวอย่าง และจังหวะการพูดให้เหมาะกับผู้ฟัง',items:AUDIENCES,label:'สุ่มกลุ่มผู้ชม',
    view:(x,i)=>`<div class="res-num">ผู้ชมของคุณคือ</div><div class="res-title">${esc(x.t)}</div><div class="res-body"><dl><dt>ลักษณะกลุ่ม</dt><dd>${esc(x.s)}</dd><dt>สิ่งที่สนใจ</dt><dd>${esc(x.like)}</dd></dl><details class="more"><summary>เคล็ดลับการสื่อสาร</summary><p>${esc(x.tip)}</p></details></div>`,
    mini:x=>`<b>${esc(x.t)}</b>${esc(x.s)}`},
+ 'tram-pick':{kicker:'ใช้ใน Session 1, 2 และ 4',title:'สุ่มจุดจอดรถราง',lead:'สุ่ม 1 ใน 7 จุดจอดรถราง เพื่อฝึกพูดแนะนำบนรถ 30 วินาที หรือนำชม ณ จุดนั้น',items:TRAM,label:'สุ่มจุดจอดรถราง',
+   view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">จุดที่ ${x.n} · ${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><p style="margin:.3em 0">${esc(x.what)}</p><details class="more"><summary>ดูกิจกรรมและตัวอย่างพูดบนรถ</summary><ul style="padding-left:1.1em">${x.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><div class="say">"${esc(x.say)}"</div></details></div>`,
+   mini:x=>`<b>จุดที่ ${x.n}</b>${esc(x.name)}`},
  'station-pick':{kicker:'ใช้ทุก Session',title:'สุ่มจุดนิทรรศการ',lead:'สุ่มจุดนิทรรศการที่ต้องพูดถึง พร้อมข้อเท็จจริงสำคัญสำหรับเตรียมตัว',items:STATIONS,label:'สุ่มจุดนิทรรศการ',
    view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><ul style="padding-left:1.1em;margin:.2em 0">${x.facts.slice(0,3).map(f=>`<li>${esc(f)}</li>`).join('')}</ul><details class="more"><summary>ดู Hook และคำถามตัวอย่าง</summary><div class="hook"><b>Hook:</b> ${esc(x.hook)}</div><div class="qbox"><b>คำถาม:</b> ${esc(x.q)}</div></details></div>`,
    mini:x=>`<b>${esc(x.name)}</b>${esc(x.zone)}`},
@@ -987,13 +1107,13 @@ function buildCustom(id,cfg,sec){
 }
 
 /* ===================== MISSION ===================== */
-const TIMES=['3 นาที (แขกมีเวลาน้อย)','5 นาที','6 นาที','7 นาที'];
+const TIMES=['พูดบนรถ 30 วิ + ที่จุด 3 นาที','พูดบนรถ 30 วิ + ที่จุด 5 นาที','พูดบนรถ 30 วิ + ที่จุด 6 นาที','พูดบนรถ 30 วิ + ที่จุด 7 นาที'];
 function buildMission(){
   const slots=[
-    {k:'st',lab:'📍 จุดนิทรรศการ',arr:STATIONS,v:x=>x.name,s:x=>x.zone},
+    {k:'st',lab:'🚋 จุดจอดรถราง',arr:TRAM,v:x=>'จุดที่ '+x.n+' · '+x.name,s:x=>x.zone},
     {k:'au',lab:'👥 กลุ่มผู้ชม',arr:AUDIENCES,v:x=>x.t,s:x=>x.s},
     {k:'si',lab:'🃏 สถานการณ์ (ให้ผู้เล่นบทผู้ชม)',arr:SITUATIONS,v:x=>x.t,s:x=>x.d},
-    {k:'tm',lab:'⏱️ เวลานำชม',arr:TIMES,v:x=>x,s:()=>'รวมการตอบคำถาม'}
+    {k:'tm',lab:'⏱️ เวลานำชม',arr:TIMES,v:x=>x,s:()=>'เวลาที่จุดรวมการตอบคำถาม'}
   ];
   const cur={}, lock={};
   const paint=()=>{ $('#mSlots').innerHTML=slots.map(sl=>{const x=cur[sl.k];return `<div class="slot"><div class="row" style="justify-content:space-between"><span class="lab">${sl.lab}</span><label class="chk"><input type="checkbox" data-lock="${sl.k}" ${lock[sl.k]?'checked':''}> ล็อก</label></div><div class="val">${x!=null?esc(sl.v(x)):'?'}</div><div class="sub">${x!=null?esc(sl.s(x)):''}</div></div>`;}).join(''); };
@@ -1064,7 +1184,7 @@ function buildRubric(){
 }
 
 /* ===================== ROUTER & UI ===================== */
-const PAGES=['home','plan','s1','s2','s3','s4','stations','questions','situation','audience','station-pick','technical','threeways','makeover','mission','names','timer','rubric','prep'];
+const PAGES=['home','plan','tram','tram-pick','s1','s2','s3','s4','stations','questions','situation','audience','station-pick','technical','threeways','makeover','mission','names','timer','rubric','prep'];
 function route(){
   let h=(location.hash||'#home').slice(1); if(!PAGES.includes(h)) h='home';
   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('show',p.id==='p-'+h));
@@ -1083,7 +1203,7 @@ $('#menuBtn').onclick=e=>{e.stopPropagation();document.body.classList.toggle('na
 document.addEventListener('click',e=>{ if(document.body.classList.contains('nav-open')&&!e.target.closest('#side')) document.body.classList.remove('nav-open'); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') setProj(false); });
 
-renderSessions(); renderStations();
+renderSessions(); renderStations(); renderTram();
 Object.keys(RAND_PAGES).forEach(buildRandPage);
 buildMission(); buildNames(); buildTimer(); buildRubric();
 window.addEventListener('hashchange',route); route();
