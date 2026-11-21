@@ -159,6 +159,33 @@ body.proj .res-body{font-size:clamp(20px,2.6vw,30px)}
 
 <style>
 /* ===== Theme inspired by World Soil Day 2569 site ===== */
+.route-strip{width:100%;height:auto;display:block}
+.lg{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:4px}
+.lg-ride{background:#558b2f}.lg-stop{background:#f9a825}.lg-theme{background:#8d6e63}
+.map-fig{margin:14px 0 0;padding:10px}
+.map-fig img{width:100%;border-radius:12px;cursor:zoom-in;display:block}
+.map-fig figcaption{margin-top:6px;text-align:center}
+.pics{display:grid;grid-template-columns:2fr 1fr;gap:6px;margin:-4px 0 10px}
+.pics img{width:100%;height:170px;object-fit:cover;border-radius:12px;cursor:zoom-in;background:#f3ece7}
+.pics img:only-child{grid-column:1/-1}
+.tram-card h3{margin:.4em 0 .2em}
+.theme-box{background:#efe6dd;border-left:4px solid #8d6e63;border-radius:10px;padding:8px 12px;margin:8px 0;font-size:15px}
+.theme-card{text-decoration:none;color:inherit}
+.theme-card b{display:block;color:var(--soil);margin:4px 0}
+.theme-card p{margin:0;font-size:14.5px;color:var(--soil-600)}
+.pick-img{width:100%;max-height:220px;object-fit:cover;border-radius:12px;margin-bottom:10px;cursor:zoom-in}
+.lightbox{position:fixed;inset:0;z-index:60;background:rgba(20,14,10,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.lightbox img{max-width:96vw;max-height:84vh;border-radius:10px}
+.lightbox p{color:#fff;margin:.6em 0 0;font-size:14px}
+.video-wrap{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#2b1d18}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.stats .card b{display:block;font-size:30px;color:var(--leaf);line-height:1.2}
+.stats .card span{font-size:14.5px;color:var(--soil-600)}
+.timeline{list-style:none;padding:0;margin:0;border-left:3px solid var(--leaf-400)}
+.timeline li{position:relative;padding:6px 0 10px 18px}
+.timeline li:before{content:"";position:absolute;left:-8px;top:12px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--clay)}
+.timeline b{color:var(--soil);margin-right:6px}
+
 .lock-card{text-align:center;max-width:520px;margin:20px auto;padding:30px 24px}
 .lock-ico{font-size:46px;animation:floaty 4s ease-in-out infinite}
 .lock-card h3{margin:.3em 0}
@@ -411,13 +438,14 @@ tr.mine a{color:var(--leaf);text-decoration:none}
     <a href="#s3">ช่วงที่ 3 · จัดทำ Script</a>
     <a href="#script">แบบฟอร์ม Script 🔒</a>
     <div class="nav-group">เนื้อหานิทรรศการ</div>
-    <a href="#tram">เส้นทางรถราง 7 จุด 🚋</a>
+    <a href="#khao">เขาชะงุ้มในหนึ่งหน้า 🎬</a>
+    <a href="#tram">เส้นทางรถราง 23 จุด 🚋</a>
     <a href="#stations">Exhibition Fact Cards</a>
     <a href="#questions">Question Toolkit</a>
     <div class="nav-group">เครื่องมือสุ่ม</div>
     <a href="#situation">Situation Cards <span class="dice">🎲</span></a>
     <a href="#audience">สุ่มกลุ่มผู้ชม <span class="dice">🎲</span></a>
-    <a href="#tram-pick">สุ่มจุดจอดรถราง <span class="dice">🎲</span></a>
+    <a href="#tram-pick">สุ่มจุดบนเส้นทาง <span class="dice">🎲</span></a>
     <a href="#station-pick">สุ่มจุดนิทรรศการ <span class="dice">🎲</span></a>
     <a href="#technical">Too Technical! <span class="dice">🎲</span></a>
     <a href="#threeways">Say It Three Ways <span class="dice">🎲</span></a>
@@ -438,6 +466,7 @@ tr.mine a{color:var(--leaf);text-decoration:none}
 <section class="page" id="p-home">
   <div class="ticker"><span class="pill"><i>📣</i> ประกาศ</span><div class="track"><div class="move">
     <span>🗓️ อบรม 23 พฤศจิกายน 2569 เวลา 08.00–17.30 น. ณ ห้องประชุม 1601 ชั้น 6 กรมพัฒนาที่ดิน</span>
+    <span>🚋 รถรางพาชม 23 จุด ระยะทางประมาณ 5 กม. ใช้เวลาประมาณ 30 นาที</span>
     <span>🧑‍🌾 ปฏิบัติหน้าที่ "ดินดีบัดดี้" 5–9 ธันวาคม 2569 ณ ศูนย์ศึกษาฯ เขาชะงุ้ม จ.ราชบุรี</span>
     <span>ธีมวันดินโลก ปี 2569 · Tackle Soil Compaction, Boost Food Production · พลิกฟื้นดินดาน เพิ่มผลผลิตอาหาร สานชีวิตยั่งยืน</span>
     <span>🎲 ใช้เมนู "เครื่องมือสุ่ม" ระหว่างกิจกรรมได้ทันที ไม่ต้องล็อกอิน</span>
@@ -572,7 +601,7 @@ tr.mine a{color:var(--leaf);text-decoration:none}
  <ellipse cx="180" cy="300" rx="320" ry="90" fill="#9ccc65"/><ellipse cx="640" cy="310" rx="340" ry="100" fill="#7cb342"/>
  <g fill="#558b2f"><circle cx="90" cy="226" r="22"/><circle cx="118" cy="232" r="16"/><circle cx="520" cy="222" r="24"/><circle cx="548" cy="230" r="17"/><circle cx="740" cy="228" r="20"/></g>
  <rect x="0" y="300" width="800" height="52" fill="#a1887f"/><line x1="0" y1="326" x2="800" y2="326" stroke="#fff" stroke-width="3" stroke-dasharray="18 14" class="road"/>
- <g transform="translate(70 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">1</text></g><g transform="translate(180 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">2</text></g><g transform="translate(290 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">3</text></g><g transform="translate(400 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">4</text></g><g transform="translate(510 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">5</text></g><g transform="translate(620 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">6</text></g><g transform="translate(730 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">7</text></g>
+ <g transform="translate(70 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">1</text></g><g transform="translate(180 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">6</text></g><g transform="translate(290 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">8</text></g><g transform="translate(400 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">12</text></g><g transform="translate(510 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">17</text></g><g transform="translate(620 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">20</text></g><g transform="translate(730 300)"><line x1="0" y1="0" x2="0" y2="-46" stroke="#6d4c41" stroke-width="4"/><circle cx="0" cy="-56" r="15" fill="#558b2f" stroke="#fff" stroke-width="3"/><text x="0" y="-51" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="14" font-weight="800" fill="#fff">23</text></g>
  <g class="tram3"><g transform="translate(0 298)">
   <rect x="-110" y="-56" width="104" height="44" rx="10" fill="#558b2f"/><rect x="-110" y="-62" width="104" height="10" rx="5" fill="#33691e"/>
   <rect x="-100" y="-46" width="20" height="16" rx="3" fill="#e6f0d9"/><rect x="-72" y="-46" width="20" height="16" rx="3" fill="#e6f0d9"/><rect x="-44" y="-46" width="20" height="16" rx="3" fill="#e6f0d9"/>
@@ -592,7 +621,7 @@ tr.mine a{color:var(--leaf);text-decoration:none}
   <g class="flag"><line x1="19" y1="-6" x2="30" y2="-36" stroke="#6d4c41" stroke-width="2" stroke-linecap="round"/><path d="M30 -36 l15 4 -15 5z" fill="#f9a825"/></g>
  </g></g></g></g>
  </g></g>
-</g><g class="cap"><rect x="271.20000000000005" y="352" width="257.59999999999997" height="36" rx="18" fill="#fff" opacity=".94"/><text x="400" y="376" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="17" font-weight="800" fill="#3e2723">นั่งรถรางพาชม 7 จุดนำชม</text></g></g><g class="sc sc4"><g class="cam cam4">
+</g><g class="cap"><rect x="170.4" y="352" width="459.2" height="36" rx="18" fill="#fff" opacity=".94"/><text x="400" y="376" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="17" font-weight="800" fill="#3e2723">รถรางพาชม 23 จุด ระยะทางประมาณ 5 กิโลเมตร</text></g></g><g class="sc sc4"><g class="cam cam4">
  <rect width="800" height="400" fill="#fdf7ec"/>
  <circle cx="400" cy="230" r="220" fill="#f1f8e9"/>
  <g class="sun-rays"><circle cx="690" cy="62" r="26" fill="#f9a825"/></g>
@@ -625,7 +654,8 @@ tr.mine a{color:var(--leaf);text-decoration:none}
 
   <div class="sec-head"><div><div class="eyebrow">QUICK TOOLS</div><h2>เครื่องมือสุ่มที่ใช้บ่อย</h2></div></div>
   <div class="grid g3">
-    <a class="tile" href="#tram"><div class="ico">🚋</div><b>เส้นทางรถราง 7 จุด</b><span>สรุปแต่ละจุด กิจกรรม ตัวอย่างพูดและคำถามบนรถ</span></a>
+    <a class="tile" href="#tram"><div class="ico">🚋</div><b>เส้นทางรถราง 23 จุด</b><span>ภาพจริง ข้อมูลแต่ละจุด งบเวลา และคำถามบนรถ</span></a>
+    <a class="tile" href="#khao"><div class="ico">🎬</div><b>เขาชะงุ้มในหนึ่งหน้า</b><span>คลิปประวัติ ตัวเลขสำคัญ และลำดับเหตุการณ์</span></a>
     <a class="tile" href="#situation"><div class="ico">🃏</div><b>Situation Cards</b><span>สุ่มสถานการณ์จำลองระหว่างนำชม</span></a>
     <a class="tile" href="#audience"><div class="ico">👥</div><b>สุ่มกลุ่มผู้ชม</b><span>ฝึกปรับภาษาให้เข้ากับผู้ฟัง</span></a>
     <a class="tile" href="#station-pick"><div class="ico">📍</div><b>สุ่มจุดนิทรรศการ</b><span>กำหนดโจทย์พูดจากนิทรรศการจริง</span></a>
@@ -636,9 +666,9 @@ tr.mine a{color:var(--leaf);text-decoration:none}
   <div class="sec-head"><div><div class="eyebrow">LEARNING PATH</div><h2>ลำดับการเรียนรู้</h2></div></div>
   <div class="grid g4">
     <div class="tile"><span class="tag sun">09.00–10.30</span><b>ช่วงเช้า · บรรยาย</b><span>ความหมายและความสำคัญของ “ดินดีบัดดี้” และงานวันดินโลก ปี 2569 โดยวิทยากรกรมพัฒนาที่ดิน</span></div>
-    <a class="tile" href="#s1"><span class="tag">10.30–12.00</span><b>1 · บทบาทและสิ่งที่ต้องมี</b><span>บทบาท 4 ขั้น ความมั่นใจ เสียง ภาษากาย บทเปิด 60 วินาที</span></a>
-    <a class="tile" href="#s2"><span class="tag">13.00–14.30</span><b>2 · ศึกษาเส้นทางและแผนเดินทาง</b><span>เส้นทางรถราง 7 จุด ตัวเลขต้องถูก แผนเดินทางของกลุ่ม</span></a>
-    <a class="tile" href="#s3"><span class="tag">14.30–17.30</span><b>3 · จัดทำ Script และฝึกปฏิบัติจริง</b><span>เขียน Script ฝึกแบบรถราง แก้ปัญหาเฉพาะหน้า Script ฉบับสมบูรณ์</span></a>
+    <a class="tile" href="#s1"><span class="tag">10.30–12.00</span><b>1 · บทบาทและสิ่งที่ต้องมี</b><span>บทบาทบนรถราง ความมั่นใจ เสียง ภาษากาย บทเปิด 60 วินาที</span></a>
+    <a class="tile" href="#s2"><span class="tag">13.00–14.30</span><b>2 · ศึกษาเส้นทางและแผนเดินทาง</b><span>ประวัติเขาชะงุ้ม เส้นทาง 23 จุด ตัวเลขต้องถูก แผนเดินทาง</span></a>
+    <a class="tile" href="#s3"><span class="tag">14.30–17.30</span><b>3 · จัดทำ Script และฝึกปฏิบัติจริง</b><span>เรียบเรียง Script ให้พอดีเวลา รถรางจำลอง แก้ปัญหาเฉพาะหน้า</span></a>
   </div>
 </section>
 
@@ -711,47 +741,126 @@ tr.mine a{color:var(--leaf);text-decoration:none}
 
 <section class="page" id="p-tram">
   <div class="kicker">ข้อมูลสำหรับ “ดินดีบัดดี้” ประจำรถราง</div>
-  <h1>เส้นทางรถราง 7 จุดนำชม</h1>
-  <p class="lead">ดินดีบัดดี้พาผู้ชมขึ้นรถราง และส่งลงชมทีละจุด สรุปนี้บอกว่าแต่ละจุดคืออะไร มีกิจกรรมอะไร และควรพูดอะไรระหว่างอยู่บนรถ ลำดับจุดอาจปรับตามเส้นทางจริงในวันงาน</p>
-  <div class="card tram-map-card">
-    <svg class="tram-map" viewBox="0 0 900 250" role="img" aria-label="เส้นทางรถราง 7 จุด">
-      <path id="tramPath" d="M40 190 C120 190 120 70 210 70 S300 190 390 190 S480 70 570 70 S660 190 750 190 S860 120 860 70" fill="none" stroke="#d7ccc8" stroke-width="18" stroke-linecap="round"/>
-      <path d="M40 190 C120 190 120 70 210 70 S300 190 390 190 S480 70 570 70 S660 190 750 190 S860 120 860 70" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="10 12" class="road"/>
-      <g id="tramStops"></g>
-      <g id="tram"><g transform="translate(-26 -30)">
-        <rect x="0" y="6" width="52" height="24" rx="6" fill="#558b2f"/><rect x="0" y="2" width="52" height="7" rx="3" fill="#33691e"/>
-        <rect x="5" y="12" width="10" height="9" rx="2" fill="#e6f0d9"/><rect x="21" y="12" width="10" height="9" rx="2" fill="#e6f0d9"/><rect x="37" y="12" width="10" height="9" rx="2" fill="#e6f0d9"/>
-        <circle cx="12" cy="31" r="5" fill="#3e2723"/><circle cx="40" cy="31" r="5" fill="#3e2723"/><rect x="44" y="22" width="8" height="4" fill="#f9a825"/></g>
-        <animateMotion dur="26s" repeatCount="indefinite" rotate="0"><mpath href="#tramPath"/></animateMotion>
-      </g>
+  <h1>เส้นทางรถราง 23 จุด</h1>
+  <p class="lead">รถรางพาชมศูนย์ศึกษาวิธีการฟื้นฟูที่ดินเสื่อมโทรมเขาชะงุ้มฯ ระยะทางประมาณ 5 กิโลเมตร ใช้เวลาประมาณ 30 นาที ดินดีบัดดี้บรรยายขณะรถวิ่งผ่านจุดต่าง ๆ และพาผู้ชมลงชมที่สถานีฐานเรียนรู้</p>
+  <div class="note"><b>ข้อมูลการจอดรถ:</b> หน้านี้ถือว่ารถรางจอดเฉพาะที่สถานีฐานเรียนรู้ (B1 และกลุ่ม B2–B5 ซึ่งอยู่ใกล้กัน) ส่วนจุดอื่นบรรยายขณะรถวิ่ง โปรดยืนยันกับผู้จัดอีกครั้งก่อนวันงาน</div>
+  <div class="card" style="margin-top:14px">
+    <svg class="route-strip" viewBox="0 0 1000 120" role="img" aria-label="แถบเส้นทาง 23 จุด">
+      <path id="stripPath" d="M30 70 H970" stroke="#d7ccc8" stroke-width="14" stroke-linecap="round"/>
+      <path d="M30 70 H970" stroke="#fff" stroke-width="3" stroke-dasharray="10 12" class="road"/>
+      <g id="stripDots"></g>
+      <g id="stripTram"><g transform="translate(-22 -26)"><rect x="0" y="4" width="44" height="20" rx="5" fill="#558b2f"/><rect x="0" y="0" width="44" height="6" rx="3" fill="#33691e"/><rect x="5" y="9" width="9" height="8" rx="2" fill="#e6f0d9"/><rect x="18" y="9" width="9" height="8" rx="2" fill="#e6f0d9"/><rect x="31" y="9" width="9" height="8" rx="2" fill="#e6f0d9"/><circle cx="10" cy="25" r="4" fill="#3e2723"/><circle cx="34" cy="25" r="4" fill="#3e2723"/></g>
+        <animateMotion dur="30s" repeatCount="indefinite"><mpath href="#stripPath"/></animateMotion></g>
     </svg>
-    <p class="counter" style="margin:4px 0 0;text-align:center">กดหมายเลขบนเส้นทางเพื่อไปยังข้อมูลจุดนั้น</p>
+    <div class="row" style="justify-content:center;gap:16px;font-size:13.5px;color:var(--muted)"><span><i class="lg lg-ride"></i> บรรยายขณะรถวิ่ง</span><span><i class="lg lg-stop"></i> จุดจอดสถานี ลงชม</span><span><i class="lg lg-theme"></i> จุดเชื่อมธีมดินดาน</span></div>
+    <p class="counter" style="text-align:center;margin:6px 0 0">กดหมายเลขเพื่อไปยังข้อมูลจุดนั้น</p>
   </div>
-  <div class="sec-head"><div><div class="eyebrow">ON THE TRAM</div><h2>บทบาท 4 ขั้นของดินดีบัดดี้ในแต่ละจุด</h2></div></div>
+  <figure class="card map-fig"><img src="img/route-map.webp" alt="แผนที่เส้นทางรถราง 23 จุด ศูนย์ศึกษาวิธีการฟื้นฟูที่ดินเสื่อมโทรมเขาชะงุ้มฯ" data-zoom><figcaption class="counter">แผนที่เส้นทางจากบทมัคคุเทศก์รถรางชมศูนย์ฯ กดที่ภาพเพื่อขยาย</figcaption></figure>
+
+  <div class="sec-head"><div><div class="eyebrow">ON THE TRAM</div><h2>บทบาท 4 ขั้นของดินดีบัดดี้บนรถราง</h2></div></div>
   <div class="grid g4">
-    <div class="card"><span class="tag">1 · บนรถ</span><p>พูดแนะนำจุดถัดไป 20–30 วินาที ใช้ Hook 1 ประโยค และบอกสิ่งที่ควรสังเกต</p></div>
-    <div class="card"><span class="tag">2 · ก่อนลงรถ</span><p>บอกเวลาที่ใช้ในจุดนี้ จุดขึ้นรถ และเวลานัดกลับขึ้นรถ</p></div>
-    <div class="card"><span class="tag">3 · ที่จุดนำชม</span><p>นำชมด้วย Hook → Explain → Connect → Takeaway และใช้คำถามชวนสังเกต</p></div>
-    <div class="card"><span class="tag">4 · ก่อนออกรถ</span><p>นับจำนวนผู้ชมให้ครบ สรุป 1 ประโยค และเชื่อมไปยังจุดถัดไป</p></div>
+    <div class="card"><span class="tag">1 · ก่อนออกรถ</span><p>ต้อนรับ แนะนำตัว บอกเส้นทางและเวลา ขอให้นั่งให้เรียบร้อยและไม่ยื่นแขนออกนอกรถขณะรถวิ่ง</p></div>
+    <div class="card"><span class="tag">2 · ระหว่างรถวิ่ง</span><p>บอกซ้ายมือหรือขวามือก่อนรถถึงจุด ชี้ให้ดู พูดประโยคสั้น และใช้คำถามให้เลือกหรือยกมือ</p></div>
+    <div class="card"><span class="tag">3 · จุดจอดสถานี</span><p>บอกเวลาที่ใช้และจุดขึ้นรถ นำชมด้วย Hook → Explain → Connect → Takeaway และนับจำนวนก่อนออกรถ</p></div>
+    <div class="card"><span class="tag">4 · ปิดท้าย</span><p>สรุปทั้งเส้นทาง ขอบคุณ ชวนทำแบบประเมินรับของที่ระลึก และแวะ DINDEE MARKET</p></div>
   </div>
-  <div class="sec-head"><div><div class="eyebrow">CURIOSITY QUESTIONS</div><h2>คำถามชวนคิดก่อนถึงแต่ละจุด</h2></div></div>
+
+  <div class="sec-head"><div><div class="eyebrow">TIME BUDGET</div><h2>งบเวลาบรรยาย</h2></div></div>
+  <p>บทของศูนย์ฯ ยาวประมาณ 22,500 ตัวอักษร ถ้าอ่านครบทุกคำใช้เวลาราว 34 นาที เกินเวลารถรางประมาณ 30 นาที แนะนำให้เรียบเรียงเหลือราว 25 นาที เพื่อเหลือเวลาสำหรับคำถามและช่วงเงียบให้ผู้ชมได้มอง เวลาในตารางเป็นค่าประมาณจากความยาวบท ไม่รวมเวลาที่สถานี</p>
+  <div id="budgetTable"></div>
+
+  <div class="sec-head"><div><div class="eyebrow">THEME MOMENTS</div><h2>จุดเชื่อมธีม “พลิกฟื้นดินดาน”</h2></div></div>
+  <p class="counter" style="margin-top:-4px">จุดเหล่านี้เชื่อมกับหัวข้องานวันดินโลก ปี 2569 ได้ดี ควรให้เวลาและใช้คำถาม</p>
+  <div class="grid g3" id="themeList"></div>
+
+  <div class="sec-head"><div><div class="eyebrow">CURIOSITY QUESTIONS</div><h2>คำถามชวนคิดบนรถราง</h2></div></div>
   <div class="grid g2">
     <div class="card"><b>หลักการถามบนรถราง</b><ul class="clean">
-      <li><b>ถามแต่ยังไม่เฉลย</b> ให้ผู้ชมไปหาคำตอบเองเมื่อถึงจุด ความสงสัยทำให้ผู้ชมตั้งใจดู</li>
+      <li><b>ถามก่อนถึงจุด แล้วให้ผู้ชมมองหาคำตอบ</b> ความสงสัยทำให้ผู้ชมตั้งใจมอง</li>
       <li><b>ใช้คำถามให้เลือกหรือยกมือ</b> เพราะบนรถเสียงดัง ผู้ชมตอบได้โดยไม่ต้องตะโกน</li>
-      <li><b>ถาม 1–2 คำถามต่อช่วง</b> ไม่ถามรัวจนผู้ชมเหนื่อย</li>
-      <li><b>เฉลยที่จุดนำชม</b> แล้วชี้ของจริงประกอบคำตอบ</li>
-      <li><b>คำถามที่ไม่มีคำตอบผิด</b> ใช้กับกลุ่มเงียบหรือเด็ก เพื่อให้กล้าตอบ</li>
+      <li><b>ถาม 1 คำถามต่อช่วง</b> ไม่ถามรัวจนผู้ชมเหนื่อย</li>
+      <li><b>เฉลยเมื่อรถถึงจุด</b> แล้วชี้ของจริงประกอบคำตอบ</li>
+      <li><b>คำถามที่ไม่มีคำตอบผิด</b> ใช้กับกลุ่มเงียบหรือเด็ก</li>
     </ul></div>
-    <div class="card"><div class="qpick"><b>🎲 สุ่มคำถามบนรถราง</b><select id="tqStop" aria-label="เลือกจุด"></select></div>
+    <div class="card"><div class="qpick"><b>🎲 สุ่มคำถามบนรถราง</b><select id="tqStop" aria-label="เลือกช่วง"></select></div>
       <div class="controls"><button class="btn" id="tqRoll">🎲 สุ่มคำถาม</button><button class="btn ghost sm" data-proj>โหมดจอใหญ่</button></div>
-      <div class="stage empty" id="tqStage" style="min-height:170px"><div style="font-size:40px">❓</div>เลือกจุด แล้วกดสุ่มคำถาม</div></div>
+      <div class="stage empty" id="tqStage" style="min-height:170px"><div style="font-size:40px">❓</div>เลือกช่วง แล้วกดสุ่มคำถาม</div></div>
   </div>
-  <div class="sec-head"><div><div class="eyebrow">7 STOPS</div><h2>ข้อมูลแต่ละจุด</h2></div></div>
+
+  <div class="sec-head"><div><div class="eyebrow">23 POINTS</div><h2>ข้อมูลแต่ละจุด</h2></div></div>
+  <div class="filter" id="segFilter"></div>
   <div class="grid g2" id="tramGrid"></div>
-  <p class="counter" style="margin-top:14px">ที่มา: เอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ วันดินโลก ปี 2569 หัวข้อ 1–3 และหน้าผังพื้นที่ Zone B ขนาดพื้นที่และศาลาเรียนรู้อ่านจากภาพประกอบในเอกสาร</p>
+
+  <div class="sec-head"><div><div class="eyebrow">ZONE A</div><h2>นิทรรศการโซน A ที่ดินดีบัดดี้ควรรู้</h2></div></div>
+  <p class="counter" style="margin-top:-4px">รถรางอาจไม่ผ่านหรือไม่จอดที่นี่ แต่ผู้ชมมักถาม ดินดีบัดดี้จึงควรตอบได้และแนะนำให้ไปชม</p>
+  <div class="grid g2" id="zoneAGrid"></div>
+  <p class="counter" style="margin-top:14px">ที่มา: บทมัคคุเทศก์รถรางชมศูนย์ฯ งานวันดินโลก 5–9 ธันวาคม 2569 (ฉบับ 21 พ.ย. 2569) และเอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ วันดินโลก ปี 2569 ภาพประกอบจากบทมัคคุเทศก์รถราง</p>
 </section>
 
+<section class="page" id="p-khao">
+  <div class="kicker">ความรู้พื้นฐานก่อนขึ้นรถราง</div>
+  <h1>เขาชะงุ้มในหนึ่งหน้า</h1>
+  <p class="lead">ศูนย์ศึกษาวิธีการฟื้นฟูที่ดินเสื่อมโทรมเขาชะงุ้มอันเนื่องมาจากพระราชดำริ เลขที่ 99 หมู่ 2 ตำบลเขาชะงุ้ม อำเภอโพธาราม จังหวัดราชบุรี</p>
+  <div class="card video-card">
+    <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/_au4RuheJgQ" title="ประวัติความเป็นมาโครงการเขาชะงุ้ม" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <p style="margin:.6em 0 0"><b>คลิป: ประวัติความเป็นมาโครงการเขาชะงุ้ม</b> · เขาชะงุ้มชาแนล Khao-Changum-Channel<br><span class="counter">ถ้าวิดีโอไม่แสดง เปิดดูที่ <a href="https://www.youtube.com/watch?v=_au4RuheJgQ">YouTube</a></span></p>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">KEY NUMBERS</div><h2>ตัวเลขสำคัญ</h2></div></div>
+  <div class="grid g3 stats">
+    <div class="card"><b>869 ไร่</b><span>พื้นที่ศูนย์ฯ 869 ไร่ 3 งาน 27.4 ตารางวา</span></div>
+    <div class="card"><b>3,041 ไร่</b><span>พื้นที่ภูเขาเขียว ยอดเขาสูง 327 เมตรจากระดับน้ำทะเล</span></div>
+    <div class="card"><b>5 กม.</b><span>เส้นทางรถรางศึกษาดูงาน ใช้เวลาประมาณ 30 นาที</span></div>
+    <div class="card"><b>41 ปี</b><span>ดำเนินงานตั้งแต่ปี 2528 ถึงปี 2569</span></div>
+    <div class="card"><b>11 แหล่งน้ำ</b><span>อ่างเก็บน้ำ บ่อกักเก็บน้ำ 6 แห่ง และสระ 4 แห่ง ความจุรวมสูงสุด 274,300 ลบ.ม.</span></div>
+    <div class="card"><b>223 ชนิด</b><span>พรรณไม้ที่พบจากการสำรวจปี 2545 และสัตว์ป่ากว่า 121 ชนิด</span></div>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">TIMELINE</div><h2>ลำดับเหตุการณ์</h2></div></div>
+  <div class="card"><ul class="timeline">
+    <li><b>4 มกราคม 2528</b> วันก่อตั้งโครงการ ในหลวงรัชกาลที่ 9 พระราชทานชื่อ “โครงการศึกษาวิธีการฟื้นฟูที่ดินเสื่อมโทรมเขาชะงุ้มอันเนื่องมาจากพระราชดำริ”</li>
+    <li><b>26 พฤศจิกายน 2529</b> เสด็จฯ ครั้งที่ 1 มีพระราชดำริให้ศึกษาวิธีปรับปรุงดินเสื่อมโทรม และวางระบบปลูกพืชให้เหมาะกับสภาพพื้นที่</li>
+    <li><b>8 มิถุนายน 2535</b> เสด็จฯ ครั้งที่ 2 มีพระราชดำริให้ศึกษาการปลูกหญ้าแฝก และทรงปลูกหญ้าแฝกบริเวณท้ายอ่างเก็บน้ำเขาชะงุ้ม</li>
+    <li><b>15 กรกฎาคม 2539</b> เสด็จฯ ครั้งที่ 3 พระราชทานแนวคิด “ปลูกป่าโดยไม่ต้องปลูก” และทรงปลูกต้นประดู่ป่า</li>
+    <li><b>4 มีนาคม 2542</b> จัดซื้อพื้นที่มูลนิธิชัยพัฒนา 91 ไร่ ตามพระกระแสรับสั่ง และปล่อยไว้เพื่อศึกษาการเปลี่ยนแปลง</li>
+    <li><b>2545</b> สำรวจพบพรรณไม้กว่า 223 ชนิด และสัตว์ป่ากว่า 121 ชนิด ป่าเปลี่ยนจากป่าเต็งรังเป็นป่าเบญจพรรณมากขึ้น</li>
+    <li><b>2554</b> ราษฎรถวายที่ดินผืนล่าสุด (บ่อลูกรังเก่า ปัจจุบันเป็นจุดเรียนรู้หน้าตัดดิน)</li>
+    <li><b>5–9 ธันวาคม 2569</b> งานวันดินโลก ปี 2569 ณ ศูนย์ฯ</li>
+  </ul></div>
+  <div class="sec-head"><div><div class="eyebrow">LAND</div><h2>ที่ดินที่ราษฎรน้อมเกล้าฯ ถวายและจัดซื้อเพิ่ม</h2></div></div>
+  <table><tr><th>พื้นที่</th><th>ขนาด (ไร่-งาน-ตร.ว.)</th><th>บนเส้นทางรถราง</th></tr>
+    <tr><td>พลตำรวจตรีทักษ์ ปัทมสิงห์ ณ อยุธยา (ผืนแรก)</td><td>694-2-41.4</td><td>จุดที่ 4</td></tr>
+    <tr><td>มูลนิธิชัยพัฒนา (จัดซื้อเพิ่ม)</td><td>91-3-81</td><td>จุดที่ 5</td></tr>
+    <tr><td>นายสี วรรณเทวี</td><td>63-1-3</td><td>จุดที่ 12 (ฐาน B1)</td></tr>
+    <tr><td>นางสาววรรณา (ผืนล่าสุด ปี 2554)</td><td>20-0-0</td><td>จุดที่ 6 (หน้าตัดดิน)</td></tr>
+  </table>
+  <div class="sec-head"><div><div class="eyebrow">3 PILLARS</div><h2>การพัฒนา 3 ด้าน</h2></div></div>
+  <div class="grid g3">
+    <div class="card"><span class="tag">ดิน</span><p>ปลูกหญ้าแฝก ปรับปรุงบำรุงดินด้วยปุ๋ยอินทรีย์ จัดระบบอนุรักษ์ดินและน้ำ และเกษตรทฤษฎีใหม่</p></div>
+    <div class="card"><span class="tag water">น้ำ</span><p>อ่างเก็บน้ำเขาชะงุ้ม บ่อกักเก็บน้ำ สระเก็บน้ำ และน้ำบาดาล หน้าแล้งสูบน้ำจากคลองชลประทานมาเติม</p></div>
+    <div class="card"><span class="tag leaf">ป่า</span><p>ปลูกป่าโดยไม่ต้องปลูก และปลูกป่าในใจคน ป้องกันไฟป่าและไม่รบกวนป่า</p></div>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">SOIL SERIES</div><h2>ชุดดินที่พบบนเส้นทาง</h2></div></div>
+  <table><tr><th>ชุดดิน</th><th>ลักษณะ</th><th>จุดที่กล่าวถึง</th></tr>
+    <tr><td>ท่ายาง</td><td>ดินตื้นถึงชั้นกรวด การระบายน้ำดี ความอุดมสมบูรณ์ต่ำ</td><td>4, 5, 10</td></tr>
+    <tr><td>ลาดหญ้า</td><td>ดินลึกปานกลาง</td><td>16</td></tr>
+    <tr><td>บางคล้า</td><td>มีหน้าดินมากกว่าบริเวณภูเขา ต้นไม้หนาแน่น</td><td>13</td></tr>
+    <tr><td>ปราณบุรี</td><td>ดินลึก ด้านหน้าศูนย์ฯ ปลูกพืชได้หลายชนิด</td><td>22</td></tr>
+    <tr><td>เขาพลอง</td><td>ดินลึกมาก (จากเอกสารนำเสนอของศูนย์ฯ)</td><td>ไม่ได้ระบุในบทรถราง</td></tr>
+  </table>
+  <div class="sec-head"><div><div class="eyebrow">FOREST</div><h2>“ปลูกป่าโดยไม่ต้องปลูก” 3 วิธี</h2></div></div>
+  <div class="card"><ol class="clean">
+    <li>เมื่อเลือกพื้นที่ที่เหมาะสมแล้ว ปล่อยป่าไว้ ป่าจะเติบโตเองจนสมบูรณ์</li>
+    <li>ไม่รังแกป่า เพียงคุ้มครองให้ต้นไม้ขึ้นเอง</li>
+    <li>ในป่าเต็งรังหรือป่าเสื่อมโทรม ตอไม้จะแตกกิ่งขึ้นมาใหม่ และเติบโตเป็นไม้ใหญ่ได้</li>
+  </ol><p class="counter" style="margin:.4em 0 0">สรุปความจากเอกสารนำเสนอของศูนย์ฯ ใช้ประกอบจุดที่ 5, 7, 8 และ 11</p></div>
+  <div class="sec-head"><div><div class="eyebrow">OUTREACH</div><h2>งานขยายผล</h2></div></div>
+  <div class="card"><ul class="clean">
+    <li>พื้นที่ขยายผล 12 หมู่บ้านรอบโครงการในตำบลเขาชะงุ้ม 45,018 ไร่ และ 3 ตำบลใกล้เคียง</li>
+    <li>พัฒนากลุ่มเกษตรกรสู่มาตรฐานเกษตรอินทรีย์ PGS 4 กลุ่ม</li>
+    <li>ส่งเสริมแปลงเกษตรเพื่ออาหารกลางวันในโรงเรียนรอบโครงการ 14 โรงเรียน และโรงเรียนตำรวจตระเวนชายแดน 2 โรงเรียน</li>
+    <li>โครงการมัคคุเทศก์น้อย และตลาดนั่งยาง เปิดเสาร์ อาทิตย์ และวันหยุดนักขัตฤกษ์ เวลา 8.00–14.30 น.</li>
+  </ul></div>
+  <p class="counter" style="margin-top:14px">ที่มา: เอกสารนำเสนอศูนย์ศึกษาวิธีการฟื้นฟูที่ดินเสื่อมโทรมเขาชะงุ้มฯ และบทมัคคุเทศก์รถรางชมศูนย์ฯ (21 พ.ย. 2569)</p>
+</section>
 
 <section class="page" id="p-script">
   <div class="kicker">ใช้ในช่วงที่ 3 · จัดทำ Script สำหรับ “ดินดีบัดดี้”</div>
@@ -767,31 +876,31 @@ tr.mine a{color:var(--leaf);text-decoration:none}
     <p class="lock-err" id="lockErr" aria-live="polite"></p>
   </div>
   <div id="scriptBody" hidden>
-    <p class="lead">แบบฟอร์มนี้ช่วยให้แต่ละกลุ่มเขียน Script สำหรับจุดที่รับผิดชอบ เลือกจุด แล้วใช้ข้อมูลช่วยคิดในกรอบสีเขียว เว็บไม่บันทึกสิ่งที่เขียน ให้กด “คัดลอกแบบฟอร์ม” ไปวางใน Word หรือ Google Docs หรือเขียนลงกระดาษ</p>
+    <p class="lead">แบบฟอร์มนี้ช่วยให้แต่ละกลุ่มเรียบเรียงบทรถรางของศูนย์ฯ สำหรับช่วงที่รับผิดชอบให้พอดีเวลา เลือกช่วง แล้วใช้ข้อมูลช่วยคิดในกรอบสีเขียว เว็บไม่บันทึกสิ่งที่เขียน ให้กด “คัดลอกแบบฟอร์ม” ไปวางใน Word หรือ Google Docs หรือเขียนลงกระดาษ</p>
     <div class="card"><div class="row" style="justify-content:space-between">
-      <div class="row"><b>เลือกจุด</b><select id="scStop" aria-label="เลือกจุด"></select></div>
+      <div class="row"><b>เลือกช่วง</b><select id="scStop" aria-label="เลือกช่วง"></select></div>
       <div class="row"><button class="btn water" id="scCopy" type="button">📋 คัดลอกแบบฟอร์ม</button><span class="counter" id="scCopyMsg" aria-live="polite"></span></div>
     </div></div>
     <div id="scForm"></div>
-    <h2>ตัวอย่าง Script จุดที่ 1 · อาคาร A3-1</h2>
+    <h2>ตัวอย่าง: แยกส่วนต้องพูดกับส่วนเสริม</h2>
     <div class="card script-ex">
-      <div class="ph"><span class="tag">บนรถ · 30 วินาที</span><p>“สวัสดีค่ะทุกท่าน ดิฉัน [ชื่อ] ดินดีบัดดี้ประจำรถรางคันนี้ค่ะ ก่อนถึงจุดแรก ขอถามเล่น ๆ หนึ่งข้อนะคะ ทายดูไหมคะว่าอาหารที่เรากินทุกวัน กี่เปอร์เซ็นต์มีต้นกำเนิดจากดิน เก็บคำตอบไว้ในใจก่อน แล้วไปหาคำตอบด้วยกันที่อาคาร A3-1 ค่ะ”</p></div>
-      <div class="ph"><span class="tag">ก่อนลงรถ · 15 วินาที</span><p>“เราจะอยู่ที่จุดนี้ประมาณ [__] นาที เมื่อชมเสร็จ ขึ้นรถที่ [จุดขึ้นรถ] นะคะ เวลานัดคือ [__] น. ค่ะ”</p></div>
-      <div class="ph"><span class="tag">ที่จุดนำชม · 4–5 นาที</span>
-        <p><b>Hook:</b> “คำตอบคือร้อยละ 95 ค่ะ เกือบทุกจานที่เรากินเริ่มต้นจากดิน”</p>
-        <p><b>Explain:</b> “วันดินโลกตรงกับวันที่ 5 ธันวาคม ซึ่งเป็นวันคล้ายวันพระบรมราชสมภพของในหลวงรัชกาลที่ 9 ปีนี้ใช้หัวข้อ พลิกฟื้นดินดาน เพิ่มผลผลิตอาหาร สานชีวิตยั่งยืน เพราะพื้นที่เกษตรของไทยเกือบ 3 ใน 4 เสี่ยงต่อดินอัดแน่น แม้ส่วนใหญ่ยังอยู่ในระยะเริ่มต้นก็ตาม”</p>
-        <p><b>Connect:</b> “ลองนึกถึงสนามหญ้าที่คนเดินผ่านทุกวัน ฝนตกแล้วน้ำขังใช่ไหมคะ ดินในแปลงเกษตรที่ถูกเครื่องจักรหนักทับซ้ำ ๆ ก็เป็นแบบเดียวกัน”</p>
-        <p><b>กิจกรรมสั้น:</b> “ที่โมเดลอะคริลิกตรงนี้ ทายก่อนนะคะว่าเทน้ำแล้ว ฝั่งไหนน้ำจะไหลลงถังมากกว่า ยกมือเลือกฝั่งซ้ายหรือขวาได้เลยค่ะ”</p>
-        <p><b>Takeaway:</b> “ดินที่มีโครงสร้างดี ช่วยให้รากพืชเติบโตและใช้น้ำได้ดี อาหารบนจานของเราก็มั่นคงขึ้นค่ะ”</p></div>
-      <div class="ph"><span class="tag">ก่อนออกรถ · 15 วินาที</span><p>“ขอนับจำนวนก่อนนะคะ ครบแล้วค่ะ จุดต่อไปคืออาคารที่สร้างจากดินทั้งหลัง ลองเดาดูนะคะว่าทำไมต้องใช้ดิน”</p></div>
-      <div class="ph"><span class="tag sun">แผนสำรอง</span><ul class="clean"><li><b>เวลาน้อย:</b> พูด Takeaway 1 ประโยค แล้วชี้ให้ผู้ชมดูโมเดลเอง</li><li><b>ผู้ชมเงียบ:</b> เปลี่ยนเป็นคำถามให้ยกมือเลือก</li><li><b>ถูกถามสิ่งที่ไม่รู้:</b> “เป็นคำถามที่ดีมากค่ะ ขอส่งต่อให้นักวิชาการประจำโซน LAB ตอบนะคะ”</li></ul></div>
+      <div class="ph"><span class="tag">จุดที่ 1 · ก่อนออกรถ</span>
+        <p><b>ต้องพูด:</b> “สวัสดีค่ะ ดิฉัน [ชื่อ] ดินดีบัดดี้ประจำรถรางคันนี้ ยินดีต้อนรับสู่งานวันดินโลก พลิกฟื้นดินดาน เพิ่มผลผลิตอาหาร สานชีวิตยั่งยืน รถรางจะพาทุกท่านชมการฟื้นฟูผืนดินเสื่อมโทรมเขาชะงุ้ม ระยะทางประมาณ 5 กิโลเมตร ใช้เวลาประมาณ 30 นาที ขอให้นั่งให้เรียบร้อยขณะรถวิ่งนะคะ”</p>
+        <p><b>เสริมถ้ามีเวลา:</b> ต้นยางนาที่ในหลวงรัชกาลที่ 9 ทรงให้ปลูก และตลาดนั่งยางที่เปิดวันหยุด</p></div>
+      <div class="ph"><span class="tag">จุดที่ 6 · หน้าตัดดิน · 👉 ขวามือ · 🟫 จุดเชื่อมธีม</span>
+        <p><b>ต้องพูด:</b> “ทางขวามือคือบ่อลูกรังเก่า ที่ราษฎรถวายเป็นผืนล่าสุดเมื่อปี 2554 ปัจจุบันเป็นบ่อน้ำและจุดเรียนรู้หน้าตัดดินครับ ลองดูรากต้นยูคาลิปตัสตรงหน้าตัดดิน รากลงไปได้ไม่ลึก เพราะลึกลงไปราว 50 เซนติเมตรมีชั้นลูกรัง กรวด หรือชั้นดานแข็ง นี่คือดินดาน หัวข้อของงานวันดินโลกปีนี้ครับ”</p>
+        <p><b>เสริมถ้ามีเวลา:</b> ดินแบบนี้ไม่อุ้มน้ำและชะล้างง่าย พื้นที่ดินตื้นมาก ศูนย์ฯ จึงฟื้นฟูเป็นป่า ให้ป่าห่มดิน</p>
+        <p><b>คำถาม:</b> “ก่อนถึงหน้าตัดดิน ทายดูไหมครับ รากต้นไม้ตรงนี้ลงไปลึกได้แค่ไหน”</p></div>
+      <div class="ph"><span class="tag">จุดที่ 11 · 👈 ซ้ายมือ และ 👉 ขวามือ · พูดสั้น</span>
+        <p><b>ต้องพูด:</b> “ซ้ายมือคือป่าที่ปลูกไม้โตเร็วร่วมกับไม้โตช้า ขวามือคือป่าที่ฟื้นขึ้นมาเองโดยไม่ได้ปลูก ทั้งสองฝั่งอุดมสมบูรณ์ แต่ป่าธรรมชาติใช้ต้นทุนดูแลน้อยกว่า ตามแนวพระราชดำริ ปลูกป่าโดยไม่ต้องปลูกค่ะ”</p></div>
+      <div class="ph"><span class="tag sun">แผนสำรอง</span><ul class="clean"><li><b>รถวิ่งเร็วกว่าบท:</b> ตัดส่วนเสริม พูดเฉพาะประโยคต้องพูด</li><li><b>ผู้ชมเงียบ:</b> เปลี่ยนเป็นคำถามให้ยกมือเลือก</li><li><b>ถูกถามสิ่งที่ไม่รู้:</b> “เป็นคำถามที่ดีมากค่ะ ขอสอบถามเจ้าหน้าที่ศูนย์ฯ แล้วแจ้งให้ทราบที่สถานีถัดไปนะคะ”</li></ul></div>
     </div>
     <h2>ตรวจก่อนส่ง Script ฉบับสมบูรณ์</h2>
     <div class="card"><ul class="clean">
       <li>ข้อมูลและตัวเลขตรงกับเอกสารข้อมูลวิชาการ</li>
-      <li>พูดบนรถไม่เกิน 30 วินาที และที่จุดไม่เกินเวลาที่วางแผน</li>
-      <li>มีคำถามชวนคิดอย่างน้อย 2 ข้อ และกิจกรรมสั้น 1 อย่าง</li>
-      <li>บอกจุดขึ้นรถและเวลานัดชัดเจน</li>
+      <li>รวมเวลาส่วนที่ต้องพูดไม่เกินเป้าหมายของช่วง</li><li>บอกซ้ายมือหรือขวามือก่อนรถถึงทุกจุด</li><li>มีจุดเชื่อมธีมดินดานอย่างน้อย 1 จุด ถ้าช่วงนั้นมี</li>
+      <li>มีคำถามชวนคิดอย่างน้อย 1 ข้อต่อช่วง และกิจกรรมสั้นที่สถานี ถ้าช่วงนั้นมีจุดจอด</li>
+      <li>ที่สถานี บอกเวลาและจุดขึ้นรถชัดเจน</li>
       <li>มีแผนสำรองอย่างน้อย 3 กรณี</li>
       <li>จุดที่เกี่ยวกับสถาบันพระมหากษัตริย์ ใช้ราชาศัพท์ถูกต้อง</li>
     </ul></div>
@@ -914,10 +1023,19 @@ tr.mine a{color:var(--leaf);text-decoration:none}
   <div class="kicker">สำหรับทีมวิทยากร</div>
   <h1>สิ่งที่ต้องเตรียม</h1>
   <div class="grid g2">
-    <div class="card"><h3>การจัดห้อง</h3><ul class="clean"><li>โต๊ะกลุ่มย่อย 4–6 คน</li><li>พื้นที่ว่างสำหรับจำลองการนำชม 3–4 จุด</li><li>ห้องประชุม 1601 ชั้น 6 กรมพัฒนาที่ดิน</li><li>จอโปรเจกเตอร์สำหรับเปิดเว็บนี้ในโหมดจอใหญ่</li><li>Wi-Fi หรือ QR Code ลิงก์เว็บ ให้ผู้เข้าอบรมเปิดบนโทรศัพท์</li></ul></div>
+    <div class="card"><h3>การจัดห้อง</h3><ul class="clean"><li>โต๊ะกลุ่มย่อย 4–6 คน</li><li>จัดเก้าอี้เป็นแถวเหมือนรถรางสำหรับฝึกรถรางจำลอง 8–9 ชุด และจอหรือแท็บเล็ตเปิดภาพแต่ละจุด</li><li>ห้องประชุม 1601 ชั้น 6 กรมพัฒนาที่ดิน</li><li>จอโปรเจกเตอร์สำหรับเปิดเว็บนี้ในโหมดจอใหญ่</li><li>Wi-Fi หรือ QR Code ลิงก์เว็บ ให้ผู้เข้าอบรมเปิดบนโทรศัพท์</li></ul></div>
     <div class="card"><h3>สื่อและเอกสาร</h3><ul class="clean"><li>Speaking &amp; Storytelling Worksheet (บทเปิด 60 วิ และโครงเรื่อง 90 วิ)</li><li>แบบฟอร์มแผนเดินทาง และแบบฟอร์ม Script ดินดีบัดดี้ กลุ่มละ 1 ชุด</li><li>แบบประเมินการนำชมฉบับกระดาษ พร้อมช่อง ชม 1 · แนะ 1 · ลอง 1</li><li>กระดาษประเมินความมั่นใจของตนเอง</li><li>เอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ ฉบับเต็ม 1 ชุดต่อกลุ่ม</li></ul></div>
     <div class="card"><h3>อุปกรณ์</h3><ul class="clean"><li>ไมโครโฟน 2 ตัว</li><li>โทรศัพท์สำหรับบันทึกวิดีโอการพูดของตนเอง</li><li>ตัวอย่างดินอัดแน่นและดินร่วน ขวดน้ำ แก้วใส สำหรับสาธิตการซึมผ่านของน้ำ</li><li>ภาพรากหญ้าแฝก ภาพไส้เดือนดิน หรือของจริงจากนิทรรศการ</li></ul></div>
-    <div class="card"><h3>ก่อนวันอบรม</h3><ul class="clean"><li>ผู้เข้าอบรม 50 คน แบ่ง 7 กลุ่มตามจุดจอดรถราง (กลุ่มละ 7–8 คน) ในช่วงที่ 2</li><li>ประสานคณะทำงานดินดีบัดดี้ 10 คน เป็นผู้ประเมินประจำกลุ่มในช่วงที่ 3</li><li>มอบหมายจุดนิทรรศการหลักให้ผู้เข้าอบรมแต่ละคน</li><li>ตรวจตัวเลขใน Fact Cards กับเอกสารฉบับล่าสุด</li><li>ทดลองเปิดเว็บบนจอห้องอบรมและโทรศัพท์</li></ul></div>
+    <div class="card"><h3>ข้อควรตรวจในบทรถรางก่อนใช้จริง</h3><ul class="clean">
+      <li>ชื่อสะกดไม่ตรงกัน: นางสาววรรณา “พูลผล” “พลูผล” และ “พูนผล”</li>
+      <li>จุดที่ 14: ชื่อพันธุ์หญ้าแฝกที่ส่งเสริม “สงขลา 3 สุราษฎ์ธานี” ควรระบุให้ชัด</li>
+      <li>จุดที่ 22: “มูลนิธิทัตนวัตกรรม” ควรตรวจชื่อหน่วยงาน</li>
+      <li>จุดที่ 8: บทระบุว่าน้ำกระจายไป “บ่อด้านล่าง 11 บ่อ” แต่เอกสารนำเสนอระบุแหล่งน้ำรวม 11 แห่งรวมอ่าง ควรตรวจตัวเลข</li>
+      <li>ชุดดินด้านหน้าศูนย์ฯ: บทระบุ “ปราณบุรี” เอกสารนำเสนอระบุ “เขาพลอง” ควรยืนยัน</li>
+      <li>คำพิมพ์ผิด เช่น อาธิ การต่อตั้งศูนย์ เบจพรรณ ป้องการการ บุรุก เซนติเมต พืชสมุนเวียน ตะไคล้ จุลิทรีย์ และ “จังหวัดราชบุรี” ซ้ำ</li>
+      <li>ท้ายบท “ในนามของมัคคุเทศก์” เปลี่ยนเป็น “ในนามของดินดีบัดดี้”</li>
+    </ul></div>
+    <div class="card"><h3>ก่อนวันอบรม</h3><ul class="clean"><li>ผู้เข้าอบรม 50 คน แบ่ง 6 กลุ่มตามช่วงเส้นทางรถราง (กลุ่มละ 8–9 คน) ในช่วงที่ 2</li><li>ประสานคณะทำงานดินดีบัดดี้ 10 คน เป็นผู้ประเมินประจำกลุ่มในช่วงที่ 3</li><li>มอบหมายจุดนิทรรศการหลักให้ผู้เข้าอบรมแต่ละคน</li><li>ตรวจตัวเลขใน Fact Cards กับเอกสารฉบับล่าสุด</li><li>ทดลองเปิดเว็บบนจอห้องอบรมและโทรศัพท์</li></ul></div>
   </div>
 </section>
 
@@ -1074,9 +1192,113 @@ const TRAMQ = {
   {t:'ให้เลือก',q:'ถ้าเราเป็นไส้เดือน จะเลือกอยู่ในดินแน่นหรือดินร่วนครับ',a:'ดินร่วน และไส้เดือนเองก็ช่วยทำให้ดินร่วนขึ้น'},
   {t:'ทาย',q:'ไส้เดือนช่วยให้ดินดีขึ้นอย่างไร ย่อยเศษใบไม้ ขุดทางให้อากาศและน้ำผ่าน หรือทั้งสองอย่าง',a:'ทั้งสองอย่าง ย่อยสลายอินทรียวัตถุและสร้างช่องทางในดิน'},
   {t:'ทาย',q:'มูลของไส้เดือนนำไปใช้ทำอะไรได้คะ',a:'ใช้ประโยชน์ทางการเกษตร เช่น ใช้บำรุงดินและพืช'},
-  {t:'ทบทวน',q:'จากทั้ง 7 จุด ถ้าต้องแก้ดินแน่นที่บ้าน จะเลือกวิธีไหน 1 วิธีครับ',a:'ใช้ปิดทริป เชื่อมราก หญ้าแฝก จุลินทรีย์ อินทรียวัตถุ และไส้เดือน'}]
+  {t:'ทบทวน',q:'จากทั้งเส้นทาง ถ้าต้องแก้ดินแน่นที่บ้าน จะเลือกวิธีไหน 1 วิธีครับ',a:'ใช้ปิดทริป เชื่อมราก หญ้าแฝก จุลินทรีย์ อินทรียวัตถุ และไส้เดือน'}]
 };
 TRAM.forEach(t=>t.qs=TRAMQ[t.n]||[]);
+const SEGS = [
+ {id:1,name:'ออกเดินทางและประวัติศูนย์ฯ',pts:[1,2,3]},
+ {id:2,name:'ฟื้นฟูดินเสื่อมโทรมและป่า',pts:[4,5,6,7]},
+ {id:3,name:'อ่างเก็บน้ำ เขาเขียว และสิ่งทรงปลูก',pts:[8,9,10,11]},
+ {id:4,name:'แฝกกำแพงมีชีวิตและอุโมงค์ต้นไม้',pts:[12,13,14,15]},
+ {id:5,name:'ฐานเรียนรู้โซน B',pts:[16,17,18,19,20]},
+ {id:6,name:'แปลงเกษตรและปิดท้าย',pts:[21,22,23]}
+];
+const ROUTE = [
+ {n:1,name:'จุดบริการรถราง',mode:'start',side:'',chars:1444,img:['p1-1'],
+  see:'รถออกจากจุดบริการรถราง วิ่งผ่านแปลงยางนา',
+  facts:['ต้อนรับและแนะนำตัว พร้อมหัวข้องานวันดินโลก ปี 2569','รถรางพาชมระยะทางประมาณ 5 กิโลเมตร ใช้เวลาประมาณ 30 นาที','ต้นยางนาเป็นหนึ่งในต้นไม้ที่ในหลวงรัชกาลที่ 9 ทรงให้ปลูก ปัจจุบันเป็นที่ตั้งตลาดนั่งยาง (เปิดเสาร์ อาทิตย์ และวันหยุดนักขัตฤกษ์)','แปลงดอกไม้ปลูกหมุนเวียน เช่น ทานตะวัน และปอเทือง'],
+  theme:'',qs:[{t:'ชวนคิด',q:'ทายดูไหมคะ พื้นที่สีเขียวที่เห็นวันนี้ เมื่อประมาณ 40 ปีก่อนมีสภาพเป็นอย่างไร',a:'เป็นพื้นที่ดินเสื่อมโทรม ดินตื้น ดินลูกรัง และแห้งแล้ง จะเล่าต่อที่จุดที่ 2–3'}]},
+ {n:2,name:'แปลงป่า 3 อย่าง ประโยชน์ 4 อย่าง และกองปุ๋ยหมัก',mode:'ride',side:'ขวามือ',chars:2156,img:['p2-1','p2-2'],
+  see:'ซ้ายมือบ่อผ้ายางสีดำ ขวามือแปลงป่า 3 อย่าง ประโยชน์ 4 อย่าง และกองปุ๋ยหมัก',
+  facts:['ปลูกไม้ยืนต้น เช่น มะม่วง ขนุน และกาแฟพันธุ์โรบัสต้า ดอกกาแฟนำมาทำชาดอกกาแฟ ขายที่ร้านเขาชะงุ้มคาเฟ่','กองปุ๋ยหมักทำจากกากอ้อย ขี้ไก่แกลบ ขุยมะพร้าว รำข้าว และใบไม้ในศูนย์ฯ หมักด้วยสารเร่งซุปเปอร์ พด.1','ประวัติ: ราษฎรน้อมเกล้าฯ ถวายที่ดินเสื่อมโทรม ดินตื้น ดินลูกรัง มีการขุดหน้าดินและลูกรังไปขาย อยู่ในเขตอับฝนและนอกเขตชลประทาน','4 มกราคม 2528 ทรงรับพื้นที่และพระราชทานชื่อโครงการ เสด็จฯ 3 ครั้ง: 26 พ.ย. 2529, 8 มิ.ย. 2535 และ 15 ก.ค. 2539'],
+  theme:'ดินเสื่อมโทรมเพราะถูกขุดหน้าดินและลูกรังไปขาย',qs:[{t:'ทาย',q:'ทายดูไหมครับ ในหลวงรัชกาลที่ 9 เสด็จพระราชดำเนินมาที่นี่กี่ครั้ง',a:'3 ครั้ง ในปี 2529, 2535 และ 2539'},{t:'เชื่อมโยง',q:'กองปุ๋ยหมักนี้ทำจากเศษวัสดุเกษตร ที่บ้านเรามีวัสดุอะไรที่ทำปุ๋ยหมักได้บ้างคะ',a:'เช่น ใบไม้ เศษผัก แกลบ รำข้าว'}]},
+ {n:3,name:'แปลงอนุรักษ์พันธุกรรมพืชอันเนื่องมาจากพระราชดำริ',mode:'ride',side:'ซ้ายมือ',chars:934,img:['p3-1','p3-2'],
+  see:'ซ้ายมือแปลงอนุรักษ์พันธุกรรมพืช และป้ายภาพเขาชะงุ้มในอดีต',
+  facts:['รวบรวม ปกปักรักษา และอนุรักษ์พันธุ์พืชท้องถิ่นที่มีคุณค่า เป็นแหล่งเรียนรู้สำหรับคนรุ่นต่อไป','ภาพเขาชะงุ้มในอดีต: แห้งแล้ง ดินลูกรัง แทบไม่มีต้นไม้ใหญ่','กรมพัฒนาที่ดินเป็นหน่วยงานหลัก บูรณาการร่วมกับหน่วยงานอื่นในพื้นที่','ระยะแรกพัฒนา 3 ด้าน คือ ดิน แหล่งน้ำ และป่าไม้'],
+  theme:'',qs:[{t:'ชวนสังเกต',q:'ลองเทียบภาพในอดีตกับสิ่งที่เห็นรอบตัวตอนนี้ ต่างกันตรงไหนบ้างคะ',a:'จากพื้นที่แห้งแล้ง ดินลูกรัง กลายเป็นพื้นที่สีเขียว'}]},
+ {n:4,name:'พื้นที่ป่าทดแทนพื้นที่เกษตร (แปลงจัดระบบอนุรักษ์ดินและน้ำ)',mode:'ride',side:'ซ้ายมือ',chars:958,img:['p4-1'],
+  see:'ซ้ายมือพื้นที่ป่าทดแทนพื้นที่เกษตร เดิมเป็นแปลงมะม่วงหิมพานต์',
+  facts:['พื้นที่ของพลตำรวจตรีทักษ์ ปัทมสิงห์ ณ อยุธยา ราษฎรที่ถวายพื้นที่ผืนแรก','เดิมถูกบุกรุกถางป่าทำการเกษตร ดินตื้น ชุดดินท่ายาง','สร้างคันดินขวางแนวลาดชัน ช่วยชะลอน้ำ เก็บตะกอนดิน และรักษาความชุ่มชื้น (ชี้ให้ดูคันดิน)','ทดลองปลูกมะม่วงหิมพานต์ แคฝรั่ง และไม้ยืนต้น แต่ดินตื้นและแห้งแล้งเกินไป จึงฟื้นฟูเป็นป่าทดแทน'],
+  theme:'คันดินขวางความลาดชันช่วยให้น้ำซึมลงดิน',qs:[{t:'ชวนคิด',q:'คันดินที่ขวางแนวลาดชัน ช่วยอะไรเวลาฝนตกครับ',a:'ชะลอน้ำ เก็บตะกอนดิน และทำให้ดินชุ่มชื้นนานขึ้น'}]},
+ {n:5,name:'พื้นที่มูลนิธิชัยพัฒนา',mode:'ride',side:'ขวามือ',chars:1419,img:['p5-1'],
+  see:'ขวามือพื้นที่มูลนิธิชัยพัฒนา 91 ไร่ มีตะแกรงสีฟ้าในป่า',
+  facts:['จัดซื้อเมื่อ 4 มีนาคม 2542 ตามพระกระแสรับสั่ง เป็นที่ดินบ่อลูกรังติดศูนย์ฯ','มีพระราชดำริให้ปล่อยทิ้งไว้ไม่ต้องทำอะไร เพื่อศึกษาการเปลี่ยนแปลงของพื้นที่','เดิมเป็นป่าเต็งรังที่ถูกบุกรุก ขุดลูกรังขาย ดินตื้น ชุดดินท่ายาง','เมื่อไม่มีใครรบกวน ต้นไม้แตกจากตอ ลูกไม้งอกขึ้นเอง จนกลายเป็นป่า','ตะแกรงสีฟ้าคือแปลงเก็บข้อมูลตัวชี้วัด ดิน น้ำ ป่า'],
+  theme:'',qs:[{t:'ทาย',q:'ถ้าปล่อยที่ดินเสื่อมโทรมไว้เฉย ๆ ไม่มีใครรบกวน คิดว่าจะเกิดอะไรขึ้นคะ',a:'ป่าฟื้นตัวได้เอง ต้นไม้แตกจากตอและลูกไม้งอกขึ้นใหม่'}]},
+ {n:6,name:'หน้าตัดดิน (บ่อลูกรังเก่า)',mode:'ride',side:'ขวามือ',chars:856,img:['p6-1','p6-2'],
+  see:'รถวิ่งลงบ่อลูกรัง ขวามือคือบ่อน้ำและจุดเรียนรู้หน้าตัดดิน',
+  facts:['พื้นที่บ่อลูกรังของราษฎรที่ถวายเป็นผืนล่าสุด เมื่อปี 2554','บ่อลูกรังเก่าพัฒนาเป็นบ่อน้ำ สร้างความชุ่มชื้น และเป็นจุดเรียนรู้หน้าตัดดิน','ดินตื้น เนื้อหยาบ พบชั้นลูกรัง กรวด เศษหิน หรือชั้นดานแข็งที่ลึกประมาณ 50 ซม. รากพืชชอนไชยาก (ชี้รากยูคาลิปตัส)','ดินไม่อุ้มน้ำ ชะล้างง่าย พื้นที่ดินตื้นมากจึงฟื้นฟูเป็นป่า ให้ป่าห่มดิน'],
+  theme:'ชั้นดานแข็งที่ลึก 50 ซม. ทำให้รากลงไม่ได้ ตรงกับธีมพลิกฟื้นดินดาน',qs:[{t:'ชวนสังเกต',q:'ลองดูรากต้นยูคาลิปตัสที่หน้าตัดดิน รากหยุดลงลึกตรงไหน เพราะอะไรครับ',a:'หยุดที่ชั้นลูกรังหรือชั้นดานแข็ง ราว 50 ซม. จากผิวดิน'}]},
+ {n:7,name:'งานป่าไม้ และเส้นทางศึกษาธรรมชาติ (พลับพลาทรงงาน)',mode:'ride',side:'ขวามือ',chars:947,img:['p7-1','p7-2'],
+  see:'ขวามือป่าทดแทนพื้นที่เสื่อมโทรม โรงเพาะชำกล้าไม้ และทางเดินขึ้นพลับพลาทรงงาน',
+  facts:['ป่าธรรมชาติที่เห็นส่วนใหญ่เป็นป่ารุ่นที่ 2 และ 3 ที่งอกจากตอไม้เดิม','เมื่อช่วยกันดูแลและป้องกันไฟป่า ป่าฟื้นตัวได้เอง','โรงเพาะชำกล้าไม้ป่า ขยายพันธุ์เพื่อฟื้นฟูพื้นที่และแจกจ่ายประชาชน','เส้นทางเดินตามรอยเท้าพ่อ ขึ้นสู่พลับพลาทรงงาน ระยะเดินขึ้นลงประมาณ 570 เมตร'],
+  theme:'',qs:[{t:'ให้เลือก',q:'ป่าที่เห็นนี้ คนปลูก หรือฟื้นขึ้นมาเอง ยกมือเลือกได้เลยค่ะ',a:'ส่วนใหญ่ฟื้นขึ้นมาเอง เป็นป่ารุ่นที่ 2 และ 3 ที่งอกจากตอไม้เดิม'}]},
+ {n:8,name:'อ่างเก็บน้ำเขาชะงุ้ม และเขาเขียว',mode:'ride',side:'ด้านหน้า',chars:1452,img:['p8-1'],
+  see:'ด้านหน้าคือเขาเขียว อ่างเก็บน้ำอยู่ติดภูเขา มีหญ้าแฝกปลูกรอบอ่าง',
+  facts:['เขาเขียวเคยเป็นภูเขาหัวโล้น ฟื้นด้วยแนวพระราชดำริ "ปลูกป่าโดยไม่ต้องปลูก" และ "ปลูกป่าในใจคน"','ป่ารอยต่อระหว่างป่าเต็งรังและป่าเบญจพรรณ มีแนวโน้มเป็นป่าเบญจพรรณเพิ่มขึ้น','อ่างเก็บน้ำหลักของศูนย์ฯ จุได้ 150,000 ลูกบาศก์เมตร น้ำไหลจากที่สูงลงสู่บ่อด้านล่าง คล้ายอ่างพวง','ฤดูแล้งต้องสูบน้ำจากคลองชลประทานมาเติม','หญ้าแฝกรอบอ่างช่วยยึดหน้าดินและลดการตื้นเขิน','เส้นทางศึกษาธรรมชาติเขาเขียวประมาณ 1.1 กม. มี 13 สถานี และศาลานิทรรศการด้านซ้าย'],
+  theme:'หญ้าแฝกรอบอ่างช่วยลดการชะล้างหน้าดินลงอ่าง',qs:[{t:'ทาย',q:'ทายดูว่าอ่างนี้จุน้ำได้ประมาณเท่าไร 15,000 หรือ 150,000 หรือ 1,500,000 ลูกบาศก์เมตรครับ',a:'150,000 ลูกบาศก์เมตร (ความจุของอ่างนี้ ไม่ใช่ความจุรวมของแหล่งน้ำทั้งศูนย์ฯ)'}]},
+ {n:9,name:'ต้นประดู่ป่า และหญ้าแฝกทรงปลูก',mode:'ride',side:'',chars:1372,img:['p9-1'],
+  see:'ต้นประดู่ป่าทรงปลูก และแนวหญ้าแฝกทรงปลูก',
+  facts:['ต้นประดู่ป่าทรงปลูกเมื่อ 15 กรกฎาคม 2539 (เสด็จฯ ครั้งที่ 3) ประดู่ป่าเป็นไม้ในป่าเบญจพรรณ','หญ้าแฝกทรงปลูกเมื่อ 8 มิถุนายน 2535 (เสด็จฯ ครั้งที่ 2) ปลูกเป็นแนวแทนคันดิน ขวางความลาดเท','หญ้าแฝกในศูนย์ฯ ส่วนใหญ่เป็นแฝกดอน พันธุ์ราชบุรี','รากฝอยยาว ยึดหน้าดิน เก็บความชื้น ลำต้นเหนือดินดักตะกอนและธาตุอาหาร','ใบใช้คลุมดิน ทำจักสาน และศูนย์ฯ สนับสนุนกล้าหญ้าแฝกให้ประชาชน'],
+  theme:'แฝกปลูกเป็นแนวแทนคันดิน ช่วยรักษาหน้าดิน',qs:[{t:'เชื่อมโยง',q:'ใบหญ้าแฝกนำไปทำอะไรได้บ้าง ใครเคยเห็นของใช้จากหญ้าแฝกบ้างคะ',a:'คลุมดิน และทำผลิตภัณฑ์จักสาน'}]},
+ {n:10,name:'แปลงสาธิตการปลูกไม้ผลในพื้นที่ดินตื้น',mode:'ride',side:'ซ้ายมือ',chars:1122,img:['p10-1','p10-2'],
+  see:'ซ้ายมือแปลงไม้ผล และหลุมดินให้ดูลักษณะดินตื้น',
+  facts:['ดินตื้น ชุดดินท่ายาง ปลูกมะม่วง กระท้อน ส้มโอ มะเฟือง และทดลองปลูกทุเรียน เงาะ มังคุด','เลือกพื้นที่ที่มีหน้าดินอย่างน้อย 20 ซม. และปรุงดินเฉพาะหลุม ขุดกว้างอย่างน้อย 50×50 ซม.','ปลูกแฝกเป็นแถวขวางความลาดเท และเป็นครึ่งวงกลมรอบโคนต้น ช่วยเก็บความชื้นและสร้างหน้าดิน','หลุมดินแสดงดินที่แทบไม่มีเนื้อดิน มีชั้นหินแข็ง อุ้มน้ำต่ำ ต้องมีระบบน้ำที่เพียงพอ'],
+  theme:'ดินตื้นมีชั้นหินแข็ง ต้องปรุงดินเฉพาะหลุมก่อนปลูก',qs:[{t:'ชวนคิด',q:'ถ้าหน้าดินลึกแค่ไม่กี่สิบเซนติเมตร จะปลูกไม้ผลให้รอดได้อย่างไรครับ',a:'ปรุงดินเฉพาะหลุม ใส่อินทรียวัตถุ ปลูกแฝกรอบโคน และมีระบบน้ำ'}]},
+ {n:11,name:'แปลงปลูกไม้โตเร็วร่วมกับไม้โตช้า',mode:'ride',side:'ซ้ายมือ',chars:591,img:[],
+  see:'ซ้ายมือแปลงไม้โตเร็ว ขวามือป่าธรรมชาติ',
+  facts:['ปลูกไม้โตเร็ว เช่น มะขามป้อม สะเดา ขี้เหล็ก แคฝรั่ง กระถิน ร่วมกับไม้โตช้า เพื่อสร้างร่มเงา','ขวามือเป็นป่าธรรมชาติที่ฟื้นตัวเอง ไม่ได้ปลูกเพิ่ม','ทั้งสองฝั่งอุดมสมบูรณ์ แต่ป่าธรรมชาติใช้ต้นทุนดูแลน้อยกว่า ตามแนว "ปลูกป่าโดยไม่ต้องปลูก"'],
+  theme:'',qs:[{t:'ให้เลือก',q:'ซ้ายมือปลูก ขวามือไม่ได้ปลูก ฝั่งไหนใช้ต้นทุนดูแลน้อยกว่ากันคะ',a:'ฝั่งขวา ป่าธรรมชาติที่ฟื้นตัวเอง'}]},
+ {n:12,name:'ฐาน B1 แฝกกำแพงมีชีวิต',mode:'stop',side:'',chars:645,img:['p12-1','p12-2'],ref:'b1',
+  see:'แปลงนายสี วรรณเทวี บ่อลูกรังเก่าที่ปัจจุบันเป็นป่า สระน้ำ และแปลงหญ้าแฝก',
+  facts:['นายสี วรรณเทวี น้อมเกล้าฯ ถวายที่ดิน 63 ไร่ เป็นบ่อลูกรังเก่าที่ไม่มีหน้าดินเหลืออยู่','ด้านบนพัฒนาเป็นป่า บ่อลูกรังเปลี่ยนเป็นสระเก็บน้ำ','ปลูกหญ้าแฝกรูปตัววีคว่ำในร่องน้ำ ป้องกันการกัดเซาะและสร้างความชุ่มชื้น','ปลูกพืชปุ๋ยสด เช่น ปอเทือง ถั่วพร้า และถั่วเปรู'],
+  theme:'แฝกและพืชปุ๋ยสดช่วยฟื้นพื้นที่ที่ไม่มีหน้าดิน',qs:[]},
+ {n:13,name:'อุโมงค์ต้นไม้',mode:'ride',side:'สองข้างทาง',chars:1023,img:['p13-1'],
+  see:'รถเข้าสู่อุโมงค์ต้นไม้ ซ้ายมือคันดินเบนน้ำ ขวามือป่าเดิมที่ฟื้นเอง',
+  facts:['ดินบริเวณนี้มีหน้าดินมากกว่าบริเวณภูเขา (ชุดดินบางคล้า) ต้นไม้จึงหนาแน่น','เป็นที่อยู่ของสัตว์ป่า เช่น นก ลิง ไก่ป่า กระรอก แย้ ชาวบ้านเก็บหน่อไม้ เห็ดโคน ผักหวานป่าได้','ทุกคนช่วยกันไม่ตัดไม้ ไม่ล่าสัตว์ และป้องกันไฟป่า','ใกล้ภูเขาดินตื้นจึงฟื้นเป็นป่า ตอนกลางหน้าดินลึก 40–50 ซม. ทำแปลงสาธิต ด้านหน้าศูนย์ฯ ดินลึก ปลูกพืชได้หลายชนิด'],
+  theme:'ความลึกของหน้าดินกำหนดว่าควรใช้พื้นที่ทำอะไร',qs:[{t:'ชวนสังเกต',q:'ลองฟังและมองหาดูนะคะ ใครเห็นหรือได้ยินสัตว์อะไรในอุโมงค์ต้นไม้บ้าง',a:'เช่น นก ลิง ไก่ป่า กระรอก แย้'}]},
+ {n:14,name:'แปลงรวบรวมหญ้าแฝก 28 สายพันธุ์',mode:'ride',side:'ซ้ายมือ',chars:385,img:['p14-1','p14-2'],
+  see:'ซ้ายมือแปลงรวบรวมสายพันธุ์หญ้าแฝก',
+  facts:['กรมพัฒนาที่ดินรวบรวมพันธุ์หญ้าแฝกจากหลายพื้นที่ทั่วประเทศ 28 สายพันธุ์','ใช้ศึกษาและคัดเลือกสายพันธุ์ที่เหมาะสม และส่งเสริมให้เกษตรกรปลูก (ตรวจชื่อพันธุ์ที่ส่งเสริมกับศูนย์ฯ ก่อนพูด)'],
+  theme:'',qs:[{t:'ทาย',q:'ทายดูไหมครับ แปลงนี้รวบรวมหญ้าแฝกไว้กี่สายพันธุ์',a:'28 สายพันธุ์'}]},
+ {n:15,name:'สวนไม้มงคล',mode:'ride',side:'ซ้ายมือ',chars:331,img:[],
+  see:'ซ้ายมือสวนไม้มงคล มีซุ้มไม้เลื้อยด้านหน้า',
+  facts:['รวบรวมพรรณไม้ที่ใช้ในงานมงคล เช่น กล้วย อ้อย ส้มโอ ดอกรัก และดอกมะลิ','ซุ้มมิ่งมงคลปลูกต้นเหลืองชัชวาล ด้านในมีซุ้มพวงชมพู พวงคราม และสร้อยอินทนิล'],
+  theme:'',qs:[]},
+ {n:16,name:'แปลงสาธิตการทำเกษตรแบบผสมผสาน',mode:'ride',side:'',chars:648,img:['p16-1','p16-2'],
+  see:'แปลงผักผสมผสาน และแปลงปลูกผักในภาชนะ',
+  facts:['ดินลึกปานกลางถึงเศษหิน (ชุดดินลาดหญ้า) เดิมหน้าฝนน้ำขังเพราะด้านล่างเป็นหินแข็ง','แก้โดยขุดคู ยกร่องระบายน้ำ และปลูกผักหลายชนิดร่วมกับหญ้าแฝก','ใช้ปุ๋ยหมัก ปุ๋ยคอก น้ำหมักชีวภาพ และมูลไส้เดือนดิน ลดการใช้สารเคมี','ปลูกผักในภาชนะ เช่น ขวดน้ำ ยางรถยนต์ กระสอบ สำหรับผู้มีพื้นที่จำกัด'],
+  theme:'ชั้นหินแข็งด้านล่างทำให้น้ำขัง แก้ด้วยการยกร่องและปลูกแฝก',qs:[{t:'เชื่อมโยง',q:'ที่บ้านใครมีพื้นที่น้อย ลองดูภาชนะในแปลงนี้ คิดว่าจะใช้อะไรปลูกผักได้บ้างคะ',a:'เช่น ขวดน้ำ ยางรถยนต์ กระสอบ'}]},
+ {n:17,name:'ฐาน B2 เกษตรทฤษฎีใหม่',mode:'stop',side:'',chars:1003,img:['p17-1'],ref:'b2',
+  see:'แปลงสาธิตเกษตรทฤษฎีใหม่ 17 ไร่',
+  facts:['แบ่งพื้นที่ 4 ส่วน: แหล่งน้ำร้อยละ 30 ข้าวและพืชอาหารร้อยละ 30 ไม้ผลและไม้ยืนต้นร้อยละ 30 ที่อยู่อาศัยและเลี้ยงสัตว์ร้อยละ 10','เลี้ยงแพะเนื้อ ไก่ไข่อารมณ์ดี กบ เป็ดไข่ ปลาดุก และปลานิล มีผักสวนครัว เพาะเห็ด และแปรรูป','ระบบจัดการดินและน้ำอัจฉริยะด้วย IoT','ปลูกข้าวปีละครั้ง ช่วงวันแม่ เก็บเกี่ยวช่วงวันพ่อ พักแปลงด้วยปุ๋ยพืชสด คันนาปลูกม่อน เชอรี่ และมะพร้าวน้ำหอม'],
+  theme:'',qs:[]},
+ {n:18,name:'ฐาน B3 ฟาร์มอินทรีย์ดีต่อใจ',mode:'stop',side:'',chars:536,img:['p18-1'],ref:'b3',
+  see:'แปลงผักอินทรีย์ สวนอินทรีย์กินได้ และกล่องเลี้ยงผึ้งด้านขวา',
+  facts:['ปลูกพืชผักและไม้ดอก เช่น ชาดอกไม้ ดาวเรือง เก็กฮวย โรสแมรี เปปเปอร์มินต์ หญ้านางแดง','ใช้ไบโอชาร์เป็นวัสดุปรับปรุงดิน และจุลินทรีย์ พด. ทำปุ๋ยหมักและน้ำหมักชีวภาพ','กล่องไม้ด้านขวาคือกล่องเลี้ยงผึ้งโพรงและชันโรง'],
+  theme:'',qs:[]},
+ {n:19,name:'ฐาน B4 จุลินทรีย์ตัวจี๊ดฤทธิ์เยอะ',mode:'stop',side:'ซ้ายและขวามือ',chars:385,img:['p19-1'],ref:'b4',
+  see:'ฐานจุลินทรีย์ ใช้พื้นที่ทั้งสองฝั่ง',
+  facts:['จัดแสดงผลิตภัณฑ์จุลินทรีย์ พด. และจุลินทรีย์สังเคราะห์แสง','สาธิตการนำไปใช้และการผลิตปุ๋ยอินทรีย์','จุลินทรีย์ช่วยหมุนเวียนธาตุอาหารและรักษาสมดุลของระบบนิเวศดิน'],
+  theme:'',qs:[]},
+ {n:20,name:'ฐาน B5 แก๊งดึ๋ย ซุยดิน',mode:'stop',side:'ขวามือ',chars:873,img:['p20-1'],ref:'b5',
+  see:'ขวามือฐานไส้เดือนดิน ด้านหน้าอาคารสำนักงาน ซ้ายมือศาลปู่เจ้าเขาเขียว',
+  facts:['จัดแสดงสายพันธุ์ไส้เดือน ภาชนะเลี้ยง และอาหาร','ไส้เดือนย่อยสลายอินทรียวัตถุ และสร้างช่องทางในดิน ช่วยการถ่ายเทอากาศและการซึมผ่านของน้ำ','สายพันธุ์ที่เลี้ยง: แอฟริกันไนท์ครอว์เลอร์ (AF) ไทเกอร์ และบลูเวิร์ม','บ่อน้ำหน้าอาคารสำนักงานเคยเป็นบ่อลูกรัง ซ้ายมือศาลปู่เจ้าเขาเขียว ขวามือแปลงสมุนไพร'],
+  theme:'ไส้เดือนสร้างช่องทางในดิน ช่วยแก้ดินแน่น',qs:[]},
+ {n:21,name:'งานวิชาการเกษตร',mode:'ride',side:'ขวามือ',chars:852,img:['p21-1'],
+  see:'ขวามือแปลงพืชผสมผสาน บ่อแหนแดง แปลงมะขามเปรี้ยว และบ่อปูผ้ายางดำ',
+  facts:['บ่อปูนสีฟ้าเลี้ยงแหนแดง ใช้เป็นปุ๋ยบำรุงดินและอาหารไก่','ปลูกพืชผสมผสาน เช่น อะโวคาโด ละมุด มะนาว ส้มโอ กระท้อน มะยงชิด','แปลงมะขามเปรี้ยวเก็บไว้เพื่อความร่มเย็น หน้าแล้งใบร่วงเป็นสีชมพู','บ่อปูผ้ายางสีดำ เพราะโครงสร้างดินกักเก็บน้ำไม่ได้ ทำให้มีน้ำใช้ทั้งปี','สองข้างทางคือต้นทองอุไร ออกดอกสีเหลืองตลอดปี'],
+  theme:'ดินกักน้ำไม่ได้ จึงต้องปูผ้ายางให้บ่อเก็บน้ำได้',qs:[{t:'ทาย',q:'ทำไมบ่อน้ำตรงนี้ต้องปูผ้ายางสีดำ ทายดูครับ',a:'เพราะโครงสร้างดินกักเก็บน้ำไม่ได้'}]},
+ {n:22,name:'งานส่งเสริมการเกษตร',mode:'ride',side:'สองข้างทาง',chars:888,img:['p22-1'],
+  see:'ซ้ายมือแปลงมะม่วง ขวามือพืชไร่ ข้าวโพดและปอเทือง',
+  facts:['ด้านหน้าศูนย์ฯ เป็นดินลึก (ชุดดินปราณบุรี) ปลูกได้ทั้งไม้ผลและพืชไร่','ซ้ายมือมะม่วงหลายพันธุ์ ปลูกกาแฟโรบัสต้าและตะไคร้เป็นพืชแซม','ขวามือปลูกข้าวโพดหวานหมุนเวียนกับปอเทืองปรับปรุงดิน','แปลงแฝกพันธุ์สุราษฎร์ธานีเพื่องานเวชภัณฑ์ และอาคารแปรรูปผลิตภัณฑ์'],
+  theme:'ปลูกปอเทืองหมุนเวียนเพื่อปรับปรุงดิน',qs:[{t:'เชื่อมโยง',q:'ตลอดเส้นทางเราเห็นดินตื้นมาหลายจุด ดินตรงนี้ต่างจากจุดก่อน ๆ อย่างไรคะ',a:'เป็นดินลึก จึงปลูกพืชได้หลายชนิด'}]},
+ {n:23,name:'ร้านเขาชะงุ้มช็อป & คาเฟ่ (ปิดท้าย)',mode:'end',side:'',chars:1390,img:['p23-1','p23-2'],
+  see:'รถออกสู่ด้านหน้าศูนย์ฯ ผ่านอาคารน้องลูกรัง',
+  facts:['ศูนย์ฯ ดำเนินงานตั้งแต่ปี 2528 จนถึงปัจจุบัน รวม 41 ปี','ฟื้นฟูดินที่เคยแห้งแล้งให้อุดมสมบูรณ์ ด้วยความร่วมมือของกรมพัฒนาที่ดิน ภาคีเครือข่าย และประชาชน','ขยายผลสู่เกษตรกรและชุมชน สร้างอาชีพและรายได้','5 ธันวาคม เป็นทั้งวันคล้ายวันพระบรมราชสมภพ และวันดินโลก','ขอบคุณ ชวนทำแบบประเมินรับของที่ระลึก และแวะ DINDEE MARKET'],
+  theme:'สรุปทั้งเส้นทาง: ดินเสื่อมโทรมฟื้นได้ด้วยดิน น้ำ ป่า',qs:[{t:'ทบทวน',q:'จากที่ชมมาทั้งหมด มีอะไร 1 อย่างที่อยากกลับไปลองทำที่บ้านหรือที่แปลงของตัวเองคะ',a:'ใช้ปิดทริป ไม่มีคำตอบผิด'}]}
+];
+ROUTE.forEach(r=>{ r.secs=Math.round(r.chars/650*60/10)*10; r.target=Math.round(r.secs*0.72/10)*10; const t=r.ref&&TRAM.find(x=>x.id===r.ref); if(t){ r.qs=t.qs.concat(r.qs||[]); r.hi=t.hi; } r.seg=SEGS.find(s=>s.pts.includes(r.n)).id; });
+
 
 const SITUATIONS = [
  {t:'The Quiet Group',d:'ผู้ชม 6 คน ไม่มีใครยอมตอบคำถามเลย',g:'ชวนคุยโดยไม่กดดันผู้ชม',tip:'เปลี่ยนเป็นคำถามให้เลือกหรือยกมือ ตอบเองเป็นตัวอย่างก่อน 1 ครั้ง'},
@@ -1089,12 +1311,16 @@ const SITUATIONS = [
  {t:'The Foreign Visitor',d:'นักท่องเที่ยวต่างชาติ 3 คนเข้ามาร่วมกลุ่ม และสื่อสารภาษาอังกฤษ',g:'ใช้ภาษาง่าย ท่าทาง และของจริงช่วยอธิบาย',tip:'ใช้ประโยคสั้น ชี้ของจริง เช่น "Hard soil. Water cannot go down."'},
  {t:'The Farmer with a Problem',d:'เกษตรกรปลูกอ้อยถามว่าดินที่แปลงของเขาแน่นมาก ต้องทำอย่างไร',g:'ให้แนวทางทั่วไปตามนิทรรศการ และแนะนำช่องทางผู้เชี่ยวชาญ',tip:'สรุปแนวทางจากนิทรรศการ แล้วแนะนำหมอดินอาสา หรือ LINE น้องดินดี @dindee'},
  {t:'The Dominator',d:'ผู้ชม 1 คนพูดแทรกและตอบทุกคำถามก่อนคนอื่น',g:'ให้เกียรติ และเปิดพื้นที่ให้คนอื่น',tip:'"ขอบคุณมากครับ ขอฟังจากอีกฝั่งบ้างนะครับ"'},
- {t:'Equipment Down',d:'จอ Touchscreen หรือโมเดลสาธิตใช้งานไม่ได้',g:'อธิบายต่อโดยไม่พึ่งอุปกรณ์',tip:'ใช้มือ ภาพในโทรศัพท์ หรือวัสดุใกล้ตัวแทน เช่น ฟองน้ำแห้งกับฟองน้ำที่ถูกกด'},
+ {t:'Equipment Down',d:'ไมโครโฟนบนรถรางใช้งานไม่ได้ หรือจอและโมเดลที่สถานีใช้งานไม่ได้',g:'สื่อสารต่อโดยไม่พึ่งอุปกรณ์',tip:'ยืนใกล้ผู้ชม พูดช้าและดังขึ้น ใช้มือชี้ และใช้ภาพในโทรศัพท์หรือวัสดุใกล้ตัวช่วยอธิบาย'},
  {t:'The Senior Group',d:'กลุ่มผู้สูงอายุ ยืนนานไม่ได้ และได้ยินไม่ค่อยชัด',g:'ปรับจังหวะ ระดับเสียง และระยะเวลา',tip:'พูดช้าลง หันหน้าเข้าหาผู้ชม หาที่นั่ง และตัดเนื้อหาเหลือ 2 ประเด็น'},
  {t:'The Skeptic',d:'ผู้ชมพูดว่า "แค่ดิน จะสำคัญอะไรนักหนา"',g:'ใช้ข้อมูลที่จับต้องได้เปลี่ยนมุมมอง',tip:'เชื่อมกับอาหาร: อาหารของมนุษย์ร้อยละ 95 มาจากดิน'},
  {t:'Tram Talk',d:'รถรางเสียงดัง ผู้ชมด้านหลังได้ยินไม่ชัดระหว่างเดินทาง',g:'สื่อสารบนรถรางให้ทุกคนได้ยินและไม่เหนื่อยเกินไป',tip:'พูดสั้นเฉพาะประเด็นนำ 2–3 ประโยค เก็บรายละเอียดไว้พูดเมื่อลงจากรถ'},
- {t:'The Left-Behind',d:'ก่อนรถรางออกจากจุด พบว่าผู้ชม 2 คนยังไม่กลับมาขึ้นรถ',g:'จัดการเวลาและความปลอดภัยของกลุ่ม',tip:'นับจำนวนคนทุกครั้งก่อนออกรถ และบอกเวลานัดพร้อมจุดขึ้นรถให้ชัดก่อนลงทุกจุด'},
- {t:'Behind Schedule',d:'รถรางมาถึงช้า เหลือเวลาที่จุดนี้เพียง 3 นาที',g:'ปรับเนื้อหาให้เหลือประเด็นสำคัญ',tip:'พูด Hook และ Takeaway บนรถ แล้วใช้เวลาที่จุดให้ผู้ชมดูของจริง'},
+ {t:'The Left-Behind',d:'ที่จุดจอดสถานี ก่อนรถรางออก พบว่าผู้ชม 2 คนยังไม่กลับมาขึ้นรถ',g:'จัดการเวลาและความปลอดภัยของกลุ่ม',tip:'นับจำนวนคนทุกครั้งก่อนออกรถ และบอกเวลานัดพร้อมจุดขึ้นรถให้ชัดก่อนลงทุกจุด'},
+ {t:'Behind Schedule',d:'รถรางออกช้ากว่ากำหนด 5 นาที ต้องย่นเวลาบรรยายทั้งเส้นทาง',g:'ปรับเนื้อหาให้เหลือประเด็นสำคัญ',tip:'พูดเฉพาะส่วนที่ต้องพูดใน Script และเก็บเวลาไว้ที่จุดเชื่อมธีมดินดาน'},
+ {t:'Too Fast',d:'รถรางวิ่งผ่านจุดไปแล้ว แต่ยังพูดเรื่องจุดนั้นไม่จบ',g:'ตัดเนื้อหาและเชื่อมไปจุดถัดไปทันที',tip:'สรุปด้วย 1 ประโยค แล้วบอกซ้ายมือหรือขวามือของจุดถัดไปก่อนรถถึง'},
+ {t:'Stand Up!',d:'เด็กลุกขึ้นยืนและยื่นแขนออกนอกรถรางขณะรถวิ่ง',g:'ดูแลความปลอดภัยโดยไม่ทำให้บรรยากาศเสีย',tip:'หยุดบรรยายสั้น ๆ ขอให้นั่งลงอย่างสุภาพ แล้วชวนเด็กเป็นผู้ช่วยมองหาสิ่งที่จะชี้ให้ดูต่อไป'},
+ {t:'Rain Check',d:'ฝนเริ่มตกระหว่างทาง ผู้ชมกังวลและไม่ฟัง',g:'ทำให้ผู้ชมมั่นใจ แล้วปรับเนื้อหา',tip:'บอกข้อมูลที่ผู้ชมต้องรู้ก่อน เช่น ระยะทางที่เหลือ แล้วเชื่อมกับเนื้อหา เช่น ดินร่วนให้น้ำฝนซึมลงดินได้ดี'},
+ {t:'The Shopper',d:'ผู้ชมถามว่าชาดอกกาแฟและสินค้าเกษตรซื้อได้ที่ไหน',g:'ให้ข้อมูลบริการอย่างถูกต้อง',tip:'ตามบท: ร้านเขาชะงุ้มช็อป & คาเฟ่ และ DINDEE MARKET ส่วนตลาดนั่งยางเปิดเสาร์ อาทิตย์ และวันหยุดนักขัตฤกษ์'},
  {t:'The Royal Content',d:'ผู้ชมถามรายละเอียดพระราชกรณียกิจที่บ้านแม่รัง ซึ่งไม่มีในเอกสาร',g:'ใช้ภาษาที่เหมาะสม และไม่ให้ข้อมูลที่ไม่แน่ใจ',tip:'ตอบเฉพาะข้อมูลตามเอกสาร แล้วแนะนำเจ้าหน้าที่ประจำจุดหรือแหล่งข้อมูลทางการ'}
 ];
 
@@ -1151,70 +1377,74 @@ const SESSIONS = {
  s1:{n:1,time:'10.30–12.00 น. (90 นาที)',proj:'5.3',mode:'บรรยายและฝึกปฏิบัติ',title:'Roles & Essentials',th:'บทบาทหน้าที่ และสิ่งที่ "ดินดีบัดดี้" ต้องมีสำหรับการปฏิบัติงาน',color:'#33691e',
   obj:'ให้ดินดีบัดดี้เข้าใจบทบาทหน้าที่บนรถรางและที่จุดนำชม และฝึกทักษะที่ต้องมี ได้แก่ ความมั่นใจ น้ำเสียง ภาษากาย และการเปิดการนำชม',
   acts:[
-   {m:10,k:'in',n:'บทบาทดินดีบัดดี้ & Confidence Check',h:'สรุปบทบาทหน้าที่ 4 ขั้นในแต่ละจุดจอดรถราง ได้แก่ บนรถ ก่อนลงรถ ที่จุดนำชม และก่อนออกรถ ผู้เข้าอบรมให้คะแนนความมั่นใจของตนเอง 1–5 บนกระดาษ 5 ข้อ เก็บไว้เปรียบเทียบตอนท้ายวัน',tool:['#tram','ดูบทบาท 4 ขั้น'],t2:['#rubric','ข้อคำถามประเมินตนเอง']},
-   {m:15,k:'pr',n:'First Impression Challenge',h:'ในกลุ่มย่อย ทุกคนแนะนำจุดจอดรถรางที่สุ่มได้ภายใน 30 วินาที เหมือนพูดบนรถก่อนถึงจุด โดยไม่เตรียมตัว เพื่อดูทักษะเริ่มต้นของตนเอง',tool:['#tram-pick','สุ่มจุดจอดรถราง'],t2:['#timer','จับเวลา 30 วิ']},
+   {m:10,k:'in',n:'บทบาทดินดีบัดดี้ & Confidence Check',h:'สรุปบทบาทบนรถราง 4 ขั้น ได้แก่ ก่อนออกรถ ระหว่างรถวิ่ง ที่จุดจอดสถานี และปิดท้าย ผู้เข้าอบรมให้คะแนนความมั่นใจของตนเอง 1–5 บนกระดาษ 5 ข้อ เก็บไว้เปรียบเทียบตอนท้ายวัน',tool:['#tram','ดูบทบาท 4 ขั้น'],t2:['#rubric','ข้อคำถามประเมินตนเอง']},
+   {m:15,k:'pr',n:'First Impression Challenge',h:'ในกลุ่มย่อย ทุกคนแนะนำจุดบนเส้นทางรถรางที่สุ่มได้ภายใน 30 วินาที เหมือนรถกำลังวิ่งผ่าน โดยไม่เตรียมตัว เพื่อดูทักษะเริ่มต้นของตนเอง',tool:['#tram-pick','สุ่มจุดบนเส้นทาง'],t2:['#timer','จับเวลา 30 วิ']},
    {m:10,k:'in',n:'Voice & Body Language Lab',h:'วิทยากรสาธิตระดับเสียง จังหวะ การหยุดพูด การสบตา ตำแหน่งยืน และการชี้สิ่งจัดแสดง เทียบแบบที่ควรทำกับไม่ควรทำ ทั้งบนรถรางและที่จุดนำชม'},
    {m:15,k:'pr',n:'Say It Three Ways',h:'สุ่มข้อเท็จจริง 1 ข้อ แล้วฝึกพูดเรื่องเดียวกัน 3 แบบ ได้แก่ ทางการ เป็นกันเอง และกระตุ้นความสนใจ ผลัดกันพูดในคู่',tool:['#threeways','สุ่มข้อเท็จจริงและโทน']},
-   {m:25,k:'pr',n:'The 60-Second Opening',h:'เขียนและฝึกบทเปิดเมื่อผู้ชมขึ้นรถราง 60 วินาที สำหรับกลุ่มผู้ชมที่สุ่มได้ บันทึกวิดีโอด้วยโทรศัพท์ของตนเอง แล้วรับ Feedback จากเพื่อน',tool:['#audience','สุ่มกลุ่มผู้ชม'],t2:['#timer','จับเวลา 60 วิ']},
+   {m:25,k:'pr',n:'The 60-Second Opening',h:'เขียนและฝึกบทเปิดเมื่อผู้ชมขึ้นรถราง 60 วินาที โดยใช้บทต้อนรับจุดที่ 1 ของศูนย์ฯ เป็นต้นแบบ ปรับให้เหมาะกับกลุ่มผู้ชมที่สุ่มได้ บันทึกวิดีโอด้วยโทรศัพท์ของตนเอง แล้วรับ Feedback จากเพื่อน',tool:['#audience','สุ่มกลุ่มผู้ชม'],t2:['#timer','จับเวลา 60 วิ']},
    {m:15,k:'pr',n:'Confidence Replay',h:'พูดบทเปิดอีกครั้งหลังได้รับข้อเสนอแนะ ดูวิดีโอรอบแรกเทียบกับรอบสอง และบอกสิ่งที่ดีขึ้น 1 อย่าง'}
   ],
   extra:`<h2>สิ่งที่ "ดินดีบัดดี้" ต้องมี</h2>
   <div class="grid g3">
-   <div class="card"><span class="tag">ความรู้</span><p>รู้ข้อมูลของ 7 จุดอย่างถูกต้อง และรู้ว่าเมื่อไม่แน่ใจต้องส่งต่อใคร</p></div>
+   <div class="card"><span class="tag">ความรู้</span><p>รู้ข้อมูล 23 จุดบนเส้นทางรถราง และนิทรรศการโซน A อย่างถูกต้อง และรู้ว่าเมื่อไม่แน่ใจต้องส่งต่อใคร</p></div>
    <div class="card"><span class="tag">การสื่อสาร</span><p>พูดชัด มั่นใจ ใช้ภาษาง่าย และปรับให้เหมาะกับนักเรียน นักศึกษา หมอดินอาสา เกษตรกร และประชาชนทั่วไป</p></div>
    <div class="card"><span class="tag">การมีส่วนร่วม</span><p>ตั้งคำถามชวนคิด และให้ผู้ชมได้สังเกตหรือลงมือทำ</p></div>
    <div class="card"><span class="tag">การบริหารเวลาและกลุ่ม</span><p>รักษาเวลาแต่ละจุด นับจำนวนผู้ชม และนัดจุดขึ้นรถให้ชัด</p></div>
-   <div class="card"><span class="tag">ความปลอดภัย</span><p>ดูแลผู้ชมตอนขึ้นลงรถราง และตอนข้ามถนนในบางจุด</p></div>
+   <div class="card"><span class="tag">ความปลอดภัย</span><p>ดูแลผู้ชมขณะรถวิ่ง และตอนขึ้นลงรถที่สถานี</p></div>
    <div class="card"><span class="tag">การทำงานเป็นทีม</span><p>ประสานกับคนขับรถราง เจ้าหน้าที่ประจำจุด และดินดีบัดดี้คนอื่น</p></div>
   </div>
 <h2>ตัวอย่างโจทย์ฝึก: เปิดการนำชมวันดินโลก</h2>
   <div class="grid g2"><div class="card"><span class="tag water">Version A · บรรยายข้อมูล</span><p>"วันดินโลกตรงกับวันที่ 5 ธันวาคมของทุกปี โดยมีวัตถุประสงค์เพื่อสร้างความตระหนักถึงความสำคัญของทรัพยากรดิน"</p></div>
   <div class="card"><span class="tag leaf">Version B · ดึงดูดความสนใจ</span><p>"ทุกท่านเคยสงสัยไหมคะว่า อาหารที่เรารับประทานในแต่ละวันเกี่ยวข้องกับดินมากแค่ไหน วันนี้เราจะมาค้นหาคำตอบไปด้วยกันค่ะ"</p></div></div>
   <h2>โครงบทเปิด 60 วินาที</h2>
-  <div class="card"><ol class="clean"><li><b>ทักทายและแนะนำตัว</b> (10 วิ)</li><li><b>Hook</b> คำถามหรือข้อเท็จจริงที่ทำให้สงสัย (15 วิ)</li><li><b>บอกเส้นทาง</b> รถรางจะพาไป 7 จุด จุดไหนบ้าง ใช้เวลาเท่าไร (20 วิ)</li><li><b>ข้อตกลงบนรถราง</b> เช่น จำนวนจุดที่จะแวะ การขึ้นลงตามจุดที่กำหนด และถามได้ตลอด (15 วิ)</li></ol></div>`,
-  out:'บทเปิดการนำชมบนรถราง 1 นาที และเข้าใจบทบาทหน้าที่ของดินดีบัดดี้ในแต่ละจุด'},
+  <div class="card"><ol class="clean"><li><b>ทักทายและแนะนำตัว</b> (10 วิ)</li><li><b>Hook</b> คำถามหรือข้อเท็จจริงที่ทำให้สงสัย (15 วิ)</li><li><b>บอกเส้นทาง</b> รถรางจะพาชมอะไรบ้าง ระยะทางประมาณ 5 กม. ใช้เวลาประมาณ 30 นาที (20 วิ)</li><li><b>ข้อตกลงบนรถราง</b> เช่น นั่งให้เรียบร้อยขณะรถวิ่ง การขึ้นลงที่สถานี และถามได้ตลอด (15 วิ)</li></ol></div>`,
+  out:'บทเปิดการนำชมบนรถราง 1 นาที และเข้าใจบทบาทหน้าที่ของดินดีบัดดี้บนรถราง'},
  s2:{n:2,time:'13.00–14.30 น. (90 นาที)',proj:'5.4',mode:'บรรยายและฝึกปฏิบัติ',title:'Route Study & Tour Planning',th:'แบ่งกลุ่มศึกษาเส้นทาง และจัดทำแผนเดินทาง สำหรับ "ดินดีบัดดี้"',color:'#6d4c41',
-  obj:'ศึกษาเส้นทางรถราง 7 จุด เข้าใจเนื้อหาสำคัญของแต่ละจุด พูดข้อมูลวิชาการและตัวเลขให้เข้าใจง่ายและถูกต้อง และจัดทำแผนเดินทางของกลุ่ม',
+  obj:'ศึกษาประวัติเขาชะงุ้มและเส้นทางรถราง 23 จุด 6 ช่วง เข้าใจเนื้อหาสำคัญของแต่ละช่วง พูดข้อมูลวิชาการและตัวเลขให้เข้าใจง่ายและถูกต้อง และจัดทำแผนเดินทางของกลุ่ม',
   acts:[
-   {m:10,k:'in',n:'Route Briefing',h:'ภาพรวมเส้นทางรถราง 7 จุด จุดลงและขึ้นรถ และสิ่งที่ต้องบอกผู้ชมในแต่ละช่วง',tool:['#tram','เปิดเส้นทาง 7 จุด']},
-   {m:5,k:'pr',n:'แบ่งกลุ่มและรับมอบหมายจุด',h:'แบ่งเป็น 7 กลุ่ม กลุ่มละ 7–8 คน แต่ละกลุ่มศึกษา 1 จุดอย่างละเอียด แล้วนำมาแบ่งปันให้กลุ่มอื่น (Jigsaw)',tool:['#names','สุ่มแบ่งกลุ่ม'],t2:['#tram-pick','สุ่มจุดจอดรถราง']},
+   {m:10,k:'in',n:'Route Briefing',h:'ดูคลิปประวัติความเป็นมาโครงการเขาชะงุ้ม และภาพรวมเส้นทางรถราง 23 จุด ระยะทางประมาณ 5 กม. ใช้เวลาประมาณ 30 นาที รวมถึงจุดจอดสถานี',tool:['#khao','เขาชะงุ้มในหนึ่งหน้า'],t2:['#tram','เปิดเส้นทาง 23 จุด']},
+   {m:5,k:'pr',n:'แบ่งกลุ่มและรับมอบหมายจุด',h:'แบ่งเป็น 6 กลุ่มตามช่วงเส้นทาง กลุ่มละ 8–9 คน แต่ละกลุ่มศึกษา 1 ช่วงอย่างละเอียด แล้วนำมาแบ่งปันให้กลุ่มอื่น (Jigsaw)',tool:['#names','สุ่มแบ่งกลุ่ม']},
    {m:10,k:'pr',n:'Too Technical!',h:'สุ่มข้อความวิชาการจากเอกสาร แล้วอธิบายด้วยภาษาพูดที่เข้าใจง่ายภายใน 30 วินาที',tool:['#technical','สุ่มข้อความวิชาการ']},
-   {m:15,k:'pr',n:"Explain It Like I'm 10",h:'แต่ละกลุ่มแปลงข้อมูลวิชาการของจุดที่ได้รับมอบหมาย ให้เด็กอายุ 10 ปีเข้าใจ ใช้การเปรียบเทียบอย่างน้อย 1 อย่าง',tool:['#stations','เปิด Fact Cards']},
+   {m:15,k:'pr',n:"Explain It Like I'm 10",h:'แต่ละกลุ่มแปลงข้อมูลวิชาการของช่วงที่ได้รับมอบหมาย ให้เด็กอายุ 10 ปีเข้าใจ ใช้การเปรียบเทียบอย่างน้อย 1 อย่าง',tool:['#stations','เปิด Fact Cards']},
    {m:10,k:'pr',n:'ตัวเลขต้องถูก (Numbers Made Simple)',h:'ฝึกพูดตัวเลขจากเอกสารให้เข้าใจง่าย เช่น ร้อยละ 72.03 เป็น "เกือบ 3 ใน 4" แล้วให้เพื่อนตรวจว่าความหมายยังถูกต้องหรือไม่'},
-   {m:25,k:'pr',n:'จัดทำแผนเดินทาง (Tour Plan)',h:'แต่ละกลุ่มวางแผนสำหรับจุดของตน ได้แก่ เวลาที่ใช้ จุดลงและขึ้นรถ ประเด็นหลัก 3 ข้อ สิ่งที่ให้ผู้ชมสังเกต คำถามก่อนถึงจุด และข้อควรระวังด้านความปลอดภัย',tool:['#tram','ข้อมูลและคำถาม 7 จุด'],t2:['#timer','จับเวลา']},
-   {m:15,k:'pr',n:'Jigsaw Share',h:'แต่ละกลุ่มสรุปแผนเดินทางของจุดตนเองให้ทั้งห้อง กลุ่มละไม่เกิน 2 นาที เพื่อให้ทุกคนรู้จักครบทั้ง 7 จุด',tool:['#names','สุ่มลำดับกลุ่ม'],t2:['#timer','จับเวลา 2 นาที']}
+   {m:25,k:'pr',n:'จัดทำแผนเดินทาง (Tour Plan)',h:'แต่ละกลุ่มวางแผนสำหรับช่วงของตน ได้แก่ เวลาเป้าหมาย จุดที่ต้องพูดและจุดที่พูดสั้น ซ้ายมือหรือขวามือ จุดเชื่อมธีมดินดาน คำถาม และข้อควรระวังด้านความปลอดภัย',tool:['#tram','ข้อมูลและงบเวลา 23 จุด'],t2:['#timer','จับเวลา']},
+   {m:15,k:'pr',n:'Jigsaw Share',h:'แต่ละกลุ่มสรุปแผนเดินทางของช่วงตนเองให้ทั้งห้อง กลุ่มละไม่เกิน 2 นาที เพื่อให้ทุกคนรู้จักครบทั้ง 6 ช่วง',tool:['#names','สุ่มลำดับกลุ่ม'],t2:['#timer','จับเวลา 2 นาที']}
   ],
-  extra:`<h2>แบบฟอร์มแผนเดินทาง (1 กลุ่ม ต่อ 1 จุด)</h2>
+  extra:`<h2>แบบฟอร์มแผนเดินทาง (1 กลุ่ม ต่อ 1 ช่วง)</h2>
   <table><tr><th>หัวข้อ</th><th>สิ่งที่ต้องกรอก</th></tr>
-   <tr><td>จุดที่รับผิดชอบ</td><td>ชื่อจุด และโซน</td></tr>
-   <tr><td>เวลา</td><td>เวลาพูดบนรถ เวลาที่จุด และเวลานัดกลับขึ้นรถ</td></tr>
-   <tr><td>จุดลงและขึ้นรถ</td><td>บอกผู้ชมอย่างไร และต้องระวังอะไร</td></tr>
-   <tr><td>ประเด็นหลัก 3 ข้อ</td><td>ข้อเท็จจริงที่ตรวจกับเอกสารแล้ว</td></tr>
+   <tr><td>ช่วงที่รับผิดชอบ</td><td>ชื่อช่วง และหมายเลขจุด</td></tr>
+   <tr><td>เวลา</td><td>เวลาเป้าหมายของช่วง และเวลาที่สถานี (ถ้ามี)</td></tr>
+   <tr><td>ซ้ายมือหรือขวามือ</td><td>บอกผู้ชมล่วงหน้าก่อนรถถึงแต่ละจุด</td></tr>
+   <tr><td>จุดที่ต้องพูด และจุดที่พูดสั้น</td><td>ข้อเท็จจริงที่ตรวจกับบทของศูนย์ฯ แล้ว</td></tr>
+   <tr><td>จุดเชื่อมธีมดินดาน</td><td>จุดไหน และจะพูดเชื่อมอย่างไร</td></tr>
    <tr><td>สิ่งที่ให้ผู้ชมสังเกต</td><td>ของจริง โมเดล หรือป้ายที่ควรชี้ให้ดู</td></tr>
-   <tr><td>คำถามก่อนถึงจุด</td><td>อย่างน้อย 1 ข้อ</td></tr>
-   <tr><td>ความปลอดภัย</td><td>เช่น การข้ามถนน การนับจำนวนคน</td></tr>
+   <tr><td>คำถามชวนคิด</td><td>อย่างน้อย 1 ข้อ</td></tr>
+   <tr><td>ความปลอดภัย</td><td>เช่น นั่งให้เรียบร้อยขณะรถวิ่ง และนับจำนวนคนที่สถานี</td></tr>
   </table>
 <h2>ตัวอย่าง: ตัวเลขต้องถูก</h2>
   <table><tr><th>ข้อมูลในเอกสาร</th><th>พูดให้เข้าใจง่าย</th><th>ระวัง</th></tr>
    <tr><td>อาหารของมนุษย์ร้อยละ 95 มีแหล่งกำเนิดจากดิน</td><td>อาหาร 20 จาน มี 19 จานที่เริ่มต้นจากดิน</td><td>ไม่พูดว่า "อาหารทุกอย่าง"</td></tr>
    <tr><td>พื้นที่เกษตรร้อยละ 72.03 เสี่ยงต่อดินอัดแน่น</td><td>เกือบ 3 ใน 4 ของพื้นที่เกษตรมีความเสี่ยง</td><td>ส่วนใหญ่เป็นระยะเริ่มอัดแน่น ไม่ใช่ระดับวิกฤต</td></tr>
    <tr><td>ดินอัดแน่นระดับวิกฤต 0.95 ล้านไร่</td><td>เกือบ 1 ล้านไร่ ที่ต้องแก้ไขเร่งด่วน</td><td>เป็นร้อยละ 0.54 ของพื้นที่ ไม่ควรพูดให้ดูใหญ่เกินจริง</td></tr>
+   <tr><td>พื้นที่ศูนย์ฯ 869 ไร่ 3 งาน 27.4 ตารางวา</td><td>เกือบ 870 ไร่</td><td>พื้นที่ภูเขาเขียว 3,041 ไร่ เป็นอีกส่วนหนึ่ง ไม่รวมกัน</td></tr>
+   <tr><td>อ่างเก็บน้ำเขาชะงุ้มจุ 150,000 ลูกบาศก์เมตร</td><td>ประมาณ 60 สระว่ายน้ำมาตรฐานโอลิมปิก</td><td>ไม่ใช่ความจุรวมของแหล่งน้ำทั้ง 11 แห่ง (274,300 ลบ.ม.)</td></tr>
+   <tr><td>ชั้นดานแข็งที่ลึก 50 ซม. (จุดที่ 6)</td><td>ลึกประมาณครึ่งเมตร</td><td>เป็นข้อมูลของจุดนี้ ไม่ใช่ทุกพื้นที่</td></tr>
    <tr><td>จัดการดินเหมาะสมเพิ่มผลผลิตอาหารได้ถึงร้อยละ 58</td><td>ผลผลิตเพิ่มได้เกือบครึ่งเท่าตัว</td><td>คำว่า "ได้ถึง" หมายถึงค่าสูงสุด ไม่ใช่ทุกกรณี</td></tr>
   </table>
-  <p class="counter">ที่มาของตัวเลข: เอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ บทนำ และหัวข้อ 2.1</p>`,
-  out:'แผนเดินทางของกลุ่มสำหรับจุดที่รับผิดชอบ และทุกคนรู้ภาพรวมเส้นทางครบ 7 จุด'},
+  <p class="counter">ที่มาของตัวเลข: เอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ บทนำ และหัวข้อ 2.1 บทมัคคุเทศก์รถรางชมศูนย์ฯ และเอกสารนำเสนอของศูนย์ฯ</p>`,
+  out:'แผนเดินทางของกลุ่มสำหรับช่วงที่รับผิดชอบ และทุกคนรู้ภาพรวมเส้นทางครบ 23 จุด'},
  s3:{n:3,time:'14.30–17.30 น. (180 นาที รวมอาหารว่าง)',proj:'5.5',mode:'บรรยายและฝึกปฏิบัติ',title:'Script Writing & Real Practice',th:'จัดทำ Script สำหรับ "ดินดีบัดดี้"',color:'#2f6f8f',
   obj:'เขียน Script การนำชมที่ใช้ได้จริง ฝึกปฏิบัติแบบรถราง ประเมินข้อผิดพลาด ฝึกแก้ปัญหาเฉพาะหน้า และสรุป Script ฉบับสมบูรณ์',
   acts:[
    {m:15,k:'br',n:'พักรับประทานอาหารว่าง',h:'ระหว่างพัก ให้แต่ละกลุ่มทบทวนแผนเดินทางของตนเอง'},
    {part:'ก. แบ่งกลุ่มทำ Script "ดินดีบัดดี้" งานวันดินโลก',m:10,k:'in',n:'Storytelling Toolkit',h:'แนะนำโครง Hook → Explain → Connect → Takeaway พร้อมสาธิตด้วยเรื่องดินอัดแน่น'},
    {m:10,k:'in',n:'Bad Questions vs Good Questions',h:'เปรียบเทียบคำถามที่ตอบได้เพียงใช่หรือไม่ใช่ กับคำถามที่ชวนสังเกต คิด และแลกเปลี่ยน แนะนำคำถาม 5 แบบ',tool:['#questions','เปิด Question Toolkit']},
-   {m:10,k:'pr',n:'Question Makeover',h:'สุ่มคำถามธรรมดา แล้วเปลี่ยนเป็นคำถามที่กระตุ้นความสนใจตามประเภทที่สุ่มได้',tool:['#makeover','สุ่มคำถามและประเภท'],t2:['#tram','คำถามบนรถราง 7 จุด']},
-   {m:30,k:'pr',n:'เขียน Script ประจำจุด',h:'ใช้แบบฟอร์ม Script เขียนบทพูดบนรถ 30 วินาที เรื่องเล่า ณ จุด 90 วินาที (90-Second Soil Story) คำถามชวนคิด และแผนสำรอง แล้วให้เพื่อนตรวจความถูกต้อง (Story Feedback)',tool:['#script','เปิดแบบฟอร์ม Script 🔒']},
-   {part:'ข. แบ่งกลุ่มฝึกปฏิบัติจริง',m:5,k:'in',n:'Mission Briefing',h:'อธิบายกติกาและเกณฑ์ประเมิน แต่ละคนสุ่มภารกิจ ได้แก่ จุดจอดรถราง กลุ่มผู้ชม และเวลา',tool:['#mission','เปิด Mission Generator']},
-   {m:10,k:'pr',n:'Design a Mini Interaction',h:'ออกแบบกิจกรรม 2–3 นาทีสำหรับจุดของตน เช่น ทายคำตอบ โหวตด้วยมือ สังเกตสิ่งของ หรือทดลองง่าย ๆ',tool:['#tram-pick','สุ่มจุดจอดรถราง']},
-   {m:45,k:'pr',n:'Guided Tour Simulation',h:'กลุ่มละ 5–6 คน สลับบทบาทเป็นดินดีบัดดี้ ผู้ชม และผู้ประเมิน แต่ละรอบพูดแนะนำบนรถ 30 วินาที แล้วนำชม ณ จุด 4–5 นาที พร้อมสาธิตกิจกรรมสั้นที่ออกแบบไว้ ตามด้วย Feedback 2 นาที',tool:['#situation','สุ่ม Situation Card'],t2:['#timer','จับเวลา 5 นาที']},
-   {part:'ค. ประเมินข้อผิดพลาดจากการฝึกปฏิบัติ และการแก้ไขปัญหาเฉพาะหน้า',m:20,k:'pr',n:'The Silent Audience Challenge',h:'จำลองสถานการณ์ผู้ชมไม่ตอบ ไม่สนใจ พูดแทรก หรือรถรางล่าช้า ผู้เล่นบทผู้ชมสุ่ม Situation Card และแสดงตามบัตร ผู้นำชมไม่รู้ล่วงหน้า',tool:['#situation','สุ่ม Situation Card']},
+   {m:10,k:'pr',n:'Question Makeover',h:'สุ่มคำถามธรรมดา แล้วเปลี่ยนเป็นคำถามที่กระตุ้นความสนใจตามประเภทที่สุ่มได้',tool:['#makeover','สุ่มคำถามและประเภท'],t2:['#tram','คำถามบนรถราง 23 จุด']},
+   {m:30,k:'pr',n:'เรียบเรียง Script ประจำช่วง',h:'เรียบเรียงบทรถรางของศูนย์ฯ สำหรับช่วงที่รับผิดชอบให้พอดีเวลาเป้าหมาย แยกส่วนที่ต้องพูดกับส่วนเสริม เพิ่มคำถามชวนคิด จุดเชื่อมธีมดินดาน เรื่องเล่า 90 วินาทีสำหรับสถานี (90-Second Soil Story) และแผนสำรอง แล้วให้เพื่อนตรวจความถูกต้อง (Story Feedback)',tool:['#script','เปิดแบบฟอร์ม Script 🔒']},
+   {part:'ข. แบ่งกลุ่มฝึกปฏิบัติจริง',m:5,k:'in',n:'Mission Briefing',h:'อธิบายกติกาและเกณฑ์ประเมิน แต่ละคนสุ่มภารกิจ ได้แก่ ช่วงเส้นทาง กลุ่มผู้ชม และเวลา',tool:['#mission','เปิด Mission Generator']},
+   {m:10,k:'pr',n:'Design a Mini Interaction',h:'ออกแบบกิจกรรม 2–3 นาทีสำหรับจุดจอดสถานี (B1 หรือ B2–B5) หรือคำถามให้เลือกที่ใช้ขณะรถวิ่ง เช่น ทายคำตอบ โหวตด้วยมือ หรือสังเกตสิ่งของ',tool:['#tram-pick','สุ่มจุดบนเส้นทาง']},
+   {m:45,k:'pr',n:'Guided Tour Simulation (รถรางจำลอง)',h:'รถรางจำลอง: จัดเก้าอี้เป็นแถวเหมือนรถราง กลุ่มละ 5–6 คน ดินดีบัดดี้ยืนด้านหน้า บรรยายช่วงเส้นทางของตน 4–5 นาที เพื่อนเปิดภาพแต่ละจุดจากหน้าเส้นทางรถราง และสาธิตกิจกรรมสั้นถ้าช่วงนั้นมีสถานี ผู้เล่นบทผู้ชมสุ่ม Situation Card ตามด้วย Feedback 2 นาที',tool:['#situation','สุ่ม Situation Card'],t2:['#timer','จับเวลา 5 นาที']},
+   {part:'ค. ประเมินข้อผิดพลาดจากการฝึกปฏิบัติ และการแก้ไขปัญหาเฉพาะหน้า',m:20,k:'pr',n:'The Silent Audience Challenge',h:'จำลองสถานการณ์ผู้ชมไม่ตอบ ไม่สนใจ พูดแทรก รถรางล่าช้า หรือรถวิ่งเร็วกว่าบท ผู้เล่นบทผู้ชมสุ่ม Situation Card และแสดงตามบัตร ผู้นำชมไม่รู้ล่วงหน้า',tool:['#situation','สุ่ม Situation Card']},
    {m:10,k:'pr',n:'Feedback & Improvement',h:'สรุป Feedback แบบ ชม 1 · แนะ 1 · ลอง 1 และรวบรวมข้อผิดพลาดที่พบบ่อยของทั้งห้อง',tool:['#rubric','เปิดแบบประเมิน']},
    {part:'ง. สรุปแผนงานและจัดทำ Script ฉบับสมบูรณ์',m:10,k:'pr',n:'Script ฉบับสมบูรณ์',h:'ปรับ Script จาก Feedback และสถานการณ์ที่ฝึก แล้วส่ง Script ฉบับสมบูรณ์ของกลุ่ม',tool:['#script','แบบฟอร์ม Script 🔒']},
    {m:5,k:'pr',n:'Final Confidence Check & Wrap-up',h:'ประเมินความมั่นใจซ้ำด้วยข้อคำถามชุดเดิม เปรียบเทียบกับตอนเช้า และแลกเปลี่ยนเทคนิคที่จะใช้ทันที 1 อย่าง'}
@@ -1231,7 +1461,7 @@ const SESSIONS = {
    <div class="card"><span class="tag water">ทายผล</span><p>ก่อนเทน้ำบนโมเดล LAB ให้ผู้ชมยกมือเลือกฝั่งที่คิดว่าน้ำจะไหลลงถังมากกว่า</p></div>
    <div class="card"><span class="tag water">สังเกต</span><p>ที่ฐาน B1 ให้ผู้ชมหาจุดที่รากหญ้าแฝกยาวที่สุด แล้วเดาความยาว</p></div>
    <div class="card"><span class="tag water">โหวต</span><p>ที่ฐาน B5 ถามว่าไส้เดือนชอบดินแบบไหน ให้ยืนฝั่งซ้ายหรือขวาตามคำตอบ</p></div>
-  </div><div class="note" style="margin-top:18px"><b>การจัดเวลาช่วง Simulation 45 นาที</b> กลุ่ม 6 คน × (พูดบนรถ 30 วิ + นำชม ณ จุด 4 นาที + Feedback 2 นาที) ≈ 39 นาที ถ้ากลุ่มมี 5 คน ให้นำชม ณ จุด 5 นาที แนะนำให้คณะทำงานดินดีบัดดี้ 10 คน ช่วยเป็นผู้ประเมินประจำกลุ่ม</div>`,
+  </div><div class="note" style="margin-top:18px"><b>การจัดเวลาช่วง Simulation 45 นาที</b> กลุ่ม 6 คน × (บรรยาย 4 นาที + Feedback 2 นาที) ≈ 36 นาที ถ้ากลุ่มมี 5 คน ให้บรรยาย 5 นาที แนะนำให้คณะทำงานดินดีบัดดี้ 10 คน ช่วยเป็นผู้ประเมินประจำกลุ่ม</div>`,
   out:'Script ฉบับสมบูรณ์ของแต่ละกลุ่ม และทุกคนได้ฝึกนำชมอย่างน้อย 1 รอบพร้อม Feedback'}
 };
 
@@ -1307,31 +1537,54 @@ function renderSessions(){
 
 
 function renderTram(){
-  // stops on path
-  const path=document.getElementById('tramPath'); const g=document.getElementById('tramStops'); const L=path.getTotalLength();
-  g.innerHTML=TRAM.map((t,i)=>{ const pt=path.getPointAtLength(L*(0.03+i*0.94/6)); const up=i%2===0;
-    return `<g class="stop-dot" data-n="${t.n}" transform="translate(${pt.x} ${pt.y})"><circle class="ring" r="14" fill="#7cb342"/><circle class="core" r="14" fill="#558b2f" stroke="#fff" stroke-width="3"/><text y="5" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">${t.n}</text><text y="${up?-24:38}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3e2723">${esc(t.name.replace('อาคารนิทรรศการวันดินโลกและนิทรรศการวิชาการ','อาคาร A3-1').replace(/^B\d /,m=>m))}</text></g>`; }).join('');
-  g.addEventListener('click',e=>{ const d=e.target.closest('.stop-dot'); if(!d) return; const c=document.getElementById('tram-'+d.dataset.n); c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); });
-  $('#tramGrid').innerHTML=TRAM.map(t=>`<div class="card tram-card" id="tram-${t.n}"><span class="num">${t.n}</span>
-    <div class="st-head">${icon(t.id)}<div><span class="tag">จุดที่ ${t.n} · ${esc(t.zone)}</span><h3>${esc(t.name)}</h3></div></div>
-    <p class="what"><b>คือจุดอะไร:</b> ${esc(t.what)}</p>
-    <b>กิจกรรมและสิ่งที่ชมได้</b><ul>${t.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul>
-    <div class="hook"><b>ไฮไลต์ที่ควรชี้ให้ดู:</b> ${esc(t.hi)}</div>
-    <div class="say"><b>🚋 ตัวอย่างพูดบนรถก่อนถึง:</b> "${esc(t.say)}"</div>
-    <div class="row" style="justify-content:space-between;margin-top:10px"><b>❓ คำถามชวนคิดก่อนถึงจุด</b><button class="btn sm water" data-qroll="${t.n}">🎲 สุ่ม 1 คำถาม</button></div>
-    <ul class="qlist" id="ql-${t.n}">${t.qs.map(q=>`<li><span class="qt">${esc(q.t)}</span>${esc(q.q)}<details><summary>แนวคำตอบ</summary>${esc(q.a)}</details></li>`).join('')}</ul>
-    <div class="qbox"><b>ข้อควรรู้:</b> ${esc(t.tip)}</div></div>`).join('');
-  $('#tramGrid').addEventListener('click',e=>{ const b=e.target.closest('[data-qroll]'); if(!b) return; const ul=$('#ql-'+b.dataset.qroll); const li=[...ul.children]; li.forEach(x=>x.classList.remove('hl')); const k=rnd(li.length); li[k].classList.add('hl'); confetti(li[k]); });
-  // tram question picker
-  const sel=$('#tqStop'); sel.innerHTML='<option value="0">ทุกจุด (สุ่มรวม)</option>'+TRAM.map(t=>`<option value="${t.n}">จุดที่ ${t.n} · ${esc(t.name)}</option>`).join('');
+  const fmt=sec=>sec>=60?(Math.round(sec/30)/2)+' นาที':sec+' วินาที';
+  const modeTag=r=>r.mode==='stop'?'<span class="tag sun">🚏 จุดจอดสถานี · ลงชม</span>':r.mode==='start'?'<span class="tag">▶ จุดเริ่มต้น</span>':r.mode==='end'?'<span class="tag">🏁 ปิดท้าย</span>':'<span class="tag water">🚋 บรรยายขณะรถวิ่ง</span>';
+  const sideTag=r=>r.side?`<span class="tag leaf">${r.side.includes('ซ้าย')&&!r.side.includes('ขวา')?'👈 ':r.side.includes('ขวา')&&!r.side.includes('ซ้าย')?'👉 ':''}${esc(r.side)}</span>`:'';
+  // strip
+  const g=$('#stripDots');
+  g.innerHTML=ROUTE.map((r,i)=>{ const x=30+i*(940/22); const up=i%2===0; const c=r.mode==='stop'?'#f9a825':r.theme?'#8d6e63':'#558b2f';
+    return `<g class="stop-dot" data-n="${r.n}" transform="translate(${x} 70)">${r.mode==='stop'?'<circle class="ring" r="13" fill="#f9a825"/>':''}<circle class="core" r="13" fill="${c}" stroke="#fff" stroke-width="3"/><text y="4.5" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">${r.n}</text>${r.theme?`<text y="${up?-20:34}" text-anchor="middle" font-size="12">🟫</text>`:''}</g>`; }).join('');
+  g.addEventListener('click',e=>{ const d=e.target.closest('.stop-dot'); if(!d) return; showSeg(0); const c=document.getElementById('rt-'+d.dataset.n); c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); });
+  // budget
+  let tf=0,tt=0;
+  $('#budgetTable').innerHTML=`<table><tr><th>ช่วง</th><th>จุด</th><th>อ่านบทเต็ม</th><th>เป้าหมายแนะนำ</th><th>จุดจอด</th></tr>${SEGS.map(sg=>{ const rs=ROUTE.filter(r=>r.seg===sg.id); const f=rs.reduce((a,r)=>a+r.secs,0), t=rs.reduce((a,r)=>a+r.target,0); tf+=f; tt+=t; const st=rs.filter(r=>r.mode==='stop').map(r=>r.n);
+    return `<tr><td><b>${sg.id} · ${esc(sg.name)}</b></td><td>${sg.pts[0]}–${sg.pts[sg.pts.length-1]}</td><td>~${fmt(f)}</td><td><b>~${fmt(t)}</b></td><td>${st.length?'จุด '+st.join(', '):'–'}</td></tr>`; }).join('')}<tr><td><b>รวม</b></td><td>1–23</td><td>~${fmt(tf)}</td><td><b>~${fmt(tt)}</b></td><td></td></tr></table>`;
+  // themes
+  $('#themeList').innerHTML=ROUTE.filter(r=>r.theme).map(r=>`<a class="card theme-card" href="#tram" data-go="${r.n}"><span class="tag">จุดที่ ${r.n}</span><b>${esc(r.name)}</b><p>🟫 ${esc(r.theme)}</p></a>`).join('');
+  $('#themeList').addEventListener('click',e=>{ const a=e.target.closest('[data-go]'); if(!a) return; e.preventDefault(); showSeg(0); const c=document.getElementById('rt-'+a.dataset.go); c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); });
+  // cards
+  const card=r=>{ const t=r.ref&&TRAM.find(x=>x.id===r.ref);
+    const pics=r.img.length?`<div class="pics">${r.img.map((im,i)=>`<img src="img/${im}.webp" alt="ภาพประกอบจุดที่ ${r.n} ${esc(r.name)}" loading="lazy" data-zoom class="${i?'thumb':'cover'}">`).join('')}</div>`:'';
+    return `<div class="card tram-card" id="rt-${r.n}" data-seg="${r.seg}">${pics?'':`<span class="num">${r.n}</span>`}${pics}
+      <div class="row" style="gap:4px"><span class="tag" style="background:#3e2723;color:#fff">จุดที่ ${r.n}</span>${modeTag(r)}${sideTag(r)}<span class="tag" style="background:#f3ece7;color:#6d4c41">ช่วงที่ ${r.seg}</span></div>
+      <h3>${esc(r.name)}</h3><p class="what"><b>สิ่งที่เห็น:</b> ${esc(r.see)}</p>
+      <ul>${r.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+      ${t?`<details class="more"><summary>กิจกรรมที่สถานี</summary><ul>${t.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><div class="hook"><b>ไฮไลต์:</b> ${esc(t.hi)}</div></details>`:''}
+      ${r.theme?`<div class="theme-box">🟫 <b>เชื่อมธีมดินดาน:</b> ${esc(r.theme)}</div>`:''}
+      ${r.qs.length?`<b>❓ คำถามชวนคิด</b><ul class="qlist">${r.qs.map(q=>`<li><span class="qt">${esc(q.t)}</span>${esc(q.q)}<details><summary>แนวคำตอบ</summary>${esc(q.a)}</details></li>`).join('')}</ul>`:''}
+      <p class="counter" style="margin:.4em 0 0">⏱️ อ่านบทเต็ม ~${fmt(r.secs)} · เป้าหมาย ~${fmt(r.target)}${r.mode==='stop'?' (ไม่รวมเวลาลงชม)':''}</p></div>`; };
+  $('#tramGrid').innerHTML=ROUTE.map(card).join('');
+  const segBtns=[{id:0,name:'ทั้งหมด'}].concat(SEGS);
+  window.showSeg=id=>{ $('#segFilter').innerHTML=segBtns.map(b=>`<button class="${b.id===id?'on':''}" data-seg="${b.id}">${b.id?b.id+' · ':''}${esc(b.name)}</button>`).join(''); document.querySelectorAll('#tramGrid .tram-card').forEach(c=>c.hidden=!!id&&+c.dataset.seg!==id); };
+  $('#segFilter').addEventListener('click',e=>{ const b=e.target.closest('[data-seg]'); if(b) showSeg(+b.dataset.seg); });
+  showSeg(0);
+  // zone A
+  $('#zoneAGrid').innerHTML=TRAM.filter(t=>t.id==='wsd'||t.id==='maerang').map(t=>`<div class="card tram-card"><div class="st-head">${icon(t.id)}<div><span class="tag">${esc(t.zone)}</span><h3>${esc(t.name)}</h3></div></div>
+    <p class="what"><b>คือจุดอะไร:</b> ${esc(t.what)}</p><ul>${t.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><div class="hook"><b>ไฮไลต์:</b> ${esc(t.hi)}</div>
+    <b>❓ คำถามชวนคิด</b><ul class="qlist">${t.qs.map(q=>`<li><span class="qt">${esc(q.t)}</span>${esc(q.q)}<details><summary>แนวคำตอบ</summary>${esc(q.a)}</details></li>`).join('')}</ul><div class="qbox"><b>ข้อควรรู้:</b> ${esc(t.tip)}</div></div>`).join('');
+  // question picker
+  const sel=$('#tqStop'); sel.innerHTML='<option value="0">ทุกช่วง (สุ่มรวม)</option>'+SEGS.map(sg=>`<option value="${sg.id}">ช่วงที่ ${sg.id} · ${esc(sg.name)}</option>`).join('');
   const st=$('#tqStage');
   $('#tqRoll').onclick=()=>{
-    const n=+sel.value; const pool=[]; TRAM.forEach(t=>{ if(!n||t.n===n) t.qs.forEach(q=>pool.push({t,q})); });
+    const n=+sel.value; const pool=[]; ROUTE.forEach(r=>{ if(!n||r.seg===n) r.qs.forEach(q=>pool.push({r,q})); });
     const pick=pool[rnd(pool.length)];
     roll(st,shuffle(pool).slice(0,10),x=>{st.classList.remove('empty');st.innerHTML=`<div class="res-title" style="font-size:22px">${esc(x.q.q)}</div>`;},()=>{
-      st.innerHTML=`<div class="res-num">ก่อนถึงจุดที่ ${pick.t.n} · ${esc(pick.t.name)} · <span class="qt">${esc(pick.q.t)}</span></div><div class="res-title" style="font-size:clamp(22px,2.8vw,32px)">"${esc(pick.q.q)}"</div><details class="more"><summary>แนวคำตอบ (เฉลยเมื่อถึงจุด)</summary><p>${esc(pick.q.a)}</p></details>`; });
+      st.innerHTML=`<div class="res-num">จุดที่ ${pick.r.n} · ${esc(pick.r.name)} · <span class="qt">${esc(pick.q.t)}</span></div><div class="res-title" style="font-size:clamp(22px,2.8vw,32px)">"${esc(pick.q.q)}"</div><details class="more"><summary>แนวคำตอบ (เฉลยเมื่อรถถึงจุด)</summary><p>${esc(pick.q.a)}</p></details>`; });
   };
 }
+/* lightbox */
+document.addEventListener('click',e=>{ const im=e.target.closest('img[data-zoom]'); if(!im) return; const o=document.createElement('div'); o.className='lightbox'; o.innerHTML=`<img src="${im.src}" alt="${esc(im.alt)}"><p>${esc(im.alt)}</p>`; o.onclick=()=>o.remove(); document.body.appendChild(o); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.querySelectorAll('.lightbox').forEach(x=>x.remove()); });
 
 /* ===================== STATIONS ===================== */
 function stationCard(s){
@@ -1361,8 +1614,8 @@ const RAND_PAGES = {
  'audience':{kicker:'ใช้ในช่วงที่ 1 และ 3',title:'สุ่มกลุ่มผู้ชม',lead:'สุ่มลักษณะผู้ชมเพื่อฝึกปรับภาษา ตัวอย่าง และจังหวะการพูดให้เหมาะกับผู้ฟัง',items:AUDIENCES,label:'สุ่มกลุ่มผู้ชม',
    view:(x,i)=>`<div class="res-num">ผู้ชมของคุณคือ</div><div class="res-title">${esc(x.t)}</div><div class="res-body"><dl><dt>ลักษณะกลุ่ม</dt><dd>${esc(x.s)}</dd><dt>สิ่งที่สนใจ</dt><dd>${esc(x.like)}</dd></dl><details class="more"><summary>เคล็ดลับการสื่อสาร</summary><p>${esc(x.tip)}</p></details></div>`,
    mini:x=>`<b>${esc(x.t)}</b>${esc(x.s)}`},
- 'tram-pick':{kicker:'ใช้ในช่วงที่ 1, 2 และ 3',title:'สุ่มจุดจอดรถราง',lead:'สุ่ม 1 ใน 7 จุดจอดรถราง เพื่อฝึกพูดแนะนำบนรถ 30 วินาที หรือนำชม ณ จุดนั้น',items:TRAM,label:'สุ่มจุดจอดรถราง',
-   view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">จุดที่ ${x.n} · ${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><p style="margin:.3em 0">${esc(x.what)}</p><details class="more"><summary>ดูกิจกรรมและตัวอย่างพูดบนรถ</summary><ul style="padding-left:1.1em">${x.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><div class="say">"${esc(x.say)}"</div></details>${(q=>`<div class="qbox" style="margin-top:10px"><b>❓ คำถามก่อนถึงจุด:</b> "${esc(q.q)}"</div>`)(x.qs[rnd(x.qs.length)])}</div>`,
+ 'tram-pick':{kicker:'ใช้ในช่วงที่ 1, 2 และ 3',title:'สุ่มจุดบนเส้นทางรถราง',lead:'สุ่ม 1 ใน 23 จุดบนเส้นทางรถราง เพื่อฝึกบรรยายขณะรถวิ่งผ่าน 30 วินาที หรือฝึกนำชมที่สถานี',items:ROUTE,label:'สุ่มจุดบนเส้นทาง',
+   view:(x,i)=>`${x.img.length?`<img class="pick-img" src="img/${x.img[0]}.webp" alt="" data-zoom>`:''}<div class="res-num">จุดที่ ${x.n} · ช่วงที่ ${x.seg}${x.side?' · '+esc(x.side):''} · ${x.mode==='stop'?'จุดจอดสถานี':'บรรยายขณะรถวิ่ง'}</div><div class="res-title">${esc(x.name)}</div><div class="res-body"><p style="margin:.3em 0">${esc(x.see)}</p><details class="more"><summary>ข้อมูลสำคัญ</summary><ul style="padding-left:1.1em">${x.facts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul></details>${x.qs.length?(q=>`<div class="qbox" style="margin-top:10px"><b>❓ คำถาม:</b> "${esc(q.q)}"</div>`)(x.qs[rnd(x.qs.length)]):''}</div>`,
    mini:x=>`<b>จุดที่ ${x.n}</b>${esc(x.name)}`},
  'station-pick':{kicker:'ใช้ได้ทุกช่วง',title:'สุ่มจุดนิทรรศการ',lead:'สุ่มจุดนิทรรศการที่ต้องพูดถึง พร้อมข้อเท็จจริงสำคัญสำหรับเตรียมตัว',items:STATIONS,label:'สุ่มจุดนิทรรศการ',
    view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><ul style="padding-left:1.1em;margin:.2em 0">${x.facts.slice(0,3).map(f=>`<li>${esc(f)}</li>`).join('')}</ul><details class="more"><summary>ดู Hook และคำถามตัวอย่าง</summary><div class="hook"><b>Hook:</b> ${esc(x.hook)}</div><div class="qbox"><b>คำถาม:</b> ${esc(x.q)}</div></details></div>`,
@@ -1425,13 +1678,13 @@ function buildCustom(id,cfg,sec){
 }
 
 /* ===================== MISSION ===================== */
-const TIMES=['พูดบนรถ 30 วิ + ที่จุด 3 นาที','พูดบนรถ 30 วิ + ที่จุด 4 นาที','พูดบนรถ 30 วิ + ที่จุด 5 นาที'];
+const TIMES=['บรรยาย 3 นาที','บรรยาย 4 นาที','บรรยาย 5 นาที'];
 function buildMission(){
   const slots=[
-    {k:'st',lab:'🚋 จุดจอดรถราง',arr:TRAM,v:x=>'จุดที่ '+x.n+' · '+x.name,s:x=>x.zone},
+    {k:'st',lab:'🚋 ช่วงเส้นทาง',arr:SEGS,v:x=>'ช่วงที่ '+x.id+' · '+x.name,s:x=>'จุดที่ '+x.pts[0]+'–'+x.pts[x.pts.length-1]},
     {k:'au',lab:'👥 กลุ่มผู้ชม',arr:AUDIENCES,v:x=>x.t,s:x=>x.s},
     {k:'si',lab:'🃏 สถานการณ์ (ให้ผู้เล่นบทผู้ชม)',arr:SITUATIONS,v:x=>x.t,s:x=>x.d},
-    {k:'tm',lab:'⏱️ เวลานำชม',arr:TIMES,v:x=>x,s:()=>'เวลาที่จุดรวมการตอบคำถาม'}
+    {k:'tm',lab:'⏱️ เวลานำชม',arr:TIMES,v:x=>x,s:()=>'รวมการตอบคำถามของผู้ชม'}
   ];
   const cur={}, lock={};
   const paint=()=>{ $('#mSlots').innerHTML=slots.map(sl=>{const x=cur[sl.k];return `<div class="slot"><div class="row" style="justify-content:space-between"><span class="lab">${sl.lab}</span><label class="chk"><input type="checkbox" data-lock="${sl.k}" ${lock[sl.k]?'checked':''}> ล็อก</label></div><div class="val">${x!=null?esc(sl.v(x)):'?'}</div><div class="sub">${x!=null?esc(sl.s(x)):''}</div></div>`;}).join(''); };
@@ -1502,7 +1755,7 @@ function buildRubric(){
 }
 
 /* ===================== ROUTER & UI ===================== */
-const PAGES=['home','plan','tram','tram-pick','s1','s2','s3','script','stations','questions','situation','audience','station-pick','technical','threeways','makeover','mission','names','timer','rubric','prep'];
+const PAGES=['home','plan','tram','khao','tram-pick','s1','s2','s3','script','stations','questions','situation','audience','station-pick','technical','threeways','makeover','mission','names','timer','rubric','prep'];
 function route(){
   let h=(location.hash||'#home').slice(1); if(!PAGES.includes(h)) h='home';
   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('show',p.id==='p-'+h));
@@ -1539,30 +1792,23 @@ function buildScript(){
     if(fnv('dindee:'+v)===LOCK){ box.hidden=true; body.hidden=false; confetti(body); $('#lockInput').value=''; }
     else { $('#lockErr').textContent='รหัสผ่านไม่ถูกต้อง ลองอีกครั้ง'; box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake'); }
   });
-  const sel=$('#scStop'); sel.innerHTML=TRAM.map(t=>`<option value="${t.n}">จุดที่ ${t.n} · ${esc(t.name)}</option>`).join('');
-  const PH=[
-    {k:'tram',t:'🚋 บนรถ ก่อนถึงจุด',d:'30 วินาที',f:['ทักทายหรือเชื่อมจากจุดก่อนหน้า','Hook 1 ประโยค','สิ่งที่ให้ผู้ชมสังเกตเมื่อถึงจุด','คำถามก่อนถึงจุด (ยังไม่เฉลย)']},
-    {k:'off',t:'⬇️ ก่อนลงรถ',d:'15 วินาที',f:['เวลาที่ใช้ในจุดนี้','จุดขึ้นรถ','เวลานัดกลับขึ้นรถ']},
-    {k:'stop',t:'📍 ที่จุดนำชม',d:'4–5 นาที',f:['Hook (เฉลยคำถามบนรถ)','Explain: ข้อเท็จจริง 2–3 ข้อ','Connect: เชื่อมกับชีวิตผู้ชม','คำถามชวนคิด 1–2 ข้อ','กิจกรรมสั้น 1 อย่าง','Takeaway 1 ประโยค']},
-    {k:'on',t:'⬆️ ก่อนออกรถ',d:'15 วินาที',f:['นับจำนวนผู้ชม','สรุป 1 ประโยค','เชื่อมไปจุดถัดไป']},
-    {k:'plan',t:'🛟 แผนสำรอง',d:'',f:['ถ้าเวลาน้อย','ถ้าผู้ชมเงียบ','ถ้าถูกถามสิ่งที่ไม่รู้']}
-  ];
-  const helpFor=(t,k)=>{
-    if(k==='tram') return `<b>ข้อมูลช่วยคิด:</b> ตัวอย่างพูดบนรถ “${esc(t.say)}”<ul>${t.qs.slice(0,3).map(q=>`<li>${esc(q.q)}</li>`).join('')}</ul>`;
-    if(k==='stop') return `<b>ข้อมูลช่วยคิด:</b> ${esc(t.what)}<ul>${t.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><b>ไฮไลต์:</b> ${esc(t.hi)}`;
-    if(k==='off'||k==='on') return `<b>ข้อควรรู้:</b> ${esc(t.tip)}`;
-    return `<b>ดู Situation Cards</b> เพื่อเตรียมรับมือสถานการณ์ เช่น The Quiet Group, Behind Schedule และ The Expert Visitor`;
-  };
+  const sel=$('#scStop'); sel.innerHTML=SEGS.map(sg=>`<option value="${sg.id}">ช่วงที่ ${sg.id} · ${esc(sg.name)} (จุด ${sg.pts[0]}–${sg.pts[sg.pts.length-1]})</option>`).join('');
+  const fm=sec=>sec>=60?(Math.round(sec/30)/2)+' นาที':sec+' วินาที';
   const draw=()=>{
-    const t=TRAM.find(x=>x.n===+sel.value);
-    $('#scForm').innerHTML=`<div class="card sc-phase"><div class="st-head">${icon(t.id)}<div><span class="tag">จุดที่ ${t.n} · ${esc(t.zone)}</span><h3 style="margin:0">${esc(t.name)}</h3></div></div><div class="sc-line">ชื่อกลุ่ม / สมาชิก</div></div>`+
-      PH.map(ph=>`<div class="card sc-phase"><h3>${ph.t} ${ph.d?`<span class="tag">${ph.d}</span>`:''}</h3>${ph.f.map(f=>`<div class="sc-line">${esc(f)}</div>`).join('')}<div class="help">${helpFor(t,ph.k)}</div></div>`).join('');
+    const sg=SEGS.find(x=>x.id===+sel.value); const rs=ROUTE.filter(r=>r.seg===sg.id); const tgt=rs.reduce((a,r)=>a+r.target,0);
+    $('#scForm').innerHTML=`<div class="card sc-phase"><span class="tag">ช่วงที่ ${sg.id} · เป้าหมายประมาณ ${fm(tgt)} (ไม่รวมเวลาที่สถานี)</span><h3 style="margin:.3em 0">${esc(sg.name)}</h3><div class="sc-line">ชื่อกลุ่ม / สมาชิก</div><div class="sc-line">ประโยคเปิดช่วง หรือเชื่อมจากช่วงก่อนหน้า</div></div>`+
+      rs.map(r=>`<div class="card sc-phase"><h3><span class="tag">จุดที่ ${r.n}</span> ${esc(r.name)} ${r.side?`<span class="tag leaf">${esc(r.side)}</span>`:''} ${r.mode==='stop'?'<span class="tag sun">จุดจอดสถานี</span>':''}</h3>
+        <div class="sc-line">ต้องพูด (1–2 ประโยค · ประมาณ ${fm(r.target)})</div><div class="sc-line">เสริมถ้ามีเวลา</div><div class="sc-line">คำถามชวนคิด (ถ้ามี)</div>${r.mode==='stop'?'<div class="sc-line">ที่สถานี: เวลาที่ใช้ จุดขึ้นรถ และกิจกรรมสั้น</div>':''}
+        <div class="help"><b>ข้อมูลจากบทของศูนย์ฯ:</b> ${esc(r.see)}<ul>${r.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>${r.theme?`🟫 <b>เชื่อมธีม:</b> ${esc(r.theme)}<br>`:''}${r.qs[0]?`❓ <b>ตัวอย่างคำถาม:</b> ${esc(r.qs[0].q)}`:''}</div></div>`).join('')+
+      `<div class="card sc-phase"><h3>🛟 แผนสำรอง</h3><div class="sc-line">ถ้ารถวิ่งเร็วกว่าบท</div><div class="sc-line">ถ้าผู้ชมเงียบ</div><div class="sc-line">ถ้าถูกถามสิ่งที่ไม่รู้</div><div class="sc-line">ประโยคส่งต่อช่วงถัดไป</div><div class="help">ดู Situation Cards เช่น Too Fast, The Quiet Group และ The Expert Visitor</div></div>`;
   };
   sel.addEventListener('change',draw); draw();
   $('#scCopy').onclick=async()=>{
-    const t=TRAM.find(x=>x.n===+sel.value);
-    const txt=['Script ดินดีบัดดี้ · จุดที่ '+t.n+' '+t.name+' ('+t.zone+')','ชื่อกลุ่ม / สมาชิก: ........................',''].concat(
-      ...PH.map(ph=>[ph.t.replace(/^\S+\s/,'')+(ph.d?' ('+ph.d+')':''),...ph.f.map(f=>'- '+f+': ........................'),''])).join('\n');
+    const sg=SEGS.find(x=>x.id===+sel.value); const rs=ROUTE.filter(r=>r.seg===sg.id);
+    const L=['Script ดินดีบัดดี้ · ช่วงที่ '+sg.id+' '+sg.name,'ชื่อกลุ่ม / สมาชิก: ........................','ประโยคเปิดช่วง: ........................',''];
+    rs.forEach(r=>{ L.push('จุดที่ '+r.n+' '+r.name+(r.side?' ('+r.side+')':'')+(r.mode==='stop'?' [จุดจอดสถานี]':''),'- ต้องพูด (ประมาณ '+fm(r.target)+'): ........................','- เสริมถ้ามีเวลา: ........................','- คำถามชวนคิด: ........................'); if(r.mode==='stop') L.push('- ที่สถานี (เวลา จุดขึ้นรถ กิจกรรมสั้น): ........................'); L.push(''); });
+    L.push('แผนสำรอง','- ถ้ารถวิ่งเร็วกว่าบท: ........................','- ถ้าผู้ชมเงียบ: ........................','- ถ้าถูกถามสิ่งที่ไม่รู้: ........................','- ประโยคส่งต่อช่วงถัดไป: ........................');
+    const txt=L.join('\n');
     try{ await navigator.clipboard.writeText(txt); $('#scCopyMsg').textContent='คัดลอกแล้ว'; }
     catch(e){ $('#scCopyMsg').textContent='คัดลอกไม่ได้ในเบราว์เซอร์นี้ ให้เลือกข้อความเอง'; }
     setTimeout(()=>$('#scCopyMsg').textContent='',3000);
