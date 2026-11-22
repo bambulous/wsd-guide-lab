@@ -189,7 +189,7 @@ body.proj .res-body{font-size:clamp(20px,2.6vw,30px)}
 .lock-card{text-align:center;max-width:520px;margin:20px auto;padding:30px 24px}
 .lock-ico{font-size:46px;animation:floaty 4s ease-in-out infinite}
 .lock-card h3{margin:.3em 0}
-#lockInput{font-size:22px;letter-spacing:.4em;text-align:center;width:150px;padding:8px 10px;border:1.5px solid var(--line);border-radius:12px}
+.lock-input{font-size:22px;letter-spacing:.4em;text-align:center;width:150px;padding:8px 10px;border:1.5px solid var(--line);border-radius:12px}
 .lock-err{color:#b3261e;font-weight:600;min-height:1.4em;margin:.6em 0 0}
 .lock-card.shake{animation:shake .4s}
 @keyframes shake{0%,100%{transform:none}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
@@ -455,7 +455,7 @@ tr.mine a{color:var(--leaf);text-decoration:none}
     <div class="nav-group">เครื่องมือวิทยากร</div>
     <a href="#timer">ตัวจับเวลา</a>
     <a href="#rubric">แบบประเมินและ Feedback</a>
-    <a href="#prep">สิ่งที่ต้องเตรียม</a>
+    <a href="#prep">สิ่งที่ต้องเตรียม 🔒</a>
   </nav>
   <p class="side-note">เว็บนี้ใช้เปิดดูอย่างเดียว ไม่มีการล็อกอิน และไม่เก็บข้อมูลใด ๆ รายชื่อที่พิมพ์ในหน้าสุ่มชื่อจะหายเมื่อปิดหรือรีเฟรชหน้า</p>
 </aside>
@@ -865,17 +865,17 @@ tr.mine a{color:var(--leaf);text-decoration:none}
 <section class="page" id="p-script">
   <div class="kicker">ใช้ในช่วงที่ 3 · จัดทำ Script สำหรับ “ดินดีบัดดี้”</div>
   <h1>แบบฟอร์ม Script ดินดีบัดดี้</h1>
-  <div class="card lock-card" id="lockBox">
+  <div class="card lock-card" data-pwlock="script">
     <div class="lock-ico">🔒</div>
     <h3>หน้านี้ล็อกไว้สำหรับผู้เข้าอบรม</h3>
     <p class="counter">กรอกรหัสผ่าน 4 หลักที่วิทยากรแจ้งในห้องอบรม</p>
-    <form id="lockForm" class="row" style="justify-content:center" autocomplete="off">
-      <input id="lockInput" type="password" inputmode="numeric" maxlength="8" aria-label="รหัสผ่าน" placeholder="••••">
+    <form class="row lock-form" style="justify-content:center" autocomplete="off">
+      <input class="lock-input" type="password" inputmode="numeric" maxlength="8" aria-label="รหัสผ่าน" placeholder="••••">
       <button class="btn" type="submit">ปลดล็อก</button>
     </form>
-    <p class="lock-err" id="lockErr" aria-live="polite"></p>
+    <p class="lock-err" aria-live="polite"></p>
   </div>
-  <div id="scriptBody" hidden>
+  <div id="scriptBody" class="lock-body" data-lock-body="script" hidden>
     <p class="lead">แบบฟอร์มนี้ช่วยให้แต่ละกลุ่มเรียบเรียงบทรถรางของศูนย์ฯ สำหรับช่วงที่รับผิดชอบให้พอดีเวลา เลือกช่วง แล้วใช้ข้อมูลช่วยคิดในกรอบสีเขียว เว็บไม่บันทึกสิ่งที่เขียน ให้กด “คัดลอกแบบฟอร์ม” ไปวางใน Word หรือ Google Docs หรือเขียนลงกระดาษ</p>
     <div class="card"><div class="row" style="justify-content:space-between">
       <div class="row"><b>เลือกช่วง</b><select id="scStop" aria-label="เลือกช่วง"></select></div>
@@ -1022,6 +1022,17 @@ tr.mine a{color:var(--leaf);text-decoration:none}
 <section class="page" id="p-prep">
   <div class="kicker">สำหรับทีมวิทยากร</div>
   <h1>สิ่งที่ต้องเตรียม</h1>
+  <div class="card lock-card" data-pwlock="prep">
+    <div class="lock-ico">🔒</div>
+    <h3>หน้านี้สำหรับวิทยากรและคณะทำงาน</h3>
+    <p class="counter">กรอกรหัสผ่าน 4 หลัก</p>
+    <form class="row lock-form" style="justify-content:center" autocomplete="off">
+      <input class="lock-input" type="password" inputmode="numeric" maxlength="8" aria-label="รหัสผ่าน" placeholder="••••">
+      <button class="btn" type="submit">ปลดล็อก</button>
+    </form>
+    <p class="lock-err" aria-live="polite"></p>
+  </div>
+  <div class="lock-body" data-lock-body="prep" hidden>
   <div class="grid g2">
     <div class="card"><h3>การจัดห้อง</h3><ul class="clean"><li>โต๊ะกลุ่มย่อย 4–6 คน</li><li>จัดเก้าอี้เป็นแถวเหมือนรถรางสำหรับฝึกรถรางจำลอง 8–9 ชุด และจอหรือแท็บเล็ตเปิดภาพแต่ละจุด</li><li>ห้องประชุม 1601 ชั้น 6 กรมพัฒนาที่ดิน</li><li>จอโปรเจกเตอร์สำหรับเปิดเว็บนี้ในโหมดจอใหญ่</li><li>Wi-Fi หรือ QR Code ลิงก์เว็บ ให้ผู้เข้าอบรมเปิดบนโทรศัพท์</li></ul></div>
     <div class="card"><h3>สื่อและเอกสาร</h3><ul class="clean"><li>Speaking &amp; Storytelling Worksheet (บทเปิด 60 วิ และโครงเรื่อง 90 วิ)</li><li>แบบฟอร์มแผนเดินทาง และแบบฟอร์ม Script ดินดีบัดดี้ กลุ่มละ 1 ชุด</li><li>แบบประเมินการนำชมฉบับกระดาษ พร้อมช่อง ชม 1 · แนะ 1 · ลอง 1</li><li>กระดาษประเมินความมั่นใจของตนเอง</li><li>เอกสารข้อมูลวิชาการสำหรับมัคคุเทศก์ ฉบับเต็ม 1 ชุดต่อกลุ่ม</li></ul></div>
@@ -1036,6 +1047,7 @@ tr.mine a{color:var(--leaf);text-decoration:none}
       <li>ท้ายบท “ในนามของมัคคุเทศก์” เปลี่ยนเป็น “ในนามของดินดีบัดดี้”</li>
     </ul></div>
     <div class="card"><h3>ก่อนวันอบรม</h3><ul class="clean"><li>ผู้เข้าอบรม 50 คน แบ่ง 6 กลุ่มตามช่วงเส้นทางรถราง (กลุ่มละ 8–9 คน) ในช่วงที่ 2</li><li>ประสานคณะทำงานดินดีบัดดี้ 10 คน เป็นผู้ประเมินประจำกลุ่มในช่วงที่ 3</li><li>มอบหมายจุดนิทรรศการหลักให้ผู้เข้าอบรมแต่ละคน</li><li>ตรวจตัวเลขใน Fact Cards กับเอกสารฉบับล่าสุด</li><li>ทดลองเปิดเว็บบนจอห้องอบรมและโทรศัพท์</li></ul></div>
+  </div>
   </div>
 </section>
 
@@ -1785,12 +1797,14 @@ window.addEventListener('hashchange',route); route();
 function fnv(str){ let h=0x811c9dc5; for(const c of new TextEncoder().encode(str)){ h^=c; h=Math.imul(h,0x01000193)>>>0; } return h>>>0; }
 function buildScript(){
   const LOCK=0xc227f651;
-  const box=$('#lockBox'), body=$('#scriptBody');
-  $('#lockForm').addEventListener('submit',e=>{
-    e.preventDefault();
-    const v=$('#lockInput').value.trim();
-    if(fnv('dindee:'+v)===LOCK){ box.hidden=true; body.hidden=false; confetti(body); $('#lockInput').value=''; }
-    else { $('#lockErr').textContent='รหัสผ่านไม่ถูกต้อง ลองอีกครั้ง'; box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake'); }
+  const unlockAll=()=>{ document.querySelectorAll('[data-pwlock]').forEach(x=>x.hidden=true); document.querySelectorAll('[data-lock-body]').forEach(x=>x.hidden=false); };
+  document.querySelectorAll('[data-pwlock]').forEach(box=>{
+    const f=box.querySelector('.lock-form'), inp=box.querySelector('.lock-input'), err=box.querySelector('.lock-err');
+    f.addEventListener('submit',e=>{
+      e.preventDefault();
+      if(fnv('dindee:'+inp.value.trim())===LOCK){ inp.value=''; err.textContent=''; unlockAll(); confetti(document.querySelector(`[data-lock-body="${box.dataset.pwlock}"]`)); }
+      else { err.textContent='รหัสผ่านไม่ถูกต้อง ลองอีกครั้ง'; box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake'); }
+    });
   });
   const sel=$('#scStop'); sel.innerHTML=SEGS.map(sg=>`<option value="${sg.id}">ช่วงที่ ${sg.id} · ${esc(sg.name)} (จุด ${sg.pts[0]}–${sg.pts[sg.pts.length-1]})</option>`).join('');
   const fm=sec=>sec>=60?(Math.round(sec/30)/2)+' นาที':sec+' วินาที';
