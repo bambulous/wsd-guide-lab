@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warm-up เสียงและท่าทาง | ดินดีบัดดี้ 2569</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--soil:#3e2723;--soil9:#2b1d18;--soil6:#6d4c41;--soil1:#f3ece7;--leaf:#33691e;--leaf6:#558b2f;--leaf4:#7cb342;--leaf1:#f1f8e9;--sun:#f9a825;--sky:#4fc3f7;--cream:#f6f1ea;--line:#efe7e1}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#1b120e;font-family:'Noto Sans Thai',system-ui,sans-serif;color:var(--soil9);overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1600px;height:900px;position:relative;transform-origin:center;flex:none}
+.slide{position:absolute;inset:0;background:var(--cream);border-radius:6px;overflow:hidden;padding:70px 90px 110px;display:none;flex-direction:column}
+.slide.on{display:flex;animation:sIn .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes sIn{from{opacity:0;transform:translateY(16px) scale(.99)}to{opacity:1;transform:none}}
+.slide:before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:linear-gradient(90deg,#33691e,#558b2f,#7cb342,#a1887f,#6d4c41,#f9a825,#33691e);background-size:300% 100%;animation:grad 12s ease infinite}
+@keyframes grad{0%,100%{background-position:left}50%{background-position:right}}
+.sec{font-size:26px;font-weight:800;letter-spacing:.08em;color:var(--leaf6);text-transform:uppercase}
+h1{font-size:84px;line-height:1.15;margin:.1em 0 .15em;color:var(--soil);font-weight:800}
+h2{font-size:68px;line-height:1.15;margin:.05em 0 .25em;color:var(--soil);font-weight:800}
+.big{font-size:44px;line-height:1.45;color:var(--soil6);font-weight:600}
+.huge{font-size:120px;font-weight:800;line-height:1;color:var(--leaf)}
+.row{display:flex;gap:28px;align-items:center}
+.cols{display:grid;gap:24px}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}.c5{grid-template-columns:repeat(5,1fr)}
+.tile{background:#fff;border:2px solid var(--line);border-radius:28px;padding:26px 28px;box-shadow:0 6px 20px rgba(62,39,35,.07)}
+.tile .ico{font-size:72px;line-height:1.1}
+.tile b{display:block;font-size:40px;color:var(--soil);margin:.2em 0 .1em}
+.tile span{font-size:30px;color:var(--soil6);line-height:1.4}
+.chip{display:inline-block;background:var(--leaf1);color:var(--leaf);font-weight:800;border-radius:999px;padding:6px 22px;font-size:30px}
+.say{font-size:62px;font-weight:800;color:var(--soil);background:#fff;border-radius:28px;padding:22px 36px;border:3px dashed #c5e1a5;line-height:1.35}
+.say small{display:block;font-size:30px;color:var(--soil6);font-weight:600}
+.step{opacity:0;transform:translateY(14px);transition:opacity .35s,transform .35s}
+.step.shown{opacity:1;transform:none}
+.mascot{display:flex;align-items:center;gap:6px;pointer-events:none;margin-left:auto;margin-right:24px}
+.mascot svg{width:92px;height:auto;animation:bob 2.2s ease-in-out infinite;margin-top:-34px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.bubble{background:#fff;border:3px solid var(--leaf4);border-radius:22px 22px 6px 22px;padding:6px 18px;font-size:24px;font-weight:800;color:var(--leaf);white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.foot{position:absolute;left:0;right:0;bottom:0;height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(255,255,255,.7);border-top:1px solid var(--line)}
+.foot .brand{display:flex;gap:12px;align-items:center;font-size:22px;font-weight:700;color:var(--soil6)}
+.foot .brand img{width:46px;height:46px;border-radius:50%;background:#fff}
+.timer{font-size:28px;font-weight:800;background:var(--soil);color:#fff;border-radius:999px;padding:6px 20px;cursor:pointer;font-variant-numeric:tabular-nums;border:none;font-family:inherit}
+.timer.run{background:var(--leaf6)}
+.timer.done{background:#c62828;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.pg{font-size:22px;color:var(--soil6);font-weight:700}
+.btn{font-family:inherit;font-size:34px;font-weight:800;background:var(--leaf6);color:#fff;border:none;border-radius:20px;padding:14px 36px;cursor:pointer;box-shadow:0 6px 0 var(--leaf)}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--leaf)}
+.btn.ghost{background:#fff;color:var(--soil);box-shadow:0 6px 0 #d7ccc8}
+/* breath */
+.breath{display:grid;grid-template-columns:560px 1fr;gap:60px;align-items:center;flex:1}
+.bwrap{width:520px;height:520px;position:relative;display:grid;place-items:center}
+.bring{position:absolute;inset:0;border-radius:50%;border:6px dashed #c5e1a5}
+.bcirc{width:520px;height:520px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#aed581,#558b2f);transform:scale(.45);display:grid;place-items:center;color:#fff;box-shadow:0 20px 60px rgba(51,105,30,.35)}
+.bcirc .bnum{font-size:150px;font-weight:800;line-height:1}
+.bphase{font-size:72px;font-weight:800;color:var(--leaf)}
+.bround{font-size:36px;color:var(--soil6);font-weight:700}
+/* counters */
+.counter{font-size:220px;font-weight:800;color:var(--leaf);line-height:1;font-variant-numeric:tabular-nums}
+.shake-part{font-size:76px;font-weight:800;color:var(--soil)}
+/* vowels */
+.vowel{background:#fff;border-radius:28px;border:2px solid var(--line);text-align:center;padding:24px 10px}
+.vowel .v{font-size:96px;font-weight:800;color:var(--soil);line-height:1.1}
+.vowel svg{width:150px;height:110px}
+/* ladder */
+.ladder{display:flex;align-items:flex-end;gap:26px;height:430px;margin-top:10px}
+.lad{flex:1;border-radius:20px 20px 6px 6px;background:#d7ccc8;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:16px 10px;color:#fff;font-weight:800;transition:background .3s,transform .3s}
+.lad b{font-size:64px;line-height:1}
+.lad span{font-size:26px;text-align:center;line-height:1.3}
+.lad.lit{background:linear-gradient(180deg,#7cb342,#33691e);transform:translateY(-6px)}
+/* twister */
+.tw{font-size:66px;font-weight:800;color:var(--soil);background:#fff;border-radius:28px;padding:20px 34px;margin:10px 0;border-left:12px solid var(--leaf4)}
+.speeds{display:flex;gap:16px}
+.speeds span{font-size:32px;font-weight:800;border-radius:999px;padding:8px 26px;background:#eee;color:#8d6e63}
+.speeds span.on{background:var(--sun);color:var(--soil9)}
+.num{display:grid;grid-template-columns:330px 1fr;gap:24px;align-items:center;background:#fff;border-radius:24px;padding:18px 30px;margin:10px 0}
+.num .d{font-size:64px;font-weight:800;color:var(--leaf)}
+.num .w{font-size:46px;font-weight:700;color:var(--soil)}
+.pause{font-size:60px;font-weight:800;color:var(--soil);line-height:1.5}
+.pause .p1{color:var(--sun);padding:0 8px}
+.pause .p2{color:#e65100;padding:0 8px}
+/* left right */
+.lr{flex:1;display:grid;place-items:center}
+.lr-call{font-size:150px;font-weight:800;color:var(--soil);text-align:center;line-height:1.1}
+.lr-call small{display:block;font-size:42px;color:var(--soil6)}
+.lr-call.flash{animation:flash .4s}
+@keyframes flash{from{transform:scale(.85);opacity:.4}to{transform:none;opacity:1}}
+.power{font-size:64px;font-weight:800;line-height:1.5}
+.power div{display:flex;gap:22px;align-items:center}
+.power i{font-style:normal;font-size:64px;width:90px;text-align:center}
+/* notes */
+#notes{position:fixed;left:16px;right:16px;bottom:16px;max-height:34vh;overflow:auto;background:rgba(43,29,24,.95);color:#fff;border-radius:14px;padding:16px 22px;font-size:17px;line-height:1.6;display:none;z-index:20}
+#notes b{color:var(--sun)}
+#notes.on{display:block}
+#help{position:fixed;top:10px;right:12px;z-index:21;display:flex;gap:6px}
+#help button,#help a{font-family:inherit;font-size:13px;border:none;border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.14);color:#fff;cursor:pointer;text-decoration:none}
+#help button:hover,#help a:hover{background:rgba(255,255,255,.28)}
+.navzone{position:fixed;top:0;bottom:0;width:18%;z-index:5;cursor:pointer}
+#prevZone{left:0}#nextZone{right:0}
+#bar{position:fixed;left:0;top:0;height:4px;background:var(--sun);z-index:22;transition:width .3s}
+.notes{display:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="help"><a href="index.html#home">← หน้าหลัก</a><button id="bNotes" title="บันทึกผู้บรรยาย (N)">บันทึกวิทยากร (N)</button><button id="bFull" title="เต็มจอ (F)">เต็มจอ (F)</button></div>
+<div class="navzone" id="prevZone" aria-hidden="true"></div><div class="navzone" id="nextZone" aria-hidden="true"></div>
+<div id="viewport"><div id="stage">
+
+<!-- 1 -->
+<section class="slide" data-time="30" data-bubble="ยืนขึ้นพร้อมกันเลย!">
+  <div class="sec">Warm-up · ดินดีบัดดี้ 2569</div>
+  <h1>เตรียมเสียงให้พร้อม<br>ก่อนขึ้นรถราง 🚋</h1>
+  <div class="cols c3" style="margin-top:30px;max-width:1150px">
+    <div class="tile"><div class="ico">🗣️</div><b>~30 นาที</b><span>พูดต่อรอบรถราง</span></div>
+    <div class="tile"><div class="ico">☀️</div><b>กลางแจ้ง</b><span>ลม เสียงรถ ผู้ชมหลายวัย</span></div>
+    <div class="tile"><div class="ico">🗓️</div><b>5 วัน</b><span>5–9 ธันวาคม 2569</span></div>
+  </div>
+  <p class="big" style="margin-top:28px">ใช้เวลา 15 นาที ทุกคนทำพร้อมกัน ณ ที่นั่งของตนเอง</p>
+  <aside class="notes">ชวนทุกคน <b>ยืนขึ้น</b> เลื่อนเก้าอี้เล็กน้อยให้มีที่ว่าง อธิบายว่าเสียงคือเครื่องมือหลักของดินดีบัดดี้ ต้องใช้ทั้งวันติดกัน 5 วัน การวอร์มช่วยลดความตื่นเต้นและถนอมเสียง แจ้งว่าใครรู้สึกเวียนศีรษะหรือไม่สบาย หยุดพักหรือนั่งทำได้ทุกเมื่อ</aside>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-time="30" data-bubble="ยืนมั่นคง เหมือนรากแฝก">
+  <div class="sec">1 · ท่ายืน</div>
+  <h2>ยืนให้มั่นคง เหมือนรากแฝก 🌾</h2>
+  <div class="cols c4" style="margin-top:20px">
+    <div class="tile step"><div class="ico">🦶</div><b>เท้า</b><span>กว้างเท่าสะโพก</span></div>
+    <div class="tile step"><div class="ico">🧍</div><b>หลัง</b><span>ยืดตรง ศีรษะสูง</span></div>
+    <div class="tile step"><div class="ico">🤷</div><b>ไหล่</b><span>ผ่อนลง ไม่ยกเกร็ง</span></div>
+    <div class="tile step"><div class="ico">🦵</div><b>เข่า</b><span>ผ่อนเล็กน้อย ไม่ล็อก</span></div>
+  </div>
+  <aside class="notes">กด → เพื่อเผยทีละข้อ วิทยากรทำท่าให้ดูพร้อมกัน เปรียบท่ายืนกับรากหญ้าแฝกที่หยั่งลึกและมั่นคง บนรถรางที่โยก ท่ายืนหรือนั่งที่มั่นคงช่วยให้หายใจและออกเสียงได้ดี</aside>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-time="45" data-bubble="ท้องป่อง ไม่ใช่ไหล่ยก">
+  <div class="sec">2 · ลมหายใจ</div>
+  <h2>หาลมหายใจที่ท้อง</h2>
+  <div class="cols c2" style="margin-top:20px;max-width:1200px">
+    <div class="tile"><div class="ico">✋🫁</div><b>มือวางที่ท้อง</b><span>อีกมือวางที่อก</span></div>
+    <div class="tile"><div class="ico">🎈</div><b>หายใจเข้า ท้องป่อง</b><span>มือที่อกแทบไม่ขยับ</span></div>
+  </div>
+  <p class="big" style="margin-top:28px">หายใจเข้าทางจมูก · ออกทางปากช้า ๆ · ทำ 3 ครั้ง</p>
+  <aside class="notes">ให้สังเกตว่ามือที่ท้องขยับมากกว่ามือที่อก ถ้าไหล่ยกขึ้นเวลาหายใจเข้า แปลว่ากำลังหายใจตื้น การหายใจด้วยท้องช่วยให้มีลมพอสำหรับประโยคยาว และช่วยให้ใจสงบลง</aside>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-time="90" data-bubble="ตามวงกลมไปพร้อมกัน">
+  <div class="sec">2 · ลมหายใจ</div>
+  <h2 style="margin-bottom:0">หายใจ 4 · 4 · 6 ลดความตื่นเต้น</h2>
+  <div class="breath">
+    <div class="bwrap"><div class="bring"></div><div class="bcirc" id="bCirc"><span class="bnum" id="bNum">●</span></div></div>
+    <div>
+      <div class="bphase" id="bPhase">พร้อมไหม?</div>
+      <div class="bround" id="bRound">เข้า 4 · กลั้น 4 · ออก 6 · 3 รอบ</div>
+      <div style="margin-top:30px"><button class="btn" id="bStart">▶ เริ่มหายใจ</button></div>
+      <p class="big" style="font-size:32px;margin-top:24px">ไม่สะดวกกลั้นหายใจ ข้ามช่วงกลั้นได้</p>
+    </div>
+  </div>
+  <aside class="notes">กดปุ่มเริ่ม วงกลมขยายเมื่อ <b>หายใจเข้า 4</b> ค้างไว้เมื่อ <b>กลั้น 4</b> และหดเมื่อ <b>หายใจออก 6</b> นับดัง ๆ พร้อมกันได้ การหายใจออกยาวกว่าหายใจเข้าช่วยให้รู้สึกผ่อนคลาย เตือนว่าใครไม่สบายใจกับการกลั้น ให้หายใจปกติตามจังหวะวงกลม</aside>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-time="45" data-bubble="ซ.......... ยาวที่สุด!">
+  <div class="sec">2 · ลมหายใจ</div>
+  <h2>เสียง “ซ” ยาว ๆ</h2>
+  <div class="row" style="flex:1;gap:80px">
+    <div>
+      <p class="big">หายใจเข้าลึก ๆ<br>ปล่อยเสียง <b style="color:var(--leaf);font-size:64px">“ซซซซซ...”</b><br>สม่ำเสมอ ยาวที่สุด</p>
+      <div class="row" style="margin-top:20px"><button class="btn" id="hStart">▶ เริ่มจับเวลา</button><button class="btn ghost" id="hReset">รีเซ็ต</button></div>
+    </div>
+    <div style="text-align:center"><div class="counter" id="hNum">0</div><div class="big">วินาที</div></div>
+  </div>
+  <aside class="notes">กดเริ่มพร้อมกับที่ทุกคนเริ่มปล่อยเสียง ซ ใครหมดลมให้นั่ง (หรือยกมือลง) คนสุดท้ายที่ยังยืนอยู่ได้รับเสียงปรบมือ แบบฝึกนี้ช่วยควบคุมลมให้สม่ำเสมอ ซึ่งจำเป็นตอนพูดประโยคยาวบนรถราง</aside>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-time="45" data-bubble="นับดัง ๆ ด้วยนะ!">
+  <div class="sec">3 · ร่างกาย</div>
+  <h2>เขย่าคลายเครียด 8 · 4 · 2 · 1</h2>
+  <div class="row" style="flex:1;gap:60px">
+    <div style="text-align:center;min-width:520px"><div class="shake-part" id="sPart">มือขวา ✋</div><div class="counter" id="sNum">8</div></div>
+    <div><p class="big">มือขวา · มือซ้าย · ขาขวา · ขาซ้าย<br>เขย่าพร้อมนับ ลดลงทีละรอบ</p><button class="btn" id="sStart">▶ เริ่ม</button></div>
+  </div>
+  <aside class="notes">ให้ทุกคนนับออกเสียงพร้อมกัน (หนึ่ง สอง สาม...) เขย่ามือขวา 8 ครั้ง มือซ้าย 8 ขาขวา 8 ขาซ้าย 8 แล้วลดเป็น 4 2 และ 1 จบด้วยการปรบมือ 1 ครั้ง ช่วยปลุกพลังหลังจากนั่งฟังบรรยายมานาน ผู้ที่มีปัญหาเรื่องการทรงตัวให้เขย่าเฉพาะมือ</aside>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-time="45" data-bubble="ช้า ๆ ไม่ต้องรีบ">
+  <div class="sec">3 · ร่างกาย</div>
+  <h2>คอ ไหล่ และขากรรไกร</h2>
+  <div class="cols c3" style="margin-top:20px">
+    <div class="tile step"><div class="ico">🔄</div><b>เอียงคอ</b><span>ซ้าย ขวา ช้า ๆ ข้างละ 2 ครั้ง</span></div>
+    <div class="tile step"><div class="ico">⭕</div><b>หมุนไหล่</b><span>ไปข้างหน้า 3 · ไปข้างหลัง 3</span></div>
+    <div class="tile step"><div class="ico">😮</div><b>คลายขากรรไกร</b><span>อ้าปากกว้าง ขยับกรามเบา ๆ</span></div>
+  </div>
+  <aside class="notes">เน้นทำช้า ไม่หมุนคอเป็นวงกลมแรง ๆ ความตึงที่คอ ไหล่ และกราม ทำให้เสียงแข็งและเหนื่อยเร็ว</aside>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-time="30" data-bubble="หน้าสิงโต! หน้ามะนาว!">
+  <div class="sec">3 · ใบหน้า</div>
+  <h2>หน้าสิงโต · หน้ามะนาว</h2>
+  <div class="cols c2" style="margin-top:20px;max-width:1150px">
+    <div class="tile" style="text-align:center"><div class="ico" style="font-size:150px">🦁</div><b>อ้ากว้างที่สุด</b><span>ตาโต แลบลิ้น</span></div>
+    <div class="tile" style="text-align:center"><div class="ico" style="font-size:150px">🍋</div><b>หดเล็กที่สุด</b><span>ย่นหน้า บีบตา</span></div>
+  </div>
+  <p class="big" style="margin-top:20px">สลับกัน 3 รอบ</p>
+  <aside class="notes">วิทยากรสั่ง “สิงโต!” “มะนาว!” สลับกันเร็วขึ้นเรื่อย ๆ สร้างเสียงหัวเราะและคลายกล้ามเนื้อใบหน้า ช่วยให้ออกเสียงชัดและยิ้มได้เป็นธรรมชาติ</aside>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-time="45" data-bubble="รู้สึกริมฝีปากสั่นไหม?">
+  <div class="sec">4 · เสียง</div>
+  <h2>ฮัม “อืม...”</h2>
+  <div class="row" style="flex:1;gap:70px">
+    <svg viewBox="0 0 420 300" width="560" aria-hidden="true"><path d="M20 250 C110 250 120 60 210 60 S320 250 400 250" fill="none" stroke="#7cb342" stroke-width="14" stroke-linecap="round" stroke-dasharray="20 18"><animate attributeName="stroke-dashoffset" from="0" to="-76" dur="1.2s" repeatCount="indefinite"/></path><text x="20" y="290" font-size="30" font-weight="800" fill="#6d4c41">ต่ำ</text><text x="185" y="40" font-size="30" font-weight="800" fill="#6d4c41">สูง</text><text x="360" y="290" font-size="30" font-weight="800" fill="#6d4c41">ต่ำ</text></svg>
+    <p class="big">ปิดปากเบา ๆ ฮัม “อืม”<br>ไล่จากเสียงต่ำ ขึ้นสูง แล้วลงต่ำ<br>รู้สึกการสั่นที่ริมฝีปากและจมูก</p>
+  </div>
+  <aside class="notes">ฮัมเบา ๆ ไม่ต้องดัง ให้ทุกคนแตะริมฝีปากหรือสันจมูกเพื่อรู้สึกการสั่น การฮัมเป็นการวอร์มเสียงที่นุ่มนวล ไม่ทำให้เส้นเสียงเหนื่อย</aside>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-time="45" data-bubble="บรื๋อออออ~">
+  <div class="sec">4 · เสียง</div>
+  <h2>เป่าปาก “บรื๋อ” แบบไซเรน</h2>
+  <div class="row" style="flex:1;gap:70px">
+    <div style="font-size:190px">🚑</div>
+    <p class="big">ปิดปากหลวม ๆ แล้วเป่าให้ริมฝีปากสั่น “บรื๋อ...”<br>ไล่เสียงขึ้นลงเหมือนไซเรน 3 รอบ<br><span style="font-size:32px">ทำไม่ได้? ใช้ “ร” ลิ้นรัวแทน</span></p>
+  </div>
+  <aside class="notes">ถ้าริมฝีปากไม่สั่น ให้ใช้นิ้วดันมุมปากขึ้นเบา ๆ ช่วย แบบฝึกนี้ช่วยประสานลมกับเสียง และเป็นช่วงที่ห้องจะสนุกมาก ปล่อยให้หัวเราะได้</aside>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-time="45" data-bubble="อ้าปากให้กว้าง ๆ">
+  <div class="sec">4 · เสียง</div>
+  <h2>สระชัด ปากต้องขยับ</h2>
+  <div class="cols c5" style="margin-top:16px">
+    <div class="vowel step"><div class="v">อา</div><svg viewBox="0 0 150 110"><ellipse cx="75" cy="55" rx="40" ry="46" fill="#5d4037" stroke="#ef9a9a" stroke-width="10"/></svg></div>
+    <div class="vowel step"><div class="v">เอ</div><svg viewBox="0 0 150 110"><ellipse cx="75" cy="55" rx="60" ry="26" fill="#5d4037" stroke="#ef9a9a" stroke-width="10"/></svg></div>
+    <div class="vowel step"><div class="v">อี</div><svg viewBox="0 0 150 110"><path d="M12 48 Q75 82 138 48 Q75 66 12 48Z" fill="#5d4037" stroke="#ef9a9a" stroke-width="10" stroke-linejoin="round"/></svg></div>
+    <div class="vowel step"><div class="v">โอ</div><svg viewBox="0 0 150 110"><circle cx="75" cy="55" r="34" fill="#5d4037" stroke="#ef9a9a" stroke-width="10"/></svg></div>
+    <div class="vowel step"><div class="v">อู</div><svg viewBox="0 0 150 110"><circle cx="75" cy="55" r="18" fill="#5d4037" stroke="#ef9a9a" stroke-width="12"/></svg></div>
+  </div>
+  <p class="big" style="margin-top:24px">ลากเสียงยาว 2 วินาที · ทำ 2 รอบ · รอบสองเร็วขึ้น</p>
+  <aside class="notes">กด → เผยทีละสระ ให้ทุกคนออกเสียงพร้อมกัน อา เอ อี โอ อู ปากต้องเปลี่ยนรูปชัดเจน ผู้ชมด้านหลังรถรางมักฟังไม่ชัดเพราะพูดโดยไม่ขยับปาก</aside>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-time="45" data-bubble="ดังได้ ไม่ต้องตะโกน">
+  <div class="sec">5 · ระดับเสียง</div>
+  <h2>บันไดเสียง 1–5</h2>
+  <div class="ladder">
+    <div class="lad step" style="height:24%"><b>1</b><span>กระซิบ</span></div>
+    <div class="lad step" style="height:40%"><b>2</b><span>คุยกับคนข้าง ๆ</span></div>
+    <div class="lad step" style="height:56%"><b>3</b><span>คุยทั้งโต๊ะ</span></div>
+    <div class="lad step" style="height:74%"><b>4</b><span>ทั้งห้อง</span></div>
+    <div class="lad step" style="height:94%"><b>5</b><span>ท้ายรถรางได้ยิน<br>(ไม่ตะโกน)</span></div>
+  </div>
+  <aside class="notes">กด → ทีละขั้น ทุกคนนับเลขตามขั้น เช่น ขั้น 1 พูดว่า “หนึ่ง” แบบกระซิบ จนถึงขั้น 5 พูด “ห้า” ให้ดังถึงท้ายห้อง โดยใช้ลมจากท้อง ไม่เกร็งคอ ย้ำว่าบนรถรางมีไมโครโฟน ระดับ 3–4 ก็เพียงพอ</aside>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-time="60" data-bubble="ช้า กลาง เร็ว!">
+  <div class="sec">6 · พูดชัด</div>
+  <h2>ลิ้นพันดิน 3 ความเร็ว</h2>
+  <div class="speeds"><span class="step">🐢 ช้า</span><span class="step">🚶 กลาง</span><span class="step">🚋 เร็ว</span></div>
+  <div class="tw">ดินดานแดงแข็ง ดินดีดำร่วน</div>
+  <div class="tw">รากแฝกแตกแขนง แทงทะลุดินแข็ง</div>
+  <div class="tw">ไส้เดือนเดินดุ่ม ดินร่วนซุยซุย</div>
+  <aside class="notes">กด → แต่ละครั้งเพื่อเปลี่ยนความเร็ว (ช้า → กลาง → เร็ว) ทุกคนพูดทั้ง 3 ประโยคพร้อมกันในแต่ละความเร็ว เน้นชัดก่อนเร็ว ถ้าพูดเร็วแล้วไม่ชัด ให้กลับไปความเร็วกลาง</aside>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-time="45" data-bubble="ร เรือ ให้ชัด!">
+  <div class="sec">6 · พูดชัด</div>
+  <h2>ร เรือ · ล ลิง</h2>
+  <div class="tw" style="font-size:76px">รถรางแล่นเลี้ยวรอบเขาเขียว</div>
+  <div class="tw step" style="font-size:66px">ร่องแฝกรักษาหน้าดิน ไม่ให้ไหลลงลำราง</div>
+  <p class="big">คำที่ต้องพูดบ่อย: <b>รถราง · ราก · ร่วน · ร้อยละ · ลูกรัง</b></p>
+  <aside class="notes">ให้พูดช้า ๆ ก่อน 2 รอบ เน้นปลายลิ้นรัวเล็กน้อยสำหรับ ร แล้วพูดเร็วขึ้น คำว่า “รถราง” และ “ลูกรัง” อยู่ในบทรถรางหลายจุด ควรพูดให้ชัด</aside>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-time="45" data-bubble="ตัวเลขต้องชัด ช้าลงนิดนึง">
+  <div class="sec">6 · พูดชัด</div>
+  <h2>พูดตัวเลขให้ชัด</h2>
+  <div class="num step"><div class="d">95%</div><div class="w">ร้อยละ / เก้าสิบห้า</div></div>
+  <div class="num step"><div class="d">150,000</div><div class="w">หนึ่งแสน / ห้าหมื่น / ลูกบาศก์เมตร</div></div>
+  <div class="num step"><div class="d">พ.ศ. 2528</div><div class="w">พุทธศักราช / สองพัน / ห้าร้อย / ยี่สิบแปด</div></div>
+  <div class="num step"><div class="d">3,041 ไร่</div><div class="w">สามพัน / สี่สิบเอ็ด / ไร่</div></div>
+  <aside class="notes">ตัวเลขเหล่านี้มาจากบทรถรางและเอกสารของศูนย์ฯ “/” คือจุดเว้นจังหวะสั้น ๆ ช่วยให้ผู้ฟังจับตัวเลขได้ ให้ทุกคนพูดพร้อมกันทีละบรรทัด</aside>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-time="60" data-bubble="เว้นจังหวะ = ผู้ฟังได้คิด">
+  <div class="sec">7 · จังหวะ</div>
+  <h2>พลังของการเว้นจังหวะ</h2>
+  <div class="tile step" style="margin:6px 0"><span class="chip">🐇 รอบ 1 · เร็ว ไม่หยุด</span><div class="pause" style="font-size:46px">ทางขวามือคือหน้าตัดดินลองดูรากต้นไม้หยุดลึกแค่ไหน</div></div>
+  <div class="tile step" style="margin:6px 0"><span class="chip">⏸️ รอบ 2 · เว้นจังหวะ</span><div class="pause">ทางขวามือ <span class="p1">/</span> คือหน้าตัดดิน <span class="p2">//</span> ลองดูรากต้นไม้ <span class="p1">/</span> หยุดลึกแค่ไหน</div></div>
+  <p class="big step" style="font-size:34px"><b style="color:var(--sun)">/</b> หยุดสั้น · <b style="color:#e65100">//</b> หยุดนาน ให้ผู้ชมหันไปมอง</p>
+  <aside class="notes">ให้ทุกคนพูดรอบ 1 แบบเร็ว แล้วพูดรอบ 2 ตามเครื่องหมาย ถามห้องว่าแบบไหนฟังเข้าใจกว่า บนรถราง การหยุดหลังบอกซ้ายมือหรือขวามือทำให้ผู้ชมมีเวลาหันไปดู</aside>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-time="60" data-bubble="ซ้ายมือของใคร?">
+  <div class="sec">8 · ภาษากาย</div>
+  <h2 style="margin-bottom:6px">ซ้ายมือ ขวามือ ของใคร?</h2>
+  <p class="big" style="font-size:34px;margin:0">ถ้ายืนหันหน้าหาผู้ชม <b>ซ้ายมือของผู้ชม = ขวามือของเรา</b> · พูดว่า “ทางซ้ายมือของทุกท่าน” แล้วชี้ด้วย <b>ฝ่ามือเปิด</b> ✋ ไม่ใช้นิ้วชี้</p>
+  <div class="lr"><div class="lr-call" id="lrCall">พร้อมไหม?<small>ทุกคนหันหน้าไปทางจอ</small></div></div>
+  <div class="row" style="justify-content:center"><button class="btn" id="lrStart">▶ สุ่มคำสั่ง 20 วินาที</button></div>
+  <aside class="notes">ช่วงแรกให้ทุกคนหันหน้าไปทางจอ ชี้ตามคำสั่งด้วยฝ่ามือเปิด ช่วงที่สอง ให้จับคู่หันหน้าเข้าหากัน คนหนึ่งเป็นผู้ชม อีกคนเป็นดินดีบัดดี้ ฝึกพูด “ทางซ้ายมือของทุกท่าน” แล้วชี้ไปฝั่งซ้ายของผู้ชม ข้อนี้สำคัญมากเพราะบทรถรางบอกซ้ายมือและขวามือเกือบทุกจุด</aside>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-time="45" data-bubble="มองให้ทั่ว ยิ้มให้ถึงตา">
+  <div class="sec">8 · ภาษากาย</div>
+  <h2>สบตา 3 จุด · พลัง 3 ระดับ</h2>
+  <div class="cols c3" style="margin-top:10px">
+    <div class="tile" style="text-align:center"><div class="ico">👈</div><b>ซ้าย</b></div>
+    <div class="tile" style="text-align:center"><div class="ico">👀</div><b>กลาง</b></div>
+    <div class="tile" style="text-align:center"><div class="ico">👉</div><b>ขวา</b></div>
+  </div>
+  <div class="say step" style="margin-top:24px">“สวัสดีค่ะ / ครับ ทุกท่าน” <small>พลัง ① เรียบ ๆ → ② อบอุ่น → ③ สดใสเต็มที่</small></div>
+  <aside class="notes">ทุกคนกวาดสายตาไปซ้าย กลาง ขวา ของห้อง แล้วทักทายพร้อมกัน 3 รอบ เพิ่มพลังทีละระดับ บนรถรางผู้ชมนั่งเป็นแถว การมองให้ทั่วทำให้ทุกคนรู้สึกว่าเราพูดกับเขา</aside>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-time="45" data-bubble="พร้อมกันทั้งห้อง!">
+  <div class="sec">9 · พลังรวม</div>
+  <h2>ประโยคพลัง พร้อมท่าทาง</h2>
+  <div class="power">
+    <div class="step"><i>🤗</i>ยินดีต้อนรับสู่เขาชะงุ้ม</div>
+    <div class="step"><i>⛏️</i>พลิกฟื้นดินดาน</div>
+    <div class="step"><i>🌱</i>เพิ่มผลผลิตอาหาร</div>
+    <div class="step"><i>🤝</i>สานชีวิตยั่งยืน</div>
+  </div>
+  <aside class="notes">กด → เผยทีละวรรคพร้อมสาธิตท่า: กางแขนต้อนรับ · ทำท่าพลิกดินด้วยสองมือ · ยกมือขึ้นเหมือนต้นกล้าเติบโต · ประสานมือ จากนั้นให้ทั้งห้องพูดพร้อมท่าทาง 2 รอบ รอบสองดังและมีพลังขึ้น ปิดด้วยเสียงปรบมือ</aside>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-time="30" data-bubble="ดูแลเสียงตลอด 5 วันนะ">
+  <div class="sec">ปิดท้าย</div>
+  <h2>ดูแลเสียงตลอด 5 วันปฏิบัติงาน</h2>
+  <div class="cols c2" style="margin-top:10px">
+    <div class="tile"><b>☀️ ทุกเช้า 3 นาที</b><span>หายใจ 4·4·6 × 3 รอบ<br>ฮัม และเป่าปาก “บรื๋อ” 30 วินาที<br>อา เอ อี โอ อู<br>ลิ้นพันดิน 1 รอบ</span></div>
+    <div class="tile"><b>🚋 ระหว่างวัน</b><span>จิบน้ำบ่อย ๆ<br>ใช้ไมโครโฟน ไม่ตะโกน<br>พักเสียงระหว่างรอบรถราง<br>หันหน้าหาผู้ชมเวลาพูด</span></div>
+  </div>
+  <p class="big" style="margin-top:20px">พร้อมแล้ว · ไปฝึกบทเปิด 60 วินาทีกันต่อ 🎤</p>
+  <aside class="notes">ชวนทุกคนถ่ายภาพสไลด์นี้เก็บไว้ใช้ระหว่างปฏิบัติหน้าที่ แล้วเชื่อมเข้าสู่กิจกรรมถัดไปในช่วงที่ 1</aside>
+</section>
+
+</div></div>
+<div id="notes"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const slides=[...document.querySelectorAll('.slide')];
+let cur=0;
+const WORM=`<svg viewBox="-50 -70 110 80" aria-hidden="true"><g>
+ <circle cx="-31" cy="-7" r="6.5" fill="#f48fb1"/><circle cx="-21" cy="-8" r="7.5" fill="#f06292"/><circle cx="-10" cy="-9" r="8.5" fill="#f48fb1"/>
+ <circle cx="6" cy="-16" r="14" fill="#f8a5c2"/><circle cx="2" cy="-19" r="3.6" fill="#fff"/><circle cx="12" cy="-19" r="3.6" fill="#fff"/><circle cx="3" cy="-18.6" r="2" fill="#2b1d18"/><circle cx="13" cy="-18.6" r="2" fill="#2b1d18"/>
+ <ellipse cx="-3" cy="-11" rx="3" ry="1.8" fill="#ec407a" opacity=".45"/><ellipse cx="17" cy="-11" rx="3" ry="1.8" fill="#ec407a" opacity=".45"/>
+ <path d="M4 -11.5 q4 4 8 0" stroke="#2b1d18" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+ <path d="M-7 -25 q13 -15 26 0z" fill="#33691e"/><rect x="11" y="-27" width="14" height="3.6" rx="1.8" fill="#558b2f"/><circle cx="6" cy="-33" r="2.2" fill="#f9a825"/>
+ <line x1="19" y1="-6" x2="30" y2="-36" stroke="#6d4c41" stroke-width="2" stroke-linecap="round"/><path d="M30 -36 l15 4 -15 5z" fill="#f9a825"/></g></svg>`;
+slides.forEach((s,i)=>{
+  const t=+s.dataset.time||0;
+  const mas=s.dataset.bubble?`<div class="mascot"><div class="bubble">${s.dataset.bubble}</div>${WORM}</div>`:'';
+  const f=document.createElement('div'); f.className='foot';
+  f.innerHTML=`<div class="brand"><img src="logo.webp" alt="">Warm-up เสียงและท่าทาง · ดินดีบัดดี้ 2569</div>${mas}<div class="row" style="gap:18px">${t?`<button class="timer" data-t="${t}" title="กดเพื่อจับเวลา (T)">⏱ ${fmt(t)}</button>`:''}<span class="pg">${i+1} / ${slides.length}</span></div>`;
+  s.appendChild(f);
+});
+function fmt(t){return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')}
+
+/* scale stage */
+function fit(){ const s=Math.min(innerWidth/1600,innerHeight/900); $('#stage').style.transform=`scale(${s})`; }
+addEventListener('resize',fit); fit();
+
+/* navigation with steps */
+function steps(){ return [...slides[cur].querySelectorAll('.step')]; }
+function show(i){
+  stopAll();
+  slides[cur].classList.remove('on'); cur=Math.max(0,Math.min(slides.length-1,i)); slides[cur].classList.add('on');
+  steps().forEach(x=>x.classList.remove('shown'));
+  if(cur===12){ speedIdx=-1; slides[12].querySelectorAll('.speeds span').forEach(x=>x.classList.remove('on')); }
+  slides[cur].querySelectorAll('.lad').forEach(x=>x.classList.remove('lit'));
+  $('#bar').style.width=((cur+1)/slides.length*100)+'%';
+  const n=slides[cur].querySelector('.notes'); $('#notes').innerHTML=`<b>บันทึกวิทยากร · สไลด์ ${cur+1}</b><br>${n?n.innerHTML:''}`;
+  try{ history.replaceState(null,'','#s'+(cur+1)); }catch(e){}
+}
+let speedIdx=-1;
+function next(){
+  const hidden=steps().filter(x=>!x.classList.contains('shown'));
+  if(hidden.length){
+    if(cur===12){ // speeds: one at a time highlight
+      const sp=[...slides[12].querySelectorAll('.speeds span')]; speedIdx++; sp.forEach((x,k)=>{ x.classList.toggle('shown',k<=speedIdx); x.classList.toggle('on',k===speedIdx); }); return;
+    }
+    hidden[0].classList.add('shown'); if(slides[cur].querySelector('.ladder')) hidden[0].classList.add('lit'); return;
+  }
+  show(cur+1);
+}
+function prev(){ show(cur-1); }
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){ if(e.key===' '||e.key==='Enter'){ if(document.activeElement&&document.activeElement.tagName==='BUTTON') return; } e.preventDefault(); next(); }
+  else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){ e.preventDefault(); prev(); }
+  else if(e.key==='Home') show(0); else if(e.key==='End') show(slides.length-1);
+  else if(e.key==='n'||e.key==='N') $('#notes').classList.toggle('on');
+  else if(e.key==='f'||e.key==='F') full();
+  else if(e.key==='t'||e.key==='T'){ const b=slides[cur].querySelector('.timer'); if(b) b.click(); }
+});
+$('#nextZone').onclick=next; $('#prevZone').onclick=prev;
+$('#bNotes').onclick=()=>$('#notes').classList.toggle('on');
+function full(){ try{ if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{}); else document.exitFullscreen().catch(()=>{}); }catch(e){} }
+$('#bFull').onclick=full;
+let tx=null; addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true}); addEventListener('touchend',e=>{ if(tx===null) return; const d=e.changedTouches[0].clientX-tx; if(Math.abs(d)>50){ d<0?next():prev(); } tx=null; });
+
+/* slide timers */
+let tInt=null;
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.timer'); if(!b) return;
+  if(b.classList.contains('run')){ clearInterval(tInt); b.classList.remove('run'); b.textContent='⏱ '+fmt(+b.dataset.t); return; }
+  let left=+b.dataset.t; b.classList.remove('done'); b.classList.add('run'); b.textContent='⏱ '+fmt(left);
+  clearInterval(tInt); tInt=setInterval(()=>{ left--; if(left<=0){ clearInterval(tInt); b.classList.remove('run'); b.classList.add('done'); b.textContent='⏱ หมดเวลา'; return; } b.textContent='⏱ '+fmt(left); },1000);
+});
+
+/* interactive helpers */
+let timers=[];
+function later(fn,ms){ const id=setTimeout(fn,ms); timers.push(id); return id; }
+function stopAll(){ timers.forEach(clearTimeout); timers=[]; clearInterval(hInt); clearInterval(tInt); document.querySelectorAll('.timer').forEach(b=>{b.classList.remove('run','done'); b.textContent='⏱ '+fmt(+b.dataset.t);}); resetBreath(); }
+
+/* breathing 4-4-6 x3 */
+const bC=$('#bCirc'), bN=$('#bNum'), bP=$('#bPhase'), bR=$('#bRound');
+function resetBreath(){ bC.style.transition='transform .6s'; bC.style.transform='scale(.45)'; bN.textContent='●'; bP.textContent='พร้อมไหม?'; bR.textContent='เข้า 4 · กลั้น 4 · ออก 6 · 3 รอบ'; }
+$('#bStart').onclick=()=>{
+  stopAll(); let t=0;
+  const phases=[['หายใจเข้า 🌬️',4,1],['กลั้นไว้ ✋',4,null],['หายใจออกช้า ๆ 🍃',6,.45]];
+  for(let r=0;r<3;r++){ phases.forEach(([lab,sec,sc])=>{
+    later(()=>{ bP.textContent=lab; bR.textContent=`รอบที่ ${r+1} จาก 3`; if(sc!==null){ bC.style.transition=`transform ${sec}s ease-in-out`; bC.style.transform=`scale(${sc})`; } },t*1000);
+    for(let k=0;k<sec;k++) later(()=>{ bN.textContent=k+1; },(t+k)*1000);
+    t+=sec; }); }
+  later(()=>{ bP.textContent='เยี่ยมมาก! 😊'; bN.textContent='✓'; bR.textContent='รู้สึกสงบขึ้นไหม?'; },t*1000);
+};
+/* hiss stopwatch */
+let hInt=null;
+$('#hStart').onclick=()=>{ clearInterval(hInt); let s=0; $('#hNum').textContent=0; hInt=setInterval(()=>{ s++; $('#hNum').textContent=s; },1000); };
+$('#hReset').onclick=()=>{ clearInterval(hInt); $('#hNum').textContent=0; };
+/* shake 8-4-2-1 */
+$('#sStart').onclick=()=>{
+  stopAll(); const parts=['มือขวา ✋','มือซ้าย 🤚','ขาขวา 🦵','ขาซ้าย 🦵']; let t=0; const beat=520;
+  [8,4,2,1].forEach(n=>parts.forEach(p=>{ for(let k=1;k<=n;k++){ later(()=>{ $('#sPart').textContent=p; $('#sNum').textContent=k; },t); t+=beat; } t+=150; }));
+  later(()=>{ $('#sPart').textContent='ปรบมือ! 👏'; $('#sNum').textContent='🎉'; },t);
+};
+/* left right caller */
+$('#lrStart').onclick=()=>{
+  stopAll(); const el=$('#lrCall'); const calls=[['👈 ทางซ้ายมือ','ของทุกท่าน'],['ทางขวามือ 👉','ของทุกท่าน'],['👆 ด้านหน้า','ของทุกท่าน']];
+  let t=0; let last=-1;
+  for(let i=0;i<10;i++){ later(()=>{ let k; do{ k=Math.floor(Math.random()*calls.length);}while(k===last&&Math.random()<.7); last=k; el.innerHTML=`${calls[k][0]}<small>${calls[k][1]}</small>`; el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); },t); t+=2000; }
+  later(()=>{ el.innerHTML='เยี่ยม! 👏<small>ต่อไป: จับคู่หันหน้าเข้าหากัน</small>'; },t);
+};
+
+const m=location.hash.match(/^#s(\d+)$/); show(m?(+m[1]-1):0);
+</script>
+</body>
+</html>
