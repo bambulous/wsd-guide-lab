@@ -441,6 +441,7 @@ tr.mine a{color:var(--leaf);text-decoration:none}
     <a href="#s3">ช่วงที่ 3 · จัดทำ Script</a>
     <a href="#script">แบบฟอร์ม Script 🔒</a>
     <div class="nav-group">เนื้อหานิทรรศการ</div>
+    <a href="#checkin">จุดเช็คอิน 7 จุด ✅ <span class="dice">★</span></a>
     <a href="#khao">เขาชะงุ้มในหนึ่งหน้า 🎬</a>
     <a href="#tram">เส้นทางรถราง 23 จุด 🚋</a>
     <a href="#stations">Exhibition Fact Cards</a>
@@ -450,6 +451,7 @@ tr.mine a{color:var(--leaf);text-decoration:none}
     <a href="#audience">สุ่มกลุ่มผู้ชม <span class="dice">🎲</span></a>
     <a href="#tram-pick">สุ่มจุดบนเส้นทาง <span class="dice">🎲</span></a>
     <a href="#station-pick">สุ่มจุดนิทรรศการ <span class="dice">🎲</span></a>
+    <a href="#checkin-pick">สุ่มจุดเช็คอิน <span class="dice">🎲</span></a>
     <a href="#technical">Too Technical! <span class="dice">🎲</span></a>
     <a href="#threeways">Say It Three Ways <span class="dice">🎲</span></a>
     <a href="#makeover">Question Makeover <span class="dice">🎲</span></a>
@@ -658,6 +660,7 @@ tr.mine a{color:var(--leaf);text-decoration:none}
 
   <div class="sec-head"><div><div class="eyebrow">QUICK TOOLS</div><h2>เครื่องมือสุ่มที่ใช้บ่อย</h2></div></div>
   <div class="grid g3">
+    <a class="tile" href="#checkin" style="border:2px solid var(--sun)"><div class="ico">✅</div><b>จุดเช็คอิน 7 จุด (ประเด็นหลัก)</b><span>กติกาเช็คอิน 4 จาก 7 จุด รับร่ม WSD ที่ Zone A2 และวิธีแนะนำผู้ชม</span></a>
     <a class="tile" href="#tram"><div class="ico">🚋</div><b>เส้นทางรถราง 23 จุด</b><span>ภาพจริง ข้อมูลแต่ละจุด งบเวลา และคำถามบนรถ</span></a>
     <a class="tile" href="#khao"><div class="ico">🎬</div><b>เขาชะงุ้มในหนึ่งหน้า</b><span>คลิปประวัติ ตัวเลขสำคัญ และลำดับเหตุการณ์</span></a>
     <a class="tile" href="#situation"><div class="ico">🃏</div><b>Situation Cards</b><span>สุ่มสถานการณ์จำลองระหว่างนำชม</span></a>
@@ -920,6 +923,58 @@ tr.mine a{color:var(--leaf);text-decoration:none}
   <div class="grid g2" id="stGrid"></div>
 </section>
 
+<!-- CHECK-IN -->
+<section class="page" id="p-checkin">
+  <div class="kicker">ประเด็นหลักที่ดินดีบัดดี้ดูแลนักท่องเที่ยว</div>
+  <h1>จุดเช็คอิน 7 จุด</h1>
+  <p class="lead">กิจกรรมเช็คอินสำหรับนักท่องเที่ยวในงานวันดินโลก ปี 2569 ดินดีบัดดี้ต้องอธิบายกติกาได้ บอกทางไปแต่ละจุดได้ และชวนให้ผู้ชมเช็คอินจนครบ</p>
+  <div class="grid g3 stats">
+    <div class="card"><b>4 จาก 7</b><span>เช็คอินให้ครบ 4 จุด จากทั้งหมด 7 จุด</span></div>
+    <div class="card"><b>+ แบบสอบถาม</b><span>ตอบแบบสอบถามหลังเช็คอินครบ</span></div>
+    <div class="card"><b>ร่ม WSD 2026</b><span>รับฟรีที่จุดประเมินผล Zone A2</span></div>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">20-SECOND PITCH</div><h2>ประโยคแนะนำกิจกรรม (พูดได้ใน 20 วินาที)</h2></div></div>
+  <div class="card">
+    <div class="hook" style="font-size:17px">“งานนี้มีกิจกรรมเช็คอินนะคะ สแกน QR Code แล้วเช็คอินให้ครบ 4 จุด จาก 7 จุด ตอบแบบสอบถามอีกนิด ก็รับร่มวันดินโลกได้ฟรีที่จุดประเมินผล Zone A2 ค่ะ”</div>
+    <ul class="clean">
+      <li>พูดกติกาให้ครบ 3 ส่วน: <b>4 จาก 7 จุด</b> · <b>ตอบแบบสอบถาม</b> · <b>รับร่มที่ Zone A2</b></li>
+      <li>ชี้ผังงานหรือป้าย SCAN ME ให้ผู้ชมเห็นจริง</li>
+      <li>ปิดท้ายด้วยคำถาม เช่น “ตอนนี้เช็คอินไปกี่จุดแล้วคะ”</li>
+    </ul>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">MAP</div><h2>ผังงานและตำแหน่งจุดเช็คอิน</h2></div></div>
+  <div class="grid g2">
+    <div class="card"><img src="img/checkin-map.webp" alt="ผังงานวันดินโลก 2569 แสดงหมุดจุดเช็คอิน 1 ถึง 7" data-zoom style="width:100%;border-radius:10px"><p class="counter" style="margin:.5em 0 0">ที่มา: โปสเตอร์ประชาสัมพันธ์จุดเช็คอิน งานวันดินโลก 2569 · แตะที่ภาพเพื่อขยาย</p></div>
+    <div class="card">
+      <h3 style="margin-top:0">อ่านผังแบบเร็ว</h3>
+      <ul class="clean">
+        <li><b>โซน A (ใกล้ทางเข้า):</b> จุด 1, 2, 3, 4 และ 7 อยู่ใกล้กัน เดินถึงกันได้</li>
+        <li><b>โซน B (นิทรรศการมีชีวิต):</b> จุด 5 (B2) และจุด 6 (B5) อยู่บนเส้นทางรถราง คือจุดที่ 17 และ 20</li>
+        <li><b>จุดรับร่ม:</b> จุดประเมินผล Zone A2 อยู่ในโซน A</li>
+      </ul>
+      <h3>เส้นทางแนะนำตามเวลาของผู้ชม</h3>
+      <ul class="clean">
+        <li>⏱️ <b>เวลาน้อย / มีเด็กเล็ก / ผู้สูงอายุ:</b> เดินในโซน A ให้ครบ 4 จุด เช่น 1 → 2 → 7 → 3 แล้วไป Zone A2</li>
+        <li>🚋 <b>ขึ้นรถราง:</b> เช็คอินโซน A 2 จุด และเช็คอินที่ B2 กับ B5 เมื่อลงชมสถานี</li>
+        <li>🎨 <b>ครอบครัว:</b> เพิ่มจุด 4 Art &amp; craft เป็นหนึ่งใน 4 จุด</li>
+      </ul>
+      <div class="note">เส้นทางแนะนำนี้อ่านจากผังงานเท่านั้น ระยะเดินจริงและการจอดรถรางที่ B2 และ B5 ควรยืนยันกับผู้จัดก่อนวันปฏิบัติหน้าที่</div>
+    </div>
+  </div>
+  <div class="sec-head"><div><div class="eyebrow">7 CHECK-IN POINTS</div><h2>ข้อมูลแต่ละจุดเช็คอิน</h2></div></div>
+  <div class="grid g2" id="ckGrid"></div>
+  <div class="sec-head"><div><div class="eyebrow">CHECKLIST</div><h2>สิ่งที่ดินดีบัดดี้ควรทำ</h2></div></div>
+  <div class="card"><ul class="clean">
+    <li>ตอนต้อนรับ: แนะนำกิจกรรมเช็คอินด้วยประโยค 20 วินาที</li>
+    <li>ระหว่างนำชม: เมื่อถึงจุดเช็คอิน เตือนให้ผู้ชมสแกนก่อนออกจากจุด</li>
+    <li>ก่อนแยกจากผู้ชม: ถามว่าเช็คอินครบกี่จุด แล้วบอกจุดที่ใกล้ที่สุดที่ยังขาด</li>
+    <li>ปิดท้าย: ย้ำว่าต้องตอบแบบสอบถาม และรับร่มที่ Zone A2</li>
+    <li>ช่วยผู้ที่ไม่ถนัดใช้โทรศัพท์ทีละขั้น ให้ผู้ชมถือโทรศัพท์เอง และไม่ขอข้อมูลส่วนตัวของผู้ชม</li>
+  </ul></div>
+  <div class="note" style="margin-top:14px"><b>ควรยืนยันกับผู้จัด:</b> วิธีเช็คอิน (สแกน QR ที่ป้ายจุดหรือในแอป) · จำนวนร่มและเงื่อนไขเมื่อร่มหมด · เวลาเปิดจุดประเมินผล · รายละเอียดกิจกรรมที่จุด 1, 3, 4 และ 7</div>
+</section>
+
+<section class="page" id="p-checkin-pick"></section>
 <!-- QUESTIONS -->
 <section class="page" id="p-questions">
   <div class="kicker">ใช้ในช่วงที่ 3</div>
@@ -1134,6 +1189,43 @@ const STATIONS = [
 ];
 
 
+const CHECKIN = [
+ {n:1,c:'#1e88e5',zone:'Zone A3-1',name:'ภารกิจ SOIL QUEST PASSPORT และถ่ายรูปสติกเกอร์',area:'โซน A',ref:'wsd',route:0,
+  what:'จุดภารกิจ Soil Quest Passport และมุมถ่ายรูปสติกเกอร์ ในอาคารนิทรรศการวันดินโลกและนิทรรศการวิชาการ',
+  say:'จุดนี้เป็นจุดเช็คอินที่ 1 ค่ะ มีภารกิจ Soil Quest Passport และมุมถ่ายรูปสติกเกอร์ เริ่มเช็คอินจุดแรกที่นี่ได้เลย',
+  hook:'อาหารบนจานของเราเมื่อเช้า มีกี่อย่างที่ไม่ได้มาจากดินคะ',
+  tip:'อาคารเดียวกันมีเนื้อหาวันดินโลกและดินอัดแน่น ดูข้อมูลได้ที่ Fact Cards หัวข้อ Zone A3-1'},
+ {n:2,c:'#7cb342',zone:'Zone A3-2',name:'นิทรรศการบ้านแม่รัง',area:'โซน A',ref:'maerang',route:0,
+  what:'อาคารที่สร้างจากดิน มีนิทรรศการ 3D Mapping เรื่องการพัฒนาของศูนย์ฯ และทรัพยากรดินในศูนย์ฯ',
+  say:'บ้านแม่รังสร้างจากดินทั้งหลังครับ ข้างในมี 3D Mapping เล่าว่าพื้นที่ดินลูกรังที่นี่ฟื้นกลับมาได้อย่างไร อย่าลืมเช็คอินจุดที่ 2 นะครับ',
+  hook:'อาคารที่เรากำลังจะเข้าไป สร้างจากวัสดุที่อยู่ใต้เท้าเรา ทายได้ไหมครับว่าคืออะไร',
+  tip:'เนื้อหาเกี่ยวกับสถาบันพระมหากษัตริย์ ใช้ราชาศัพท์ให้ถูกต้อง'},
+ {n:3,c:'#e53935',zone:'โซน A',name:'กำแพงชั้นดิน',area:'โซน A',ref:'',route:6,
+  what:'จุดเรียนรู้ชั้นดิน ให้ผู้ชมเห็นว่าดินมีหลายชั้นซ้อนกัน',
+  say:'กำแพงนี้คือดินที่ถูกตัดให้เห็นด้านข้างค่ะ ลองดูว่าแต่ละชั้นสีต่างกันอย่างไร แล้วเช็คอินจุดที่ 3 กันค่ะ',
+  hook:'ถ้าขุดดินลงไปลึก ๆ คิดว่าดินจะเหมือนกันทุกชั้นไหมคะ',
+  tip:'เชื่อมกับจุดที่ 6 หน้าตัดดิน (บ่อลูกรังเก่า) บนเส้นทางรถราง ใช้ข้อมูลจากป้ายประจำจุดเท่านั้น'},
+ {n:4,c:'#8e24aa',zone:'Zone กิจกรรม',name:'กิจกรรม Art & craft',area:'โซน A',ref:'',route:0,
+  what:'โซนกิจกรรมศิลปะและงานประดิษฐ์ เหมาะกับครอบครัวและเด็ก',
+  say:'ใครมากับน้อง ๆ แนะนำโซน Art & craft ครับ ได้ทำงานประดิษฐ์และนับเป็นจุดเช็คอินที่ 4 ด้วย',
+  hook:'ถ้าดินมีสีได้หลายสี เราจะเอาดินมาทำอะไรได้บ้างครับ',
+  tip:'รายละเอียดกิจกรรมและเวลารอคิวควรสอบถามจากเจ้าหน้าที่ประจำโซน'},
+ {n:5,c:'#f9a825',zone:'Zone B2',name:'นิทรรศการเกษตรทฤษฎีใหม่',area:'โซน B',ref:'b2',route:17,
+  what:'แปลงสาธิตเกษตรทฤษฎีใหม่ 17 ไร่ แบ่งพื้นที่เป็นแหล่งน้ำ นาข้าว ไม้ผล และที่อยู่อาศัย',
+  say:'ที่ฐาน B2 เราจะเห็นการแบ่งที่ดินแบบเกษตรทฤษฎีใหม่ค่ะ ลงรถแล้วเช็คอินจุดที่ 5 ก่อนเดินชมนะคะ',
+  hook:'ถ้ามีที่ดิน 1 แปลง จะแบ่งเป็นบ่อน้ำ นา สวน และบ้านอย่างไรดี',
+  tip:'อยู่บนเส้นทางรถราง (จุดที่ 17) บอกผู้ชมก่อนลงรถว่าจะกลับขึ้นรถที่จุดไหน'},
+ {n:6,c:'#43a047',zone:'Zone B5',name:'นิทรรศการแก๊งดึ๋ย ซุยดิน',area:'โซน B',ref:'b5',route:20,
+  what:'ฐานเรียนรู้ไส้เดือนดิน การเลี้ยง และการใช้ประโยชน์จากมูลไส้เดือน',
+  say:'แก๊งดึ๋ยคือไส้เดือนดินครับ เป็นวิศวกรตัวเล็กที่ช่วยให้ดินร่วนซุย เช็คอินจุดที่ 6 ได้ที่นี่ครับ',
+  hook:'ถ้าเราเป็นไส้เดือน จะชอบอยู่ในดินแบบไหน ดินแน่นหรือดินร่วน',
+  tip:'อยู่บนเส้นทางรถราง (จุดที่ 20) เชื่อมกลับไปที่ธีมดินอัดแน่นได้ดี'},
+ {n:7,c:'#039be5',zone:'Zone A3-3',name:'นิทรรศการหน่วยงานร่วม',area:'โซน A',ref:'ext',route:0,
+  what:'นิทรรศการหน่วยงานร่วม รวมถึงสมาคมการค้าไบโอชาร์นานาชาติ เอเชียแปซิฟิก (IBAP)',
+  say:'จุดที่ 7 อยู่ติดกับอาคารนิทรรศการวันดินโลกค่ะ มีหน่วยงานร่วมจัดแสดง รวมถึงเรื่องไบโอชาร์ แวะเช็คอินได้เลยค่ะ',
+  hook:'มีถ่านชนิดหนึ่งที่ใส่ลงดินแล้วช่วยปรับปรุงดินได้ ใครรู้จักชื่อบ้างคะ',
+  tip:'ไบโอชาร์ (Biochar) มีที่ฐาน B3 ด้วย คำถามเชิงลึกส่งต่อให้เจ้าหน้าที่ของหน่วยงานตอบ'}
+];
 const TRAM = [
  {n:1,id:'wsd',name:'อาคารนิทรรศการวันดินโลกและนิทรรศการวิชาการ',zone:'Zone A3-1',
   what:'อาคารนิทรรศการหลักของงาน เล่าที่มาของวันดินโลก ธีมปี 2569 เรื่องดินอัดแน่น และวิทยาศาสตร์การฟื้นฟูดิน',
@@ -1325,6 +1417,10 @@ ROUTE.forEach(r=>{ r.secs=Math.round(r.chars/650*60/10)*10; r.target=Math.round(
 
 
 const SITUATIONS = [
+ {t:'Where Is My Umbrella?',d:'นักท่องเที่ยวถามว่า "รับร่มได้ที่ไหน" แต่เพิ่งเช็คอินไป 2 จุด',g:'อธิบายกติกาเช็คอินให้ครบและสุภาพ',tip:'บอกว่าต้องเช็คอินครบ 4 จาก 7 จุด และตอบแบบสอบถาม แล้วรับร่มที่จุดประเมินผล Zone A2 จากนั้นแนะนำ 2 จุดที่ใกล้ที่สุด'},
+ {t:'Three Out of Four',d:'ผู้ชมเช็คอินได้ 3 จุด แต่ใกล้เวลาที่ต้องกลับ',g:'แนะนำทางเลือกที่เร็วที่สุด',tip:'ดูผังงาน เลือกจุดในโซน A ที่ใกล้ที่สุดที่ยังไม่ได้เช็คอิน เช่น จุด 7 หรือจุด 3 แล้วชี้ทางไป Zone A2'},
+ {t:'The QR Struggle',d:'ผู้สูงอายุไม่ถนัดสแกน QR Code เพื่อเช็คอิน',g:'ช่วยเหลือโดยเคารพความเป็นส่วนตัว',tip:'อธิบายทีละขั้นช้า ๆ ให้ผู้ชมถือโทรศัพท์เอง ไม่ขอรหัสหรือข้อมูลส่วนตัว ถ้ายังไม่ได้ให้พาไปหาเจ้าหน้าที่จุดประเมินผล'},
+ {t:'No Tram Today',d:'ครอบครัวมีเด็กเล็กอยากได้ร่ม แต่ไม่อยากขึ้นรถราง',g:'วางเส้นทางเช็คอินให้เหมาะกับผู้ชม',tip:'แนะนำ 4 จุดในโซน A เช่น จุด 1, 2, 4 (Art & craft) และ 7 ซึ่งอยู่ใกล้กันและใกล้ Zone A2'},
  {t:'The Quiet Group',d:'ผู้ชม 6 คน ไม่มีใครยอมตอบคำถามเลย',g:'ชวนคุยโดยไม่กดดันผู้ชม',tip:'เปลี่ยนเป็นคำถามให้เลือกหรือยกมือ ตอบเองเป็นตัวอย่างก่อน 1 ครั้ง'},
  {t:'The Curious Child',d:'เด็กถามว่า "ทำไมไส้เดือนถึงชอบอยู่ในดิน"',g:'ใช้ภาษาง่ายและตัวอย่างที่เหมาะกับวัย',tip:'ชมคำถาม ตอบด้วยการเปรียบเทียบ เช่น ดินเป็นบ้านที่มีอาหารและความชื้น'},
  {t:'The Expert Visitor',d:'ผู้ชมถามคำถามวิชาการที่ดินดีบัดดี้ไม่มั่นใจคำตอบ',g:'ยอมรับข้อจำกัดและส่งต่อให้ผู้เชี่ยวชาญ',tip:'"เป็นคำถามที่ดีมากค่ะ ขอส่งต่อให้นักวิชาการประจำจุดตอบให้ถูกต้องนะคะ"'},
@@ -1560,6 +1656,14 @@ function renderSessions(){
 }
 
 
+function renderCheckin(){
+  $('#ckGrid').innerHTML=CHECKIN.map(k=>`<div class="card tram-card" id="ck-${k.n}"><div class="row" style="gap:8px;align-items:center"><span style="display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${k.c};box-shadow:0 2px 6px rgba(0,0,0,.2)"><b style="transform:rotate(45deg);color:#fff;font-size:17px">${k.n}</b></span><span class="tag">${esc(k.zone)}</span>${k.area!==k.zone?`<span class="tag leaf">${esc(k.area)}</span>`:''}${k.route?`<a class="tag sun" href="#tram" data-go="${k.route}">${k.ref?'🚋 เส้นทางรถราง จุดที่ '+k.route:'🔗 เทียบจุดที่ '+k.route+' หน้าตัดดิน'}</a>`:''}</div>
+    <h3>${esc(k.name)}</h3><p class="what"><b>คือจุดอะไร:</b> ${esc(k.what)}</p>
+    <div class="hook"><b>ประโยคชวนเช็คอิน:</b> ${esc(k.say)}</div>
+    <div class="qbox"><b>คำถามชวนคิด:</b> ${esc(k.hook)}</div>
+    <p class="counter" style="margin:.4em 0 0">💡 ${esc(k.tip)}</p></div>`).join('');
+  $('#ckGrid').addEventListener('click',e=>{ const a=e.target.closest('[data-go]'); if(!a) return; e.preventDefault(); location.hash='#tram'; setTimeout(()=>{ showSeg(0); const c=document.getElementById('rt-'+a.dataset.go); if(c){ c.scrollIntoView({behavior:'smooth',block:'start'}); c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); } },80); });
+}
 function renderTram(){
   const fmt=sec=>sec>=60?(Math.round(sec/30)/2)+' นาที':sec+' วินาที';
   const modeTag=r=>r.mode==='stop'?'<span class="tag sun">🚏 จุดจอดสถานี · ลงชม</span>':r.mode==='start'?'<span class="tag">▶ จุดเริ่มต้น</span>':r.mode==='end'?'<span class="tag">🏁 ปิดท้าย</span>':'<span class="tag water">🚋 บรรยายขณะรถวิ่ง</span>';
@@ -1580,7 +1684,7 @@ function renderTram(){
   const card=r=>{ const t=r.ref&&TRAM.find(x=>x.id===r.ref);
     const pics=r.img.length?`<div class="pics">${r.img.map((im,i)=>`<img src="img/${im}.webp" alt="ภาพประกอบจุดที่ ${r.n} ${esc(r.name)}" loading="lazy" data-zoom class="${i?'thumb':'cover'}">`).join('')}</div>`:'';
     return `<div class="card tram-card" id="rt-${r.n}" data-seg="${r.seg}">${pics?'':`<span class="num">${r.n}</span>`}${pics}
-      <div class="row" style="gap:4px"><span class="tag" style="background:#3e2723;color:#fff">จุดที่ ${r.n}</span>${modeTag(r)}${sideTag(r)}<span class="tag" style="background:#f3ece7;color:#6d4c41">ช่วงที่ ${r.seg}</span></div>
+      <div class="row" style="gap:4px"><span class="tag" style="background:#3e2723;color:#fff">จุดที่ ${r.n}</span>${modeTag(r)}${sideTag(r)}<span class="tag" style="background:#f3ece7;color:#6d4c41">ช่วงที่ ${r.seg}</span>${(()=>{const k=CHECKIN.find(x=>x.route===r.n&&x.ref);return k?`<a class="tag" style="background:#2e7d32;color:#fff" href="#checkin">✅ จุดเช็คอิน ${k.n}</a>`:''})()}</div>
       <h3>${esc(r.name)}</h3><p class="what"><b>สิ่งที่เห็น:</b> ${esc(r.see)}</p>
       <ul>${r.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
       ${t?`<details class="more"><summary>กิจกรรมที่สถานี</summary><ul>${t.acts.map(a=>`<li>${esc(a)}</li>`).join('')}</ul><div class="hook"><b>ไฮไลต์:</b> ${esc(t.hi)}</div></details>`:''}
@@ -1644,6 +1748,9 @@ const RAND_PAGES = {
  'station-pick':{kicker:'ใช้ได้ทุกช่วง',title:'สุ่มจุดนิทรรศการ',lead:'สุ่มจุดนิทรรศการที่ต้องพูดถึง พร้อมข้อเท็จจริงสำคัญสำหรับเตรียมตัว',items:STATIONS,label:'สุ่มจุดนิทรรศการ',
    view:(x,i)=>`<div class="st-head">${icon(x.id).replace('st-ico','st-ico big')}<div><div class="res-num">${esc(x.zone)}</div><div class="res-title">${esc(x.name)}</div></div></div><div class="res-body"><ul style="padding-left:1.1em;margin:.2em 0">${x.facts.slice(0,3).map(f=>`<li>${esc(f)}</li>`).join('')}</ul><details class="more"><summary>ดู Hook และคำถามตัวอย่าง</summary><div class="hook"><b>Hook:</b> ${esc(x.hook)}</div><div class="qbox"><b>คำถาม:</b> ${esc(x.q)}</div></details></div>`,
    mini:x=>`<b>${esc(x.name)}</b>${esc(x.zone)}`},
+ 'checkin-pick':{kicker:'ใช้ในช่วงที่ 2 และ 3',title:'สุ่มจุดเช็คอิน',lead:'สุ่ม 1 ใน 7 จุดเช็คอิน แล้วฝึกชวนผู้ชมไปเช็คอินภายใน 30 วินาที ให้บอกว่าจุดอยู่ที่ไหน มีอะไรให้ดู และย้ำกติกา 4 จาก 7 จุด',items:CHECKIN,label:'สุ่มจุดเช็คอิน',
+   view:(x,i)=>`<div class="res-num">จุดเช็คอิน ${x.n} · ${esc(x.zone)} · ${esc(x.area)}</div><div class="res-title">${esc(x.name)}</div><div class="res-body"><p style="margin:.3em 0">${esc(x.what)}</p><p class="counter">โจทย์: ชวนผู้ชมไปเช็คอินจุดนี้ใน 30 วินาที และพูดกติการับร่มให้ครบ</p><details class="more"><summary>ดูตัวอย่างประโยค</summary><div class="hook">${esc(x.say)}</div><div class="qbox"><b>คำถาม:</b> ${esc(x.hook)}</div></details></div>`,
+   mini:x=>`<b>จุดเช็คอิน ${x.n}</b>${esc(x.name)}`},
  'technical':{kicker:'ใช้ในช่วงที่ 2 · Too Technical!',title:'Too Technical!',lead:'สุ่มข้อความวิชาการจากเอกสาร แล้วอธิบายใหม่ด้วยภาษาพูดภายใน 30 วินาที โดยไม่ทำให้ความหมายผิดไป',items:TECHNICAL,label:'สุ่มข้อความวิชาการ',
    view:(x,i)=>`<div class="res-num">ข้อความวิชาการ · ${esc(x.src)}</div><div class="res-body" style="font-size:clamp(19px,2.3vw,26px);font-family:var(--head);color:var(--soil);margin:.3em 0">"${esc(x.s)}"</div><p class="counter">โจทย์: อธิบายใหม่ให้คนทั่วไปเข้าใจใน 30 วินาที ใช้การเปรียบเทียบอย่างน้อย 1 อย่าง</p>`,
    mini:x=>`<b>${esc(x.src)}</b>${esc(x.s.slice(0,70))}…`},
@@ -1786,7 +1893,7 @@ function buildRubric(){
 }
 
 /* ===================== ROUTER & UI ===================== */
-const PAGES=['home','plan','tram','khao','tram-pick','s1','s2','s3','script','stations','questions','situation','audience','station-pick','technical','threeways','makeover','mission','names','timer','rubric','prep'];
+const PAGES=['home','plan','checkin','checkin-pick','tram','khao','tram-pick','s1','s2','s3','script','stations','questions','situation','audience','station-pick','technical','threeways','makeover','mission','names','timer','rubric','prep'];
 function route(){
   let h=(location.hash||'#home').slice(1); if(!PAGES.includes(h)) h='home';
   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('show',p.id==='p-'+h));
@@ -1805,7 +1912,7 @@ $('#menuBtn').onclick=e=>{e.stopPropagation();document.body.classList.toggle('na
 document.addEventListener('click',e=>{ if(document.body.classList.contains('nav-open')&&!e.target.closest('#side')) document.body.classList.remove('nav-open'); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') setProj(false); });
 
-renderSessions(); renderStations(); renderTram();
+renderSessions(); renderStations(); renderCheckin(); renderTram();
 Object.keys(RAND_PAGES).forEach(buildRandPage);
 buildMission(); buildNames(); buildTimer(); buildRubric();
 
